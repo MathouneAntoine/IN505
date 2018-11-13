@@ -1,0 +1,27 @@
+Point: Point.o main.o Segment.o PointColor.o Forme.o Triangle.o Rectangle.o Cercle.o
+	g++ Point.o main.o Segment.o PointColor.o Forme.o Triangle.o Rectangle.o Cercle.o -o Point
+
+Point.o: Point.h
+	g++ -c Point.cc
+
+PointColor.o: PointColor.h Point.h
+	g++ -c PointColor.cc
+
+
+main.o: Point.h Segment.h
+	g++ -c main.cc
+
+Segment.o: Segment.h Point.h 
+	g++ -c Segment.cc -Wall
+Forme.o: Forme.h Point.h
+	g++ -c Forme.cc -Wall
+Triangle.o:  Forme.h Triangle.h Point.h 
+	g++ -c Triangle.cc
+Rectangle.o: Forme.h Rectangle.h Point.h
+	g++ -c Rectangle.cc
+Cercle.o: Cercle.h Point.h
+	g++ -c Cercle.cc
+
+clear:
+	rm *.o
+	rm Point
