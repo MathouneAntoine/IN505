@@ -1,15 +1,15 @@
 
 
-make: main.o Terrain.o Point.o
-	gcc main.o Terrain.o Point.o -o Terrain
+make: main.o Field.o Point.o
+	g++ main.o Field.o Point.o -o Field
 
-main.o: main.cc  Terrain.h
+main.o: main.cc  Field.h
 	g++ -c -Wall main.cc 
-Terrain.o: Terrain.cc  Terrain.h
-	g++ -c -Wall Terrain.cc 
+Field.o: Field.cc  Field.h
+	g++ -c -Wall Field.cc 
 Point.o: Point.cc  Point.h  main.cc 
 	g++ -c -Wall Point.cc 
 
 clean:
-	rm *.o
-	rm Terrain
+	-rm *.o
+	-rm Field

@@ -1,51 +1,48 @@
 #include "Point.h"
 
-Point::Point()
+	Point::Point()
 	{
-		this->x = 0;
-		this->y = 0;
+		x = 50;
+		y = 100;
 	}
-Point::Point(int x, int y)
+
+	Point::Point(int a, int b)
 	{
-		this->x = x;
-		this->y = y;
+		x = a;
+		y = b;
 	}
-Point::Point(const Point &p)
+
+	Point::Point(const Point &p)
 	{
 		this->x=p.x;
 		this->y=p.y;
 	}
-int Point::getX()
-	{
-		return this->x; 
-	}	
-int Point::getY()
-	{
-		return this->y; 
-	}	
-void Point::setX(int x)
-	{
-		this->x =x; 
-	}	
-void Point::setY(int y)
-	{
-		this->y = y; 
-	}	
 
-
-void Point::afficher()
+	void Point::clone(const Point &p)
 	{
-		//std::cout << this->x << this->y << std::endl;
-	}
-	
-void Point::cloner(const Point X)
-	{
-			this->x = X.x;
-			this->y = X.y;
+		this->x=p.x;
+		this->y=p.y;
 	}
 
-Point::~Point()
+	int Point::getX()
 	{
-		//std::cout << "appel au destructeur" << std::endl;
+		return this->x;
 	}
-	
+
+	int Point::getY()
+	{
+		return this->y;
+	}
+
+	void Point::setX(int const x)
+	{
+		this->x=x;
+	}
+
+	void Point::setY(int const y)
+	{
+		this->y=y;
+	}
+
+	Point::~Point()
+	{}
