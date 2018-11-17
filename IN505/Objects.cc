@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Objects.h"
+#include "./Formes.h"
 using namespace std;
 
 Objects()

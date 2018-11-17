@@ -1,19 +1,46 @@
-
-using namespace std;
-#include <iostream>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "Segment.h"
 #include "Point.h"
-#include <cmath>
+#include "Forme.h"
+#include <iostream>
 
-Segment::Segment(){}
-//L'appel des constructeurs de p1 et p2 se fait automatiquement avec cette notation pour une classe composee
-Segment::Segment(Point const& p, const double x, const double y): p1(p), p2(x, y){}
-Segment::~Segment(){ cout << "destruction du segment" << endl; }
-double Segment::longueur(){ return sqrt(pow(p2.getx()-p1.getx(),2) + pow(p2.gety()-p1.gety(),2)); }
-bool Segment::estHorizontal(){ return p1.getx() == p2.getx(); }
-bool Segment::estVertical(){ return p1.gety() == p2.gety();}
-bool Segment::estSurDiagonal(){ return p1.getx() == p1.gety() && p2.getx() == p2.gety() ;}
+using namespace std;
 
+Segment::Segment() : p(0,0),q(0,0) 
+{}
+
+Segment::Segment(Point& p1, Point& p2): p(p1), q(p2)
+{}
+
+Segment::Segment(int x1, int y1, int x2, int y2): p(x1,y1), q(x2,y2)
+{}
+
+Point& Segment::getP()
+{
+	return this->p;
+}
+
+Point& Segment::getQ()
+{
+	return this->q;
+}
+
+void Segment::afficher()
+{
+	cout<< endl<<" SEGMENT (Defini par 2 points) : "<< endl;
+	cout<< "POINT 1 	"<< "x: " << this->p.getX() << "  y: "<< this->p.getY()  << endl;
+	cout<< "POINT 2	 	"<< "x: " << this->q.getX() << "  y: "<< this->q.getY()  << endl;
+}
+
+void Segment::deplacer(int x, int y)
+{
+	//avance en X
+	this->p.setX(this->p.getX() + x);
+	this->q.setX(this->q.getX() + x);
+
+	//avance en y
+	this->p.setY(this->p.getY() + y);
+	this->q.setY(this->q.getY() + y);
+}
+
+Segment::~Segment()
+{}

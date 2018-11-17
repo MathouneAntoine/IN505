@@ -1,21 +1,26 @@
-#ifndef Segment_h
-#define Segment_h
+#ifndef DEF_SEGMENT
+#define DEF_SEGMENT
 
+#include "Forme.h"
 #include "Point.h"
 
-class Segment
+class Segment : public Forme
 {
-	private:
-		Point p1;
-		Point p2;
-		
-	public:
-		Segment();
-		Segment(Point const& p, const double x, const double y);
-		~Segment(); //un destructeur ne se surcharge pas.
-		double longueur();
-		bool estHorizontal();
-		bool estVertical();
-		bool estSurDiagonal();
+	public :
+
+	Segment();
+	Segment(Point& a, Point& b);
+	Segment(int a, int b, int c, int d);
+	Point& getP();
+	Point& getQ();
+	void afficher();
+	void deplacer(int x, int y);
+	~Segment();
+
+	protected :
+
+		Point p;
+		Point q;
 };
+
 #endif

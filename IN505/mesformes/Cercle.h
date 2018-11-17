@@ -11,7 +11,7 @@ class Cercle:public Point
 	public:
 		Cercle(Point p1, int diam);
 		Cercle(Cercle &cer);
-		void deplacer(double dx, double dy);
+		void deplacer(int dx, int dy);
 		void afficher();
 		~Cercle();
 };

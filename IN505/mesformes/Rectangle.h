@@ -14,7 +14,7 @@ class Rectangle: public Point
 	public:
 		Rectangle(Point p1, Point p2, Point p3, Point p4);
 		Rectangle(Rectangle& r);
-		void deplacer(double dx, double dy);
+		void deplacer(int dx, int dy);
 
 		~Rectangle();
 		void afficher();

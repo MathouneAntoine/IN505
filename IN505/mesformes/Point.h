@@ -1,30 +1,27 @@
-#ifndef Point_h
-#define Point_h
-class Point
+#ifndef POINT_H
+#define POINT_H
+
+#include <iostream>
+
+class Point 
 {
-	protected:
-		double x;
-		double y;
-		
 	public:
-		
+	Point();
+	Point(int x, int y);
+	Point(const Point &p);
+	void clone(const Point &x);
+	int getX();
+	int getY();
+	void setX(int const x);
+	void setY(int const y);
+	void deplacer(int x, int y);
+	void print();
+	~Point();
 
-		Point();
-		Point(double x, double y);
-		Point(const Point& p);
-		void deplacer(double dx, double dy);
-
-		~Point();
-		double getx();
-		double gety();
-		void setx(double x);
-		void sety(double y);
-
-		void afficher();
-		void cloner(const Point& p);
-
+	private :
+	int x;
+	int y;
+	
 };
+
 #endif
-
-
-

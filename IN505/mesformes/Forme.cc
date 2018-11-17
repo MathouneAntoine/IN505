@@ -6,16 +6,16 @@ using namespace std;
 #include "Point.h"
 #include "Forme.h"
 
-void Forme::deplacer(double dx, double dy)
+void Forme::deplacer(int dx, int dy)
 {
-	centre.setx(centre.getx()+dx);
-	centre.sety(centre.gety()+dy);
+	centre.setX(centre.getX()+dx);
+	centre.setY(centre.getY()+dy);
 
 }
 void Forme::setCentre(Point p)
 {
-	centre.setx(p.getx());
-	centre.sety(p.gety());
+	centre.setX(p.getX());
+	centre.setY(p.getY());
 }
 
 void Forme::setColor(int col)
