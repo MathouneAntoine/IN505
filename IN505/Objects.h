@@ -1,9 +1,11 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
-#include "Forme.h"
+#include "./mesformes/Forme.h"
+#include "Field.h"
+#include <iostream>
 
-class Objects : public Field
+class Objects 
 {
 	public:
 		Objects();
@@ -15,10 +17,12 @@ class Objects : public Field
 		~Objects();
 		
 	protected:
-		Forme f;
+		Forme * f;
 		int life;
 		int high;	
 		int diameter;
+
+		
 	
 };
 

@@ -1,17 +1,16 @@
-using namespace std;
-#include <iostream>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+
 #include "Point.h"
 #include "Forme.h"
+
+Forme::Forme()
+{}
 
 void Forme::deplacer(int dx, int dy)
 {
 	centre.setX(centre.getX()+dx);
 	centre.setY(centre.getY()+dy);
-
 }
+
 void Forme::setCentre(Point p)
 {
 	centre.setX(p.getX());
@@ -25,4 +24,5 @@ void Forme::setColor(int col)
 void Forme::afficher(){}
 
 
-Forme::~Forme(){ cout << "destruciton Forme " << endl; }
+Forme::~Forme()
+{}

@@ -1,14 +1,18 @@
 
-make: main.o Field.o ./mesformes/Point.o
-	g++ main.o Field.o ./mesformes/Point.o -o Field
+make: main.o Field.o Rock.o Objects.o ./mesformes/Point.o ./mesformes/Forme.o ./mesformes/Rectangle.o
+	g++ main.o Field.o Rock.o Objects.o ./mesformes/Point.o ./mesformes/Forme.o ./mesformes/Rectangle.o -o Field
 
-main.o: main.cc  Field.h
+main.o: main.cc  Field.h Rock.h
 	g++ -c -Wall main.cc 
+
 Field.o: Field.cc  Field.h
 	g++ -c -Wall Field.cc 
-	
-./mesformes/Point.o: ./mesformes/Point.cc  ./mesformes/Point.h  main.cc 
-	g++ -c -Wall ./mesformes/Point.cc 
+
+Objects.o: Objects.cc Objects.h Field.h ./mesformes/Forme.h
+	g++ -c -Wall Objects.cc
+
+Rock.o: Rock.cc  Rock.h Objects.h ./mesformes/Forme.h ./mesformes/Rectangle.h
+	g++ -c -Wall Rock.cc 
 
 clean:
 	-rm *.o

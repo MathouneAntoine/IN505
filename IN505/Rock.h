@@ -2,21 +2,22 @@
 #define ROCK_H
 
 #include "Field.h"
-#include "Forme.h"
+#include "Objects.h"
+#include "./mesformes/Forme.h"
 
-class Rock : public Objects
+class Rock :  public Objects
 {
 	public:
 
 		Rock();
-		Forme getForme();
+		Rock(Field* f,int life, int high, int diameter,  int FromCenterX, int FromCenterY, int depth);
+		Rock(Forme* f,int life, int high, int diameter, int depth);
+		Forme* getForme();
 		void print();
 		~Rock();
 
 	private:
+		int depth;
+};
 
-		??Forme f;
-		??color c;
-} 
-
-#endif ROCK_H
+#endif

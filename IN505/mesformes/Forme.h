@@ -9,6 +9,7 @@ class Forme
 		Point centre;
 		int color;	
 	public:
+		Forme();
 		virtual void deplacer(int dx, int dy);
 		virtual void afficher();
 		void setCentre(Point p);

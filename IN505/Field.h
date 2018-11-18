@@ -8,14 +8,14 @@ class Field
 	public:
 	
 	Field();
-	Field( int heigth, int width);
+	Field( int width, int height);
 	Point getCenter();
 	int getHeight();
 	int getWidth();
 	void print();
 	~Field();
 
-	protected:
+	private:
 
 	Point center;
 	int height; //y

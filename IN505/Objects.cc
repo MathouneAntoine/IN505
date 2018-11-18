@@ -1,32 +1,31 @@
 #include <iostream>
 #include "Objects.h"
-#include "./Formes.h"
+#include "./mesformes/Forme.h"
+
 using namespace std;
 
-Objects()
+Objects::Objects()
 {}
 
-int getLife()
+int Objects::getLife()
 {
 	return this->life;
 }
 
-int getHigh()
+int Objects::getHigh()
 {
 	return this->high;
 }
 
-int getDiameter()
+int Objects::getDiameter()
 {
 	return this->diameter;
 }
 
-void printInfo()
+void Objects::printInfo()
 {
-	cout<<"Point de vie : "<< this->life << "Hauteur : " << this->high << "Diametre : " << this->diameter <<endl;
+	cout<<"Point de vie : "<< this->life << "  Hauteur : " << this->high << "  Diametre : " << this->diameter <<endl;
 }
 
-~Objects()
-{
-
-}
+Objects::~Objects()
+{}

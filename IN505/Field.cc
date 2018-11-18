@@ -12,10 +12,10 @@ Field::Field()
 	this->height=600;
 }
 
-Field::Field( int heigth, int width)
+Field::Field( int width , int height)
 {
 	this->center.setX(width/2);
-	this->center.setY(heigth/2);
+	this->center.setY(height/2);
 	this->width=width;
 	this->height=height;
 }
@@ -31,6 +31,7 @@ int Field::getWidth()
 
 void Field::print()
 {
+	cout << endl << "Field : "<< endl;
 	cout << "Largeur : " << this->width << endl;
 	cout << "Hauteur : " << this->height << endl;
 	cout << "Centre : x: " << this->center.getX()<< " y: " << this->center.getY() << endl;
