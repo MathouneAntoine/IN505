@@ -21,8 +21,11 @@ Tree::Tree(Tree t)
 	this->diameter=t.diameter;
 }
 
-Tree::Tree(int life, int high, int diameter)
+Tree::Tree(Field* f, int life, int high, int diameter, int FromCenterX, int FromCenterY,  int depth)
 {
+	Point p;
+	p= Point(FromCenterX + f->getCenter().getX(), FromCenterY + f->getCenter().getY());
+
 	this->f= new Cercle();
 	this->life=life;
 	this->high=high;	
