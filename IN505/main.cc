@@ -2,7 +2,21 @@
 #include "Rock.h"
 #include "Tree.h"
 
-int main(int argc, char const *argv[])
+
+#include <QApplication>
+#include <QPushButton>
+
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+
+    QPushButton hello("Hello world!");
+
+    hello.show();
+    return app.exec();
+}
+
+/*int main(int argc, char const *argv[])
 {
 	Field* f= new Field(500,400);
 
@@ -30,7 +44,8 @@ int main(int argc, char const *argv[])
 	{
 
 	}	
+	QWindow();
 
 
 	return 0;
-}
+}*/
