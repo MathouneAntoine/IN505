@@ -8,6 +8,13 @@ using namespace std;
 //Si il existe une fct virtuelle pure -> classes abstraite (pas d'instences)
 //protected class hérite on accès aux attributs privés de la classe
 
+Cercle::Cercle()
+{
+	this->p.setX(50);
+	this->p.setY(50);
+	this->diametre = 15; 
+}
+
 Cercle::Cercle(Point p, int diam): p(p)
 {
 	this->diametre = diam; 

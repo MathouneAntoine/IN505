@@ -7,14 +7,11 @@
 class Forme
 {
 	protected:
-		Point centre;
-		int color;	
+		Point center;
+		
 	public:
 		Forme();
-		virtual void deplacer(int dx, int dy);
-		virtual void afficher();
-		void setCentre(Point p);
-		void setColor(int col);
+		virtual void afficher()=0;
 		~Forme();
 };
 #endif

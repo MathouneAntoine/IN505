@@ -3,19 +3,19 @@
 
 #include "Field.h"
 #include "Objects.h"
-#include "./mesformes/Forme.h"
+#include "mes_formes.h"
 
 class Tree :  public Objects
 {
 	public:
 
-		Tree();
-		Tree(Tree t);
-		Tree(int life, int high, int diameter);
-		Tree(Forme f,int life, int high, int diameter);
-		Forme getForme();
-		void print();
-		~Tree();
+	Tree();
+	Tree(Tree& t);
+	Tree(Field* field, int life, int high, int diameter, int FromCenterX, int FromCenterY,  int depth);
+	Tree(Forme* f,int life, int high, int diameter);
+	Forme* getForme();
+	void print();
+	~Tree();
 
 	private:
 };

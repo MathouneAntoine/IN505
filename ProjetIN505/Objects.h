@@ -1,7 +1,7 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
-#include "./mesformes/Forme.h"
+#include "mes_formes.h"
 #include "Field.h"
 #include <iostream>
 

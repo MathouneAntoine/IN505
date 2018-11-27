@@ -1,5 +1,5 @@
 #include "Field.h"
-#include "./mesformes/Point.h"
+#include "mes_formes.h"
 #include<iostream>
 
 using namespace std;

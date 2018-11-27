@@ -2,6 +2,7 @@ using namespace std;
 #include <iostream>
 #include "Point.h"
 #include "Rectangle.h"
+#include "Forme.h"
 
 Rectangle::Rectangle()
 {
@@ -14,11 +15,12 @@ Rectangle::Rectangle()
 	this->p4.setX(10);
 	this->p4.setY(10);
 	this->center.setX((p1.getX()+p4.getX())/2);
-	this->center.setX((p1.getY()+p2.getY())/2);
+	this->center.setY((p1.getY()+p2.getY())/2);
 }
 
-Rectangle::Rectangle(Point center, int diameter, int depth): center(center)
+Rectangle::Rectangle(Point center, int diameter, int depth)
 {
+	this->center=Point(center);
 	this->p1.setX(center.getX()-(diameter/2));
 	this->p1.setY(center.getY()+(depth/2));
 
@@ -49,10 +51,17 @@ Rectangle::Rectangle(Rectangle& r)
 }
 void Rectangle::deplacer(int dx, int dy)
 { 
-	p1.deplacer(dx, dy); 
-	p2.deplacer(dx, dy);
-	p3.deplacer(dx, dy); 
-	p4.deplacer(dx, dy);
+	p1.setX(p1.getX()+dx);
+	p2.setX(p2.getX()+dx);
+	p3.setX(p3.getX()+dx);
+	p4.setX(p4.getX()+dx);
+	center.setX(center.getX()+dx);
+	
+	p1.setY(p1.getY()+dy);
+	p2.setY(p2.getY()+dy);
+	p3.setY(p3.getY()+dy);
+	p4.setY(p4.getY()+dy);
+	center.setY(center.getY()+dy);
 }
 
 void Rectangle::afficher()

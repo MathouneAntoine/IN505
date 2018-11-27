@@ -1,22 +1,9 @@
 #include "Field.h"
 #include "Rock.h"
 #include "Tree.h"
+#include "mes_formes.h"
 
-
-#include <QApplication>
-#include <QPushButton>
-
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-
-    QPushButton hello("Hello world!");
-
-    hello.show();
-    return app.exec();
-}
-
-/*int main(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
 	Field* f= new Field(500,400);
 
@@ -27,11 +14,10 @@ int main(int argc, char *argv[])
 	{
 
 		Rock* R= new Rock(f,10, 20, 30, 40, 50, 60);
-		//tab.push_back(R);
-		R= new Rock(f,10, 20, 30, 40, 50, 60);
+		Rectangle *rect= dynamic_cast <Rectangle*> (R->getForme());
+		rect->getP1();
 		//tab.push_back(R);
 
-		Tree* T= new Tree(f,10, 20, 30, 40, 50, 60);
 		//tab.push_back(T);
 	}
 
@@ -44,8 +30,7 @@ int main(int argc, char *argv[])
 	{
 
 	}	
-	QWindow();
 
 
 	return 0;
-}*/
+}

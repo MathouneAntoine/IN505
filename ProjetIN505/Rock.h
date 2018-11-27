@@ -3,7 +3,7 @@
 
 #include "Field.h"
 #include "Objects.h"
-#include "./mesformes/Forme.h"
+#include "mes_formes.h"
 
 class Rock :  public Objects
 {
