@@ -1,4 +1,5 @@
 #include <iostream>
+#include <QRect>
 #include "Rock.h"
 #include "Objects.h"
 #include "./mesformes/Forme.h"
@@ -17,22 +18,19 @@ Rock::Rock()
 	this->f= new Rectangle(p1,p2,p3,p4);
 
 	this->life=20;
-	this->high=20;
+	this->high=20;	
 	this->diameter=10;
 	this->depth=10;
 }
 
-Rock::Rock(Field* f,int life, int high, int diameter, int FromCenterX, int FromCenterY, int depth)
+Rock::Rock(Field* field,int life, int high, int diameter, int depth, int FromCenterX, int FromCenterY)
 {
-	Point p1, p2,p3, p4;
-	p1= Point(FromCenterX + f->getCenter().getX(), FromCenterY + f->getCenter().getY());
-	p2= Point(FromCenterX + f->getCenter().getX() + diameter, FromCenterY + f->getCenter().getY());
-	p3= Point(FromCenterX + f->getCenter().getX(), FromCenterY + f->getCenter().getY()-depth );
-	p4= Point(FromCenterX + f->getCenter().getX() + diameter, FromCenterY+ f->getCenter().getY() -depth );
+	Point center;
+	center= Point(FromCenterX + field->getCenter().getX(), FromCenterY + field->getCenter().getY());
 
-	this->f= new Rectangle(p1,p2,p3,p4);
+	this->f= new Rectangle(center,diameter,depth);
 	this->life=life;
-	this->high=high;
+	this->high=high;	
 	this->diameter=diameter;
 	this->depth=depth;
 }
@@ -41,7 +39,7 @@ Rock::Rock(Forme* f,int life, int high, int diameter, int depth)
 {
 	this->f= f;
 	this->life=life;
-	this->high=high;
+	this->high=high;	
 	this->diameter=diameter;
 	this->depth=depth;
 }
@@ -56,6 +54,11 @@ void Rock::print()
 {
 	cout <<  "ROCK" << endl;
 	this->f->afficher();
+}
+
+void Rock::printQt()
+{
+	QRect rect = new QRect(this->p1.getX(), this->p1.getY(), this->diameter, this->depth);
 }
 
 Rock::~Rock()

@@ -10,7 +10,7 @@ class Rock :  public Objects
 	public:
 
 		Rock();
-		Rock(Field* f,int life, int high, int diameter,  int FromCenterX, int FromCenterY, int depth);
+		Rock(Field* f,int life, int high, int diameter, int depth, int FromCenterX, int FromCenterY);
 		Rock(Forme* f,int life, int high, int diameter, int depth);
 		Forme* getForme();
 		void print();

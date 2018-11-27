@@ -1,5 +1,8 @@
-Point: Point.o Segment.o Forme.o Triangle.o Rectangle.o Cercle.o
-	g++ Point.o Segment.o Forme.o Triangle.o Rectangle.o Cercle.o -o Point
+Point: Point.o Segment.o Forme.o Triangle.o Rectangle.o Cercle.o main.o
+	g++ Point.o Segment.o Forme.o Triangle.o Rectangle.o Cercle.o main.o -o Point
+
+main.o: Rectangle.h
+	g++ -c main.cc
 
 Point.o: Point.h
 	g++ -c Point.cc

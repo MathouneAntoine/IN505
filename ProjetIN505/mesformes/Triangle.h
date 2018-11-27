@@ -1,9 +1,11 @@
 #ifndef Triangle_h
 #define Triangle_h
+
 #include "Point.h"
+#include "Forme.h"
 
 
-class Triangle:public Point
+class Triangle:public Forme
 {
 	private:
 		Point p1;
