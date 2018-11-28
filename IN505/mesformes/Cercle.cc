@@ -10,13 +10,14 @@ using namespace std;
 
 Cercle::Cercle()
 {
-    this->p= Point(10,10);
-    this->diametre=50;
+	this->p.setX(50);
+	this->p.setY(50);
+	this->diametre = 15; 
 }
 
 Cercle::Cercle(Point p, int diam): p(p)
 {
-	this->diametre = diam;
+	this->diametre = diam; 
 }
 
 Cercle::Cercle(Cercle& c)
@@ -25,7 +26,7 @@ Cercle::Cercle(Cercle& c)
 	this->diametre = c.diametre;
 }
 void Cercle::deplacer(int dx, int dy)
-{
+{ 
 	p.deplacer(dx, dy);
 }
 

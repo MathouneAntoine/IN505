@@ -1,7 +1,7 @@
 #ifndef FIELD_H
 #define FIELD_H
 
-#include "./mesformes/Point.h"
+#include "mes_formes.h"
 
 class Field
 {

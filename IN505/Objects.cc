@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Objects.h"
-#include "./mesformes/Forme.h"
+#include "mes_formes.h"
 
 using namespace std;
 

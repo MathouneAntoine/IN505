@@ -89,13 +89,14 @@ int main ( int argc, char** argv )
 
     return 0;
 }*/
-
+#include "Screen.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
 
 #include <iostream>
-
+#include "Rock.h"
+#include "./mesformes/Point.h"
 using namespace std;
 
 void init();
@@ -104,31 +105,24 @@ void display();
 float a[4] = {10.0, 10.0, 100.0, 100.0};
 float b[4] = {10.0, 100.0, 100.0, 10.0};
 
-void setTree(float *x, float *y){
-    glBegin(GL_QUADS);
-        glColor3f(1.0, 1.0, 0.0);
-        glVertex2f(x[0], y[0]);
-        glColor3f(0.0, 1.0, 0.0);
-        glVertex2f(x[1], y[1]);
-        glColor3f(1.0, 0.5, 0.0);
-        glVertex2f(x[2], y[2]);
-        glColor3f(1.0, 1.0, 1.0);
-        glVertex2f(x[3], y[3]);
-    glEnd();
-}
-
 void init(){
     glClearColor(1.0,1.0,1.0,1.0);
     gluOrtho2D(0.0, 400.0, 0.0, 300.0);
 }
 
-void display(){
+void display()
+{
+
+
     glClear( GL_COLOR_BUFFER_BIT);
     glPointSize(10.0);
 
 
-    setTree(a,b);
+    Field* f= new Field(0,0);
+    Rock* R= new Rock(f,10, 30, 10, 10, 5, 5);
 
+    R->print_Rectangle();
+    R->print();
     glFlush();
 }
 
@@ -151,13 +145,8 @@ void drag(int x, int y){
     glutPostRedisplay();
 }
 
-int main(int argc, char* argv[]){
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
-    glutInitWindowSize(400,300);
-    glutInitWindowPosition(200,100);
-    glutCreateWindow("OpenGL Program");
-
+int main(int argc,char *argv[]){
+    Screen_Init(argc,argv);
     init();
     glutDisplayFunc(display);
     glutMotionFunc(drag);
