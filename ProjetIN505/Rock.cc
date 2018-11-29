@@ -19,8 +19,8 @@ Rock::Rock()
 		this->f= new Rectangle(p1,p2,p3,p4);
 		this->center.setX((p1.getX()-p2.getX()));
 		this->center.setY((p1.getY()-p3.getY()));
-
 	}
+	
 	if(i==1)
 	{
 		p2.setX(10);
