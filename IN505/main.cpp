@@ -119,8 +119,9 @@ void display()
 
 
     Field* f= new Field(0,0);
-    Rock* R= new Rock(f,10, 30, 10, 10, 5, 5);
+    Rock* R= new Rock(f,10, 30, 500, 500, 5, 5);
 
+    //R->print_Rectangle();
     R->print_Rectangle();
     R->print();
     glFlush();

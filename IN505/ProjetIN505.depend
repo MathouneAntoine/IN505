@@ -240,7 +240,7 @@
 1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Point.h
 	<iostream>
 
-1543401162 source:/home/script0ny/Documents/IN505/IN505/main.cpp
+1543513453 source:/home/script0ny/Documents/IN505/IN505/main.cpp
 	<cstdlib>
 	<stdlib.h>
 	<SDL2/SDL.h>
@@ -258,7 +258,7 @@
 	"Rock.h"
 	"./mesformes/Point.h"
 
-1543399321 /home/script0ny/Documents/IN505/IN505/Rock.h
+1543424559 /home/script0ny/Documents/IN505/IN505/Rock.h
 	"Field.h"
 	"Objects.h"
 	"mes_formes.h"
@@ -312,12 +312,12 @@
 	"Forme.h"
 	"Point.h"
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/mesformes/Triangle.cc
+1543401500 source:/home/script0ny/Documents/IN505/IN505/mesformes/Triangle.cc
 	<iostream>
 	"Point.h"
 	"Triangle.h"
 
-1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Triangle.h
+1543401469 /home/script0ny/Documents/IN505/IN505/mesformes/Triangle.h
 	"Point.h"
 	"Forme.h"
 
@@ -326,13 +326,16 @@
 	"Objects.h"
 	"mes_formes.h"
 
-1543401230 source:/home/script0ny/Documents/IN505/IN505/Rock.cc
+1543513346 source:/home/script0ny/Documents/IN505/IN505/Rock.cc
 	<iostream>
 	<time.h>
 	"Rock.h"
 	"Objects.h"
 	"mes_formes.h"
 	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	"stb_image.h"
 
 1543307428 source:/home/script0ny/Documents/IN505/IN505/Screen.cc
 	<GL/gl.h>
@@ -362,4 +365,25 @@
 1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Losange.h
 	"Forme.h"
 	"Point.h"
+
+1543424712 /home/script0ny/Documents/IN505/IN505/stb_image.h
+	<GL/gl.h>
+	<GL/glu.h>
+	<png.h>
+	<cstdio>
+	<string>
+	"stb_image.h"
+	<stdio.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
 

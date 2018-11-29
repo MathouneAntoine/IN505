@@ -18,6 +18,7 @@ class Rock :  public Objects
         void print_Triangle();
 		~Rock();
 
+
 	private:
 		int depth;
 
