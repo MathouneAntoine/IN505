@@ -50,13 +50,13 @@ Rectangle::Rectangle(Rectangle& r)
 	this->center = r.center;
 }
 void Rectangle::deplacer(int dx, int dy)
-{
+{ 
 	p1.setX(p1.getX()+dx);
 	p2.setX(p2.getX()+dx);
 	p3.setX(p3.getX()+dx);
 	p4.setX(p4.getX()+dx);
 	center.setX(center.getX()+dx);
-
+	
 	p1.setY(p1.getY()+dy);
 	p2.setY(p2.getY()+dy);
 	p3.setY(p3.getY()+dy);
@@ -77,19 +77,22 @@ Point Rectangle::getP1()
 {
 	return this->p1;
 }
+
 Point Rectangle::getP2()
 {
-	return this->p2;
+	return this->p3;
 }
 
 Point Rectangle::getP3()
 {
 	return this->p3;
 }
+
 Point Rectangle::getP4()
 {
 	return this->p4;
 }
+
 Point Rectangle::getCenter()
 {
 	return this->center;

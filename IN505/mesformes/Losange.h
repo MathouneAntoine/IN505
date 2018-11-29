@@ -28,7 +28,9 @@ class Losange: public Forme
 		Losange(Point p1, Point p2, Point p3, Point p4);
 		Losange(Losange& r);
 		Point getP1();
+		Point getP2();
 		Point getP3();
+		Point getP4();
 		Point getCenter();
 		void deplacer(int dx, int dy);
 

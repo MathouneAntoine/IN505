@@ -79,9 +79,19 @@ Point Losange::getP1()
 	return this->p1;
 }
 
+Point Losange::getP2()
+{
+	return this->p3;
+}
+
 Point Losange::getP3()
 {
 	return this->p3;
+}
+
+Point Losange::getP4()
+{
+	return this->p4;
 }
 
 Point Losange::getCenter()

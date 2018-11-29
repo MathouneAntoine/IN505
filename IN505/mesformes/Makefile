@@ -1,24 +1,26 @@
-Point: Point.o Segment.o Forme.o Triangle.o Rectangle.o Cercle.o main.o Losange.o
-	g++ Point.o Segment.o Forme.o Triangle.o Rectangle.o Cercle.o main.o Losange.o -o Point
+EXEC=formes
+SRC= $(wildcard *.cc)
+OBJ= $(SRC:.cc=.o)
 
-main.o: Rectangle.h
-	g++ -c main.cc
+all: $(EXEC)
+
+formes: 
 
 Point.o: Point.h
-	g++ -c Point.cc
 Segment.o: Segment.h Point.h 
-	g++ -c Segment.cc -Wall
 Forme.o: Forme.h Point.h
-	g++ -c Forme.cc -Wall
 Triangle.o:  Forme.h Triangle.h Point.h 
-	g++ -c Triangle.cc
 Rectangle.o: Forme.h Rectangle.h Point.h
-	g++ -c Rectangle.cc
 Cercle.o: Cercle.h Point.h
-	g++ -c Cercle.cc
-Losange.o: Losange.h Point.h
-	g++ -c Losange.cc
+Losange.o: Losange.h Point.h 
+
+%.o: %.c
+	@$(CXX) -o $@ -c $< $(CXXFLAGS)
+
+.PHONY: clean mrproper
 
 clean:
-	-rm *.o
-	-rm Point
+	@rm -rf *.o
+
+mrproper: clean
+	@rm -rf $(EXEC)
