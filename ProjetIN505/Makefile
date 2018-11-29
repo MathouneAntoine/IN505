@@ -1,21 +1,45 @@
+export CXX=g++
+export CXXFLAGS=-Wall 
+export LDFLAGS=
+SRC= $(wildcard *.cc)
+OBJ= $(SRC:.cc=.o)
 
-make: main.o Field.o Rock.o Tree.o Objects.o ./mesformes/Point.o ./mesformes/Forme.o ./mesformes/Rectangle.o ./mesformes/Cercle.o ./mesformes/Losange.o
-	g++ main.o Field.o Rock.o Tree.o Objects.o ./mesformes/Point.o ./mesformes/Forme.o ./mesformes/Rectangle.o ./mesformes/Cercle.o ./mesformes/Losange.o -o Field
+MESFORMES_DIR=./mesformes/
+SRC_Formes= $(wildcard $(MESFORMES_DIR)*.cc)
+OBJ_Formes= $(SRC_Formes:.cc=.o)
 
-main.o: main.cc  Field.h Rock.h mes_formes.h
-	g++ -c -Wall main.cc 
+PERSO_DIR=./Perso/
+SRC_Perso= $(wildcard $(PERSO_DIR)*.cc)
+OBJ_Perso= $(SRC_Perso:.cc=.o)
 
-Field.o: Field.cc  Field.h
-	g++ -c -Wall Field.cc 
 
-Objects.o: Objects.cc Objects.h Field.h mes_formes.h
-	g++ -c -Wall Objects.cc
+all: $(EXEC) game
 
-Rock.o: Rock.cc  Rock.h Objects.h mes_formes.h
-	g++ -c -Wall Rock.cc 
-Tree.o: Tree.cc  Tree.h Objects.h mes_formes.h
-	g++ -c -Wall Tree.cc 
+$(EXEC):
+	@(cd $(MESFORMES_DIR) && $(MAKE))
+	@(cd $(PERSO_DIR) && $(MAKE))
+	
+
+game: $(OBJ) $(OBJ_Formes)
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
+Field.o: 
+Objects.o: Field.h 
+Rock.o: Objects.h 
+Tree.o: Objects.h 
+main.o: Field.h Rock.h 
+
+%.o: %.c mes_formes.h
+	$(CXX) -o $@ -c $< $(CXXFLAGS)
+
+.PHONY: clean mrproper $(EXEC) game
 
 clean:
-	-rm *.o
-	-rm Field
+	@(cd $(MESFORMES_DIR) && $(MAKE) $@)
+	@(cd $(PERSO_DIR) && $(MAKE) $@)
+	rm -rf *.o
+
+mrproper: clean
+	@(cd $(MESFORMES_DIR) && $(MAKE) $@)
+	@(cd $(PERSO_DIR) && $(MAKE) $@)
+	rm -rf $(EXEC)

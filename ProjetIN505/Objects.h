@@ -13,14 +13,14 @@ class Objects
 		int getHigh();
 		int getDiameter();
 		void printInfo();
-		virtual void print()=0;
-		~Objects();
+		virtual ~Objects();
 		
 	protected:
 		Forme * f;
 		int life;
 		int high;	
 		int diameter;
+		Point center;
 
 		
 	

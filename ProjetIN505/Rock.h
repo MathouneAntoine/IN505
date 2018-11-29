@@ -10,14 +10,13 @@ class Rock :  public Objects
 	public:
 
 		Rock();
-		Rock(Field* f,int life, int high, int diameter, int depth, int FromCenterX, int FromCenterY);
-		Rock(Forme* f,int life, int high, int diameter, int depth);
+		Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenterY);
+		Rock(int high, int diameter, Point center); //Le point centre doit etre deja definie par rapport au centre de la carte
 		Forme* getForme();
 		void print();
 		~Rock();
 
 	private:
-		int depth;
 };
 
 #endif
