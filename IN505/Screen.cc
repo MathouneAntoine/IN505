@@ -1,24 +1,19 @@
-#include <SDL2/SDL.h>
-#include "iostream"
-SDL_Window* Init_Screen()
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+
+#include <iostream>
+int Screen_Init(int argc,char *argv[])
 {
-       // Notre fenêtre
 
-    SDL_Window* window(0);
-
-
-    // Initialisation de la SDL
-
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-        std::cout << "Erreur lors de l'initialisation de la SDL : " << SDL_GetError() << std::endl;
-        SDL_Quit();
-    }
-
-
-    // Création de la fenêtre
-
-    window = SDL_CreateWindow("Test SDL 2.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN|SDL_WINDOW_OPENGL);
-
+    int g_nWindowID;
+    const int nWidth = 640;
+    const int nHeight = 480;
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
+    glutInitWindowSize(400,300);
+    glutInitWindowPosition(200,100);
+    g_nWindowID = glutCreateWindow("Foret");
 
 }
+

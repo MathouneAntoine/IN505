@@ -1,39 +1,44 @@
 #include <iostream>
+#include <time.h>
 #include "Rock.h"
 #include "Objects.h"
-#include "./mesformes/Forme.h"
-#include "./mesformes/Rectangle.h"
-#include "./mesformes/Point.h"
-
-#include <SDL2/SDL.h>
+#include "mes_formes.h"
+#include <GL/gl.h>
 
 using namespace std;
 
 Rock::Rock()
 {
-	Point p1, p2,p3, p4;
-	p1= Point(20,20);
-	p2= Point(30,20);
-	p3= Point(20,10);
-	p4= Point(30,10);
+	Point p1(20,20);
+	Point p2(30,20);
+	Point p3(20,10);
+	Point p4(30,10);
+	int i= rand();
+	if(i==0)
+		this->f= new Rectangle(p1,p2,p3,p4);
+	if(i==1)
+	{
+		p2.setX(10);
+		p2.setY(15);
+		p3.setY(15);
+//		this->f= new Losange(p1,p3,p2,p4);
+	}
 
-	this->f= new Rectangle(p1,p2,p3,p4);
-    this->p = p1;
 	this->life=20;
 	this->high=20;
 	this->diameter=10;
 	this->depth=10;
 }
 
-Rock::Rock(Field* f,int life, int high, int FromCenterX, int FromCenterY,  int diameter , int depth)
+Rock::Rock(Field* field,int life, int high, int diameter, int depth, int FromCenterX, int FromCenterY)
 {
-	Point p1, p2,p3, p4;
-	p1= Point(FromCenterX + f->getCenter().getX(), FromCenterY + f->getCenter().getY());
-	p2= Point(FromCenterX + f->getCenter().getX() + diameter, FromCenterY + f->getCenter().getY());
-	p3= Point(FromCenterX + f->getCenter().getX(), FromCenterY + f->getCenter().getY()-depth );
-	p4= Point(FromCenterX + f->getCenter().getX() + diameter, FromCenterY+ f->getCenter().getY() -depth );
+	Point center(FromCenterX + field->getCenter().getX(), FromCenterY + field->getCenter().getY());
 
-	this->f= new Rectangle(p1,p2,p3,p4);
+	//int i= rand(0,2);
+	//if(i==0)
+		this->f= new Rectangle(center,diameter,depth);
+	/*if(i==1)
+		this->f= new Triangle(p1,p2,p3);*/
 	this->life=life;
 	this->high=high;
 	this->diameter=diameter;
@@ -60,31 +65,29 @@ void Rock::print()
 	cout <<  "ROCK" << endl;
 	this->f->afficher();
 }
-
-int Rock::sdl_print(SDL_Window* window)
+void Rock::print_Rectangle()
 {
-    if (!window)
-    {
-        printf("Unable to set 640x480 video: %s\n", SDL_GetError());
-        return 1;
-    }
-    else
-    {
-    SDL_Surface *rectangle = NULL; //alloue une surface
+		Rectangle *rect= dynamic_cast <Rectangle*> (this->getForme());
+    glBegin(GL_QUADS);
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex2i(rect->getP1().getX(),rect->getP1().getY());
+        glVertex2i(rect->getP2().getX(),rect->getP2().getY());
+        glVertex2i(rect->getP3().getX(),rect->getP3().getY());
+        glVertex2i(rect->getP4().getX(),rect->getP4().getY());
+    glEnd();
+}
 
-    rectangle = SDL_CreateRGBSurface(0, this->diameter, this->depth, 32, 0, 0, 0, 0); //alloue notre nouvelle surface en mémoire
+void Rock::print_Triangle()
+{
+        Triangle *tria= dynamic_cast <Triangle*> (this->getForme());
 
+    glBegin(GL_TRIANGLES);
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex2i(tria->getP1().getX(),tria->getP1().getY());
+        glVertex2i(tria->getP2().getX(),tria->getP2().getY());
+        glVertex2i(tria->getP3().getX(),tria->getP3().getY());
 
-
-
-//    SDL_FillRect(rectangle, NULL, SDL_MapRGB(window->format, 0x50, 0x50, 0x0));
-    SDL_Rect position;
-    position.x = this->p.getX();
-    position.y = this->p.getY();
-//    SDL_BlitSurface(rectangle, NULL, window,&position); //colle sur l'écran le rectangle
-    return 0;
-    }
-
+    glEnd();
 }
 Rock::~Rock()
 {}

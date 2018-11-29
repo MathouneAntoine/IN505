@@ -4,22 +4,36 @@
 #include "Point.h"
 
 
+/*
+   P1-----P4
+   |center|
+   P2-----P3
+*/
+
+
 class Rectangle: public Forme
 {
 	private:
 		Point p1;
 		Point p2;
-		Point p3;		
+		Point p3;
 		Point p4;
 
 	public:
+		Rectangle();
+		Rectangle(Point p1, int diameter, int depth);
 		Rectangle(Point p1, Point p2, Point p3, Point p4);
 		Rectangle(Rectangle& r);
+		Point getP1();
+		Point getP2();
+		Point getP3();
+		Point getP4();
+		Point getCenter();
 		void deplacer(int dx, int dy);
 
 		~Rectangle();
 		void afficher();
-		
+
 };
 #endif
 

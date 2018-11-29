@@ -1,2 +1,2 @@
+int Screen_Init(int argc,char *argv[]);
 
-SDL_Window* Init_Screen();
