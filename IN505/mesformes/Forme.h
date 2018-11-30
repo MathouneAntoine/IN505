@@ -11,6 +11,7 @@ class Forme
 		
 	public:
 		Forme();
+		Point getCenter();
 		virtual void afficher()=0;
 		~Forme();
 };

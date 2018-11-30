@@ -5,7 +5,10 @@
 Forme::Forme()
 {}
 
-
+Point Forme::getCenter()
+{
+	return this->center;
+}
 
 Forme::~Forme()
 {}

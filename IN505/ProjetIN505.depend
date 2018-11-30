@@ -229,18 +229,18 @@
 	"./mesformes/Point.h"
 	<SDL2/SDL.h>
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/Field.cc
+1543515696 source:/home/script0ny/Documents/IN505/IN505/Field.cc
 	"Field.h"
 	"mes_formes.h"
 	<iostream>
 
-1543344506 /home/script0ny/Documents/IN505/IN505/Field.h
+1543515696 /home/script0ny/Documents/IN505/IN505/Field.h
 	"mes_formes.h"
 
-1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Point.h
+1543515696 /home/script0ny/Documents/IN505/IN505/mesformes/Point.h
 	<iostream>
 
-1543513453 source:/home/script0ny/Documents/IN505/IN505/main.cpp
+1543520916 source:/home/script0ny/Documents/IN505/IN505/main.cpp
 	<cstdlib>
 	<stdlib.h>
 	<SDL2/SDL.h>
@@ -258,22 +258,22 @@
 	"Rock.h"
 	"./mesformes/Point.h"
 
-1543424559 /home/script0ny/Documents/IN505/IN505/Rock.h
+1543521725 /home/script0ny/Documents/IN505/IN505/Rock.h
 	"Field.h"
 	"Objects.h"
 	"mes_formes.h"
 
-1543344506 /home/script0ny/Documents/IN505/IN505/Objects.h
-	"mes_formes.h"
+1543516639 /home/script0ny/Documents/IN505/IN505/Objects.h
+	"./mesformes/Point.h"
 	"Field.h"
 	<iostream>
 
-1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Forme.h
+1543515696 /home/script0ny/Documents/IN505/IN505/mesformes/Forme.h
 	"Point.h"
 
-1543246764 /home/script0ny/Documents/IN505/IN505/Screen.h
+1543515696 /home/script0ny/Documents/IN505/IN505/Screen.h
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/mesformes/Cercle.cc
+1543515696 source:/home/script0ny/Documents/IN505/IN505/mesformes/Cercle.cc
 	<iostream>
 	<string.h>
 	<stdio.h>
@@ -281,52 +281,53 @@
 	"Point.h"
 	"Cercle.h"
 
-1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Cercle.h
+1543515696 /home/script0ny/Documents/IN505/IN505/mesformes/Cercle.h
 	"Point.h"
 	"Forme.h"
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/mesformes/Forme.cc
+1543515696 source:/home/script0ny/Documents/IN505/IN505/mesformes/Forme.cc
 	"Point.h"
 	"Forme.h"
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/mesformes/Point.cc
+1543515696 source:/home/script0ny/Documents/IN505/IN505/mesformes/Point.cc
 	"Point.h"
 
-1543400927 source:/home/script0ny/Documents/IN505/IN505/mesformes/Rectangle.cc
+1543521032 source:/home/script0ny/Documents/IN505/IN505/mesformes/Rectangle.cc
 	<iostream>
 	"Point.h"
 	"Rectangle.h"
 	"Forme.h"
 
-1543400892 /home/script0ny/Documents/IN505/IN505/mesformes/Rectangle.h
+1543515696 /home/script0ny/Documents/IN505/IN505/mesformes/Rectangle.h
 	"Forme.h"
 	"Point.h"
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/mesformes/Segment.cc
+1543515696 source:/home/script0ny/Documents/IN505/IN505/mesformes/Segment.cc
 	"Segment.h"
 	"Point.h"
 	"Forme.h"
 	<iostream>
 
-1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Segment.h
+1543515696 /home/script0ny/Documents/IN505/IN505/mesformes/Segment.h
 	"Forme.h"
 	"Point.h"
 
-1543401500 source:/home/script0ny/Documents/IN505/IN505/mesformes/Triangle.cc
+1543521377 source:/home/script0ny/Documents/IN505/IN505/mesformes/Triangle.cc
 	<iostream>
+	<time.h>
 	"Point.h"
 	"Triangle.h"
 
-1543401469 /home/script0ny/Documents/IN505/IN505/mesformes/Triangle.h
+1543521366 /home/script0ny/Documents/IN505/IN505/mesformes/Triangle.h
 	"Point.h"
 	"Forme.h"
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/Objects.cc
+1543515696 source:/home/script0ny/Documents/IN505/IN505/Objects.cc
 	<iostream>
 	"Objects.h"
 	"mes_formes.h"
 
-1543513346 source:/home/script0ny/Documents/IN505/IN505/Rock.cc
+1543521803 source:/home/script0ny/Documents/IN505/IN505/Rock.cc
 	<iostream>
 	<time.h>
 	"Rock.h"
@@ -336,25 +337,27 @@
 	<GL/glu.h>
 	<GL/glut.h>
 	"stb_image.h"
+	<stdlib.h>
 
-1543307428 source:/home/script0ny/Documents/IN505/IN505/Screen.cc
+1543521536 source:/home/script0ny/Documents/IN505/IN505/Screen.cc
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
 	<iostream>
 
-1543344506 source:/home/script0ny/Documents/IN505/IN505/Tree.cc
+1543515696 source:/home/script0ny/Documents/IN505/IN505/Tree.cc
 	<iostream>
+	<time.h>
 	"Tree.h"
 	"Objects.h"
 	"mes_formes.h"
 
-1543344506 /home/script0ny/Documents/IN505/IN505/Tree.h
+1543515696 /home/script0ny/Documents/IN505/IN505/Tree.h
 	"Field.h"
 	"Objects.h"
 	"mes_formes.h"
 
-1543346063 /home/script0ny/Documents/IN505/IN505/mes_formes.h
+1543515696 /home/script0ny/Documents/IN505/IN505/mes_formes.h
 	"./mesformes/Forme.h"
 	"./mesformes/Rectangle.h"
 	"./mesformes/Cercle.h"
@@ -362,11 +365,11 @@
 	"./mesformes/Triangle.h"
 	"./mesformes/Losange.h"
 
-1543344506 /home/script0ny/Documents/IN505/IN505/mesformes/Losange.h
+1543515696 /home/script0ny/Documents/IN505/IN505/mesformes/Losange.h
 	"Forme.h"
 	"Point.h"
 
-1543424712 /home/script0ny/Documents/IN505/IN505/stb_image.h
+1543515696 /home/script0ny/Documents/IN505/IN505/stb_image.h
 	<GL/gl.h>
 	<GL/glu.h>
 	<png.h>
@@ -386,4 +389,20 @@
 	<emmintrin.h>
 	<intrin.h>
 	<arm_neon.h>
+
+1543515696 source:/home/script0ny/Documents/IN505/IN505/Forest.cc
+
+1543515696 source:/home/script0ny/Documents/IN505/IN505/forestEditor.cc
+
+1543521120 source:/home/script0ny/Documents/IN505/IN505/mesformes/Losange.cc
+	<iostream>
+	"Point.h"
+	"Losange.h"
+	"Forme.h"
+
+1543515696 source:/home/script0ny/Documents/IN505/IN505/Perso/Ai.cc
+
+1543515696 source:/home/script0ny/Documents/IN505/IN505/Perso/Character.cc
+
+1543515696 source:/home/script0ny/Documents/IN505/IN505/Perso/Player.cc
 

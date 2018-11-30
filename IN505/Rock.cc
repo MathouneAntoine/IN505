@@ -8,54 +8,72 @@
 #include <GL/glut.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+#include <stdlib.h>
 
 using namespace std;
 
 Rock::Rock()
 {
-	Point p1(20,20);
-	Point p2(30,20);
-	Point p3(20,10);
-	Point p4(30,10);
-	int i= rand();
+	Point p1(20,60);
+	Point p2(20,10);
+	Point p3(50,10);
+	Point p4(50,60);
+
+    srand(time(NULL));
+
+	int i= rand()%2;
 	if(i==0)
+	{
 		this->f= new Rectangle(p1,p2,p3,p4);
+		this->center.setX((p1.getX()-p2.getX()));
+		this->center.setY((p1.getY()-p3.getY()));
+	}
+
 	if(i==1)
 	{
 		p2.setX(10);
 		p2.setY(15);
 		p3.setY(15);
-//		this->f= new Losange(p1,p3,p2,p4);
+		this->f= new Losange(p1,p3,p2,p4);
 	}
 
-	this->life=20;
 	this->high=20;
 	this->diameter=10;
-	this->depth=10;
+	this->life=(high+diameter)/2+20;
 }
 
-Rock::Rock(Field* field,int life, int high, int diameter, int depth, int FromCenterX, int FromCenterY)
+Rock::Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenterY)
 {
-	Point center(FromCenterX + field->getCenter().getX(), FromCenterY + field->getCenter().getY());
+	this->center.setX(FromCenterX + field->getCenter().getX());
+	this->center.setY(FromCenterY + field->getCenter().getY());
 
-	//int i= rand(0,2);
-	//if(i==0)
-		this->f= new Rectangle(center,diameter,depth);
-	/*if(i==1)
-		this->f= new Triangle(p1,p2,p3);*/
-	this->life=life;
+    srand(time(NULL));
+
+
+	int i= rand()%2;
+    printf("%d",i);
+	if(i==0) this->f= new Rectangle(center,diameter,high);
+	if(i==1) this->f= new Losange(center,diameter,high);
+
 	this->high=high;
 	this->diameter=diameter;
-	this->depth=depth;
+	this->life=(high+diameter)/2+20;
+
 }
 
-Rock::Rock(Forme* f,int life, int high, int diameter, int depth)
+Rock::Rock(int high, int diameter, Point center)
 {
-	this->f= f;
-	this->life=life;
+	this->center.setX(center.getX());
+	this->center.setY(center.getY());
+
+	int i= rand()%2;
+
+	if(i==0) this->f= new Rectangle(center,diameter,high);
+	if(i==1) this->f= new Losange(center,diameter,high);
+
 	this->high=high;
 	this->diameter=diameter;
-	this->depth=depth;
+	this->life=(high+diameter)/2+20;
 }
 
 Forme* Rock::getForme()
@@ -63,13 +81,13 @@ Forme* Rock::getForme()
 	return this->f;
 }
 
-
 void Rock::print()
 {
 	cout <<  "ROCK" << endl;
 	this->f->afficher();
 }
-void Rock::print_Rectangle()
+
+void Rock::print_Rock()
 {
 /*
 unsigned int texture;
@@ -117,7 +135,9 @@ height = 710;
    glTranslatef(-5, 0, -15);
    glBindTexture(GL_TEXTURE_2D, texture);
 */
-    Rectangle *rect= dynamic_cast <Rectangle*> (this->getForme());
+
+    if(Rectangle *rect= dynamic_cast <Rectangle*> (this->getForme()))
+    {
     glBegin(GL_QUADS);
         glColor3f(0.5, 0.5, 0.5);
 //        glBindTexture(GL_TEXTURE_2D, texture);
@@ -134,19 +154,33 @@ height = 710;
 
         glVertex2i(rect->getP4().getX(),rect->getP4().getY());
     glEnd();
+    }
+    else
+    {
+    Triangle *tria= dynamic_cast <Triangle*> (this->getForme());
+    glBegin(GL_TRIANGLES);
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex2i(tria->getP1().getX(),tria->getP1().getY());
+        glVertex2i(tria->getP2().getX(),tria->getP2().getY());
+        glVertex2i(tria->getP3().getX(),tria->getP3().getY());
+
+    glEnd();
+
+    }
+
     glDisable(GL_TEXTURE_2D);
 
 }
 
 void Rock::print_Triangle()
 {
-        Triangle *tria= dynamic_cast <Triangle*> (this->getForme());
+    Triangle *tria= dynamic_cast <Triangle*> (this->getForme());
 
     glBegin(GL_TRIANGLES);
         glColor3f(0.5, 0.5, 0.5);
-        //glVertex2i(tria->getP1().getX(),tria->getP1().getY());
-        //glVertex2i(tria->getP2().getX(),tria->getP2().getY());
-        //glVertex2i(tria->getP3().getX(),tria->getP3().getY());
+        glVertex2i(tria->getP1().getX(),tria->getP1().getY());
+        glVertex2i(tria->getP2().getX(),tria->getP2().getY());
+        glVertex2i(tria->getP3().getX(),tria->getP3().getY());
 
     glEnd();
 }

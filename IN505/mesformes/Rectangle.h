@@ -16,7 +16,7 @@ class Rectangle: public Forme
 	private:
 		Point p1;
 		Point p2;
-		Point p3;
+		Point p3;		
 		Point p4;
 
 	public:
@@ -33,7 +33,7 @@ class Rectangle: public Forme
 
 		~Rectangle();
 		void afficher();
-
+		
 };
 #endif
 

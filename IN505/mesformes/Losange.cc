@@ -51,13 +51,13 @@ Losange::Losange(Losange& r)
 	this->center = r.center;
 }
 void Losange::deplacer(int dx, int dy)
-{ 
+{
 	p1.setX(p1.getX()+dx);
 	p2.setX(p2.getX()+dx);
 	p3.setX(p3.getX()+dx);
 	p4.setX(p4.getX()+dx);
 	center.setX(center.getX()+dx);
-	
+
 	p1.setY(p1.getY()+dy);
 	p2.setY(p2.getY()+dy);
 	p3.setY(p3.getY()+dy);
@@ -79,9 +79,19 @@ Point Losange::getP1()
 	return this->p1;
 }
 
+Point Losange::getP2()
+{
+	return this->p2;
+}
+
 Point Losange::getP3()
 {
 	return this->p3;
+}
+
+Point Losange::getP4()
+{
+	return this->p4;
 }
 
 Point Losange::getCenter()

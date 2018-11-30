@@ -77,6 +77,7 @@ Point Rectangle::getP1()
 {
 	return this->p1;
 }
+
 Point Rectangle::getP2()
 {
 	return this->p2;
@@ -86,10 +87,12 @@ Point Rectangle::getP3()
 {
 	return this->p3;
 }
+
 Point Rectangle::getP4()
 {
 	return this->p4;
 }
+
 Point Rectangle::getCenter()
 {
 	return this->center;

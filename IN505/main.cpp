@@ -89,6 +89,8 @@ int main ( int argc, char** argv )
 
     return 0;
 }*/
+
+
 #include "Screen.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -98,6 +100,25 @@ int main ( int argc, char** argv )
 #include "Rock.h"
 #include "./mesformes/Point.h"
 using namespace std;
+/**
+ * Call this function in the main entry point with
+ * glutKeyboardFunc(keyboard);
+ */
+
+/**
+ * x - mouse pointer position - zero to corner of window
+ * y - mouse pointer position - zero to corner of window
+ */
+void keyboard(unsigned char key, int x, int y){
+    switch(key){
+        case 'a':
+            cout << "You type a" << endl;
+            break;
+        case 'b':
+            cout << "You type b" << endl;
+            break;
+    }
+}
 
 void init();
 void display();
@@ -118,11 +139,10 @@ void display()
     glPointSize(10.0);
 
 
-    Field* f= new Field(0,0);
-    Rock* R= new Rock(f,10, 30, 500, 500, 5, 5);
+    Field* f= new Field(250,250);
+    Rock* R= new Rock(f, 100, 100, 0, 0);
 
-    //R->print_Rectangle();
-    R->print_Rectangle();
+    R->print_Rock();
     R->print();
     glFlush();
 }
@@ -149,8 +169,18 @@ void drag(int x, int y){
 int main(int argc,char *argv[]){
     Screen_Init(argc,argv);
     init();
-    glutDisplayFunc(display);
-    glutMotionFunc(drag);
+    //glutDisplayFunc(display);
+    //glutMotionFunc(drag);
+       glClear( GL_COLOR_BUFFER_BIT);
+    glPointSize(10.0);
+
+
+    Field* f= new Field(250,250);
+    Rock* R= new Rock(f, 100, 100, 0, 0);
+
+    R->print_Rock();
+    R->print();
+    glFlush();
 
     glutMainLoop();
 
