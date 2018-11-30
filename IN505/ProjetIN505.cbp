@@ -102,7 +102,6 @@
 		<Unit filename="mesformes/Rectangle.h" />
 		<Unit filename="mesformes/Triangle.cc" />
 		<Unit filename="mesformes/Triangle.h" />
-		<Unit filename="stb_image.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

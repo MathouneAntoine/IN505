@@ -12,9 +12,9 @@ int Objects::getLife()
 	return this->life;
 }
 
-int Objects::getHigh()
+int Objects::getHeight()
 {
-	return this->high;
+	return this->height;
 }
 
 int Objects::getDiameter()
@@ -24,7 +24,7 @@ int Objects::getDiameter()
 
 void Objects::printInfo()
 {
-	cout<<"Point de vie : "<< this->life << "  Hauteur : " << this->high << "  Diametre : " << this->diameter <<endl;
+	cout<<"Point de vie : "<< this->life << "  Hauteur : " << this->height << "  Diametre : " << this->diameter <<endl;
 }
 
 Objects::~Objects()

@@ -6,11 +6,10 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 #include <stdlib.h>
 
 using namespace std;
+
 
 Rock::Rock()
 {
@@ -19,11 +18,6 @@ Rock::Rock()
 	Point p3(50,10);
 	Point p4(50,60);
 
-<<<<<<< HEAD
-    srand(time(NULL));
-
-=======
->>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 	int i= rand()%2;
 	if(i==0)
 	{
@@ -31,11 +25,7 @@ Rock::Rock()
 		this->center.setX((p1.getX()-p2.getX()));
 		this->center.setY((p1.getY()-p3.getY()));
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 	if(i==1)
 	{
 		p2.setX(10);
@@ -44,68 +34,42 @@ Rock::Rock()
 		this->f= new Losange(p1,p3,p2,p4);
 	}
 
-<<<<<<< HEAD
-	this->high=20;
-=======
-	this->high=20;	
->>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
+	this->height=20;
 	this->diameter=10;
-	this->life=(high+diameter)/2+20;
+	this->altitude=30;
+	this->life=(altitude/2)+diameter+height;
 }
 
-<<<<<<< HEAD
-Rock::Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenterY)
-=======
-Rock::Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenterY)	
->>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
+Rock::Rock(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY)
 {
 	this->center.setX(FromCenterX + field->getCenter().getX());
 	this->center.setY(FromCenterY + field->getCenter().getY());
 
-<<<<<<< HEAD
-    srand(time(NULL));
-
-
-	int i= rand()%2;
-    printf("%d",i);
-	if(i==0) this->f= new Rectangle(center,diameter,high);
-	if(i==1) this->f= new Losange(center,diameter,high);
-
-	this->high=high;
-=======
 	int i= rand()%2;
 
-	if(i==0) this->f= new Rectangle(center,diameter,high);
-	if(i==1) this->f= new Losange(center,diameter,high);
+	if(i==0) this->f= new Rectangle(center,diameter,height);
+	if(i==1) this->f= new Losange(center,diameter,height);
 
-	this->high=high;	
->>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
+	this->height=height;
 	this->diameter=diameter;
-	this->life=(high+diameter)/2+20;
+	this->life=(altitude/2)+diameter+height;
 
 }
 
-Rock::Rock(int high, int diameter, Point center)
+Rock::Rock(int height, int diameter, int altitude, Point center)
 {
 	this->center.setX(center.getX());
 	this->center.setY(center.getY());
 
 	int i= rand()%2;
-<<<<<<< HEAD
 
-	if(i==0) this->f= new Rectangle(center,diameter,high);
-	if(i==1) this->f= new Losange(center,diameter,high);
+	if(i==0) this->f= new Rectangle(center,diameter,height);
+	if(i==1) this->f= new Losange(center,diameter,height);
 
-	this->high=high;
-=======
-	
-	if(i==0) this->f= new Rectangle(center,diameter,high);
-	if(i==1) this->f= new Losange(center,diameter,high);
-
-	this->high=high;	
->>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
+	this->height=height;
 	this->diameter=diameter;
-	this->life=(high+diameter)/2+20;
+	this->altitude=altitude;
+	this->life=(altitude/2)+diameter+height;
 }
 
 Forme* Rock::getForme()
@@ -119,11 +83,7 @@ void Rock::print()
 	this->f->afficher();
 }
 
-<<<<<<< HEAD
 void Rock::print_Rock()
-=======
-void Rock::print_Rectangle()
->>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 {
 /*
 unsigned int texture;

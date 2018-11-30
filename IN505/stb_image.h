@@ -1,44 +1,43 @@
- #include <GL/gl.h>
+ /*#include <GL/gl.h>
  #include <GL/glu.h>
- #include <png.h>
  #include <cstdio>
  #include <string>
- 
+
  #define TEXTURE_LOAD_ERROR 0
- 
+
  using namespace std;
  /** loadTexture
   * 	loads a png file into an opengl texture object, using cstdio , libpng, and opengl.
-  * 
+  *
   * 	\param filename : the png file to be loaded
   * 	\param width : width of png, to be updated as a side effect of this function
   * 	\param height : height of png, to be updated as a side effect of this function
-  * 
+  *
   * 	\return GLuint : an opengl texture id.  Will be 0 if there is a major error,
   * 					should be validated by the client of this function.
-  * 
-  */
- GLuint loadTexture(const string filename, int &width, int &height) 
+  *
+
+ GLuint loadTexture(const string filename, int &width, int &height)
  {
    //header for testing if it is a png
    png_byte header[8];
-   
+
    //open file as binary
    FILE *fp = fopen(filename.c_str(), "rb");
    if (!fp) {
      return TEXTURE_LOAD_ERROR;
    }
-   
+
    //read the header
    fread(header, 1, 8, fp);
-   
+
    //test if png
    int is_png = !png_sig_cmp(header, 0, 8);
    if (!is_png) {
      fclose(fp);
      return TEXTURE_LOAD_ERROR;
    }
-   
+
    //create png struct
    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL,
        NULL, NULL);
@@ -46,7 +45,7 @@
      fclose(fp);
      return (TEXTURE_LOAD_ERROR);
    }
-   
+
    //create png info struct
    png_infop info_ptr = png_create_info_struct(png_ptr);
    if (!info_ptr) {
@@ -54,7 +53,7 @@
      fclose(fp);
      return (TEXTURE_LOAD_ERROR);
    }
- 
+
    //create png info struct
    png_infop end_info = png_create_info_struct(png_ptr);
    if (!end_info) {
@@ -62,41 +61,41 @@
      fclose(fp);
      return (TEXTURE_LOAD_ERROR);
    }
- 
+
    //png error stuff, not sure libpng man suggests this.
    if (setjmp(png_jmpbuf(png_ptr))) {
      png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
      fclose(fp);
      return (TEXTURE_LOAD_ERROR);
    }
- 
+
    //init png reading
    png_init_io(png_ptr, fp);
-   
+
    //let libpng know you already read the first 8 bytes
    png_set_sig_bytes(png_ptr, 8);
- 
+
    // read all the info up to the image data
    png_read_info(png_ptr, info_ptr);
- 
+
    //variables to pass to get info
    int bit_depth, color_type;
    png_uint_32 twidth, theight;
- 
+
    // get info about png
    png_get_IHDR(png_ptr, info_ptr, &twidth, &theight, &bit_depth, &color_type,
        NULL, NULL, NULL);
- 
+
    //update width and height based on png info
    width = twidth;
    height = theight;
- 
+
    // Update the png info struct.
    png_read_update_info(png_ptr, info_ptr);
- 
+
    // Row size in bytes.
    int rowbytes = png_get_rowbytes(png_ptr, info_ptr);
- 
+
    // Allocate the image_data as a big block, to be given to opengl
    png_byte *image_data = new png_byte[rowbytes * height];
    if (!image_data) {
@@ -105,7 +104,7 @@
      fclose(fp);
      return TEXTURE_LOAD_ERROR;
    }
- 
+
    //row_pointers is for pointing to image_data for reading the png with libpng
    png_bytep *row_pointers = new png_bytep[height];
    if (!row_pointers) {
@@ -118,10 +117,10 @@
    // set the individual row_pointers to point at the correct offsets of image_data
    for (int i = 0; i < height; ++i)
      row_pointers[height - 1 - i] = image_data + i * rowbytes;
- 
+
    //read the png into image_data through row_pointers
    png_read_image(png_ptr, row_pointers);
- 
+
    //Now generate the OpenGL texture object
    GLuint texture;
    glGenTextures(1, &texture);
@@ -129,13 +128,13 @@
    glTexImage2D(GL_TEXTURE_2D,0, GL_RGBA, width, height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, (GLvoid*) image_data);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
- 
+
    //clean up memory and close stuff
    png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
    delete[] image_data;
    delete[] row_pointers;
    fclose(fp);
- 
+
    return texture;
  }/* stb_image - v2.19 - public domain image loader - http://nothings.org/stb
                                   no warranty implied; use at your own risk
@@ -458,7 +457,7 @@ extern "C" {
 //
 // load image by filename, open file, or memory buffer
 //
-
+/*
 typedef struct
 {
    int      (*read)  (void *user,char *data,int size);   // fill 'data' with 'size' bytes.  return number of bytes actually read
@@ -1195,8 +1194,8 @@ static void stbi__vertical_flip_slices(void *image, int w, int h, int z, int byt
 
    stbi_uc *bytes = (stbi_uc *)image;
    for (slice = 0; slice < z; ++slice) {
-      stbi__vertical_flip(bytes, w, h, bytes_per_pixel); 
-      bytes += slice_size; 
+      stbi__vertical_flip(bytes, w, h, bytes_per_pixel);
+      bytes += slice_size;
    }
 }
 
@@ -1355,15 +1354,15 @@ STBIDEF stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *u
 STBIDEF stbi_uc *stbi_load_gif_from_memory(stbi_uc const *buffer, int len, int **delays, int *x, int *y, int *z, int *comp, int req_comp)
 {
    unsigned char *result;
-   stbi__context s; 
-   stbi__start_mem(&s,buffer,len); 
-   
+   stbi__context s;
+   stbi__start_mem(&s,buffer,len);
+
    result = (unsigned char*) stbi__load_gif_main(&s, delays, x, y, z, comp, req_comp);
    if (stbi__vertically_flip_on_load) {
-      stbi__vertical_flip_slices( result, *x, *y, *z, *comp ); 
+      stbi__vertical_flip_slices( result, *x, *y, *z, *comp );
    }
 
-   return result; 
+   return result;
 }
 #endif
 
@@ -3468,7 +3467,7 @@ static stbi_uc *stbi__resample_row_hv_2_simd(stbi_uc *out, stbi_uc *in_near, stb
    return out;
 }
 #endif
-
+/*
 static stbi_uc *stbi__resample_row_generic(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
 {
    // resample with nearest-neighbor
@@ -4217,7 +4216,7 @@ static int stbi__parse_zlib_header(stbi__zbuf *a)
 {
    int cmf   = stbi__zget8(a);
    int cm    = cmf & 15;
-   /* int cinfo = cmf >> 4; */
+   /* int cinfo = cmf >> 4;
    int flg   = stbi__zget8(a);
    if ((cmf*256+flg) % 31 != 0) return stbi__err("bad zlib header","Corrupt PNG"); // zlib spec
    if (flg & 32) return stbi__err("no preset dict","Corrupt PNG"); // preset dictionary not allowed in png
@@ -4252,7 +4251,7 @@ Init algorithm:
    for (   ; i <= 287; ++i)     stbi__zdefault_length[i]   = 8;
    for (i=0; i <=  31; ++i)     stbi__zdefault_distance[i] = 5;
 }
-*/
+
 
 static int stbi__parse_zlib(stbi__zbuf *a, int parse_header)
 {
@@ -6244,7 +6243,7 @@ typedef struct
    int w,h;
    stbi_uc *out;                 // output buffer (always 4 components)
    stbi_uc *background;          // The current "background" as far as a gif is concerned
-   stbi_uc *history; 
+   stbi_uc *history;
    int flags, bgindex, ratio, transparent, eflags;
    stbi_uc  pal[256][4];
    stbi_uc lpal[256][4];
@@ -6332,7 +6331,7 @@ static int stbi__gif_info_raw(stbi__context *s, int *x, int *y, int *comp)
 static void stbi__out_gif_code(stbi__gif *g, stbi__uint16 code)
 {
    stbi_uc *p, *c;
-   int idx; 
+   int idx;
 
    // recurse to decode the prefixes, since the linked-list is backwards,
    // and working backwards through an interleaved image would be nasty
@@ -6341,12 +6340,12 @@ static void stbi__out_gif_code(stbi__gif *g, stbi__uint16 code)
 
    if (g->cur_y >= g->max_y) return;
 
-   idx = g->cur_x + g->cur_y; 
+   idx = g->cur_x + g->cur_y;
    p = &g->out[idx];
-   g->history[idx / 4] = 1;  
+   g->history[idx / 4] = 1;
 
    c = &g->color_table[g->codes[code].suffix * 4];
-   if (c[3] > 128) { // don't render transparent pixels; 
+   if (c[3] > 128) { // don't render transparent pixels;
       p[0] = c[2];
       p[1] = c[1];
       p[2] = c[0];
@@ -6455,31 +6454,31 @@ static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
 // two back is the image from two frames ago, used for a very specific disposal format
 static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, int req_comp, stbi_uc *two_back)
 {
-   int dispose; 
-   int first_frame; 
-   int pi; 
-   int pcount; 
+   int dispose;
+   int first_frame;
+   int pi;
+   int pcount;
 
    // on first frame, any non-written pixels get the background colour (non-transparent)
-   first_frame = 0; 
+   first_frame = 0;
    if (g->out == 0) {
       if (!stbi__gif_header(s, g, comp,0))     return 0; // stbi__g_failure_reason set by stbi__gif_header
       g->out = (stbi_uc *) stbi__malloc(4 * g->w * g->h);
-      g->background = (stbi_uc *) stbi__malloc(4 * g->w * g->h); 
-      g->history = (stbi_uc *) stbi__malloc(g->w * g->h); 
+      g->background = (stbi_uc *) stbi__malloc(4 * g->w * g->h);
+      g->history = (stbi_uc *) stbi__malloc(g->w * g->h);
       if (g->out == 0)                      return stbi__errpuc("outofmem", "Out of memory");
 
-      // image is treated as "tranparent" at the start - ie, nothing overwrites the current background; 
+      // image is treated as "tranparent" at the start - ie, nothing overwrites the current background;
       // background colour is only used for pixels that are not rendered first frame, after that "background"
-      // color refers to teh color that was there the previous frame. 
-      memset( g->out, 0x00, 4 * g->w * g->h ); 
+      // color refers to teh color that was there the previous frame.
+      memset( g->out, 0x00, 4 * g->w * g->h );
       memset( g->background, 0x00, 4 * g->w * g->h ); // state of the background (starts transparent)
       memset( g->history, 0x00, g->w * g->h );        // pixels that were affected previous frame
-      first_frame = 1; 
+      first_frame = 1;
    } else {
       // second frame - how do we dispoase of the previous one?
-      dispose = (g->eflags & 0x1C) >> 2; 
-      pcount = g->w * g->h; 
+      dispose = (g->eflags & 0x1C) >> 2;
+      pcount = g->w * g->h;
 
       if ((dispose == 3) && (two_back == 0)) {
          dispose = 2; // if I don't have an image to revert back to, default to the old background
@@ -6488,32 +6487,32 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
       if (dispose == 3) { // use previous graphic
          for (pi = 0; pi < pcount; ++pi) {
             if (g->history[pi]) {
-               memcpy( &g->out[pi * 4], &two_back[pi * 4], 4 ); 
+               memcpy( &g->out[pi * 4], &two_back[pi * 4], 4 );
             }
          }
-      } else if (dispose == 2) { 
-         // restore what was changed last frame to background before that frame; 
+      } else if (dispose == 2) {
+         // restore what was changed last frame to background before that frame;
          for (pi = 0; pi < pcount; ++pi) {
             if (g->history[pi]) {
-               memcpy( &g->out[pi * 4], &g->background[pi * 4], 4 ); 
+               memcpy( &g->out[pi * 4], &g->background[pi * 4], 4 );
             }
          }
       } else {
-         // This is a non-disposal case eithe way, so just 
+         // This is a non-disposal case eithe way, so just
          // leave the pixels as is, and they will become the new background
          // 1: do not dispose
          // 0:  not specified.
       }
 
-      // background is what out is after the undoing of the previou frame; 
-      memcpy( g->background, g->out, 4 * g->w * g->h ); 
+      // background is what out is after the undoing of the previou frame;
+      memcpy( g->background, g->out, 4 * g->w * g->h );
    }
 
-   // clear my history; 
+   // clear my history;
    memset( g->history, 0x00, g->w * g->h );        // pixels that were affected previous frame
 
    for (;;) {
-      int tag = stbi__get8(s); 
+      int tag = stbi__get8(s);
       switch (tag) {
          case 0x2C: /* Image Descriptor */
          {
@@ -6551,19 +6550,19 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
             } else if (g->flags & 0x80) {
                g->color_table = (stbi_uc *) g->pal;
             } else
-               return stbi__errpuc("missing color table", "Corrupt GIF");            
-            
+               return stbi__errpuc("missing color table", "Corrupt GIF");
+
             o = stbi__process_gif_raster(s, g);
             if (o == NULL) return NULL;
 
-            // if this was the first frame, 
-            pcount = g->w * g->h; 
+            // if this was the first frame,
+            pcount = g->w * g->h;
             if (first_frame && (g->bgindex > 0)) {
                // if first frame, any pixel not drawn to gets the background color
                for (pi = 0; pi < pcount; ++pi) {
                   if (g->history[pi] == 0) {
-                     g->pal[g->bgindex][3] = 255; // just in case it was made transparent, undo that; It will be reset next frame if need be; 
-                     memcpy( &g->out[pi * 4], &g->pal[g->bgindex], 4 ); 
+                     g->pal[g->bgindex][3] = 255; // just in case it was made transparent, undo that; It will be reset next frame if need be;
+                     memcpy( &g->out[pi * 4], &g->pal[g->bgindex], 4 );
                   }
                }
             }
@@ -6574,7 +6573,7 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
          case 0x21: // Comment Extension.
          {
             int len;
-            int ext = stbi__get8(s); 
+            int ext = stbi__get8(s);
             if (ext == 0xF9) { // Graphic Control Extension.
                len = stbi__get8(s);
                if (len == 4) {
@@ -6583,23 +6582,23 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
 
                   // unset old transparent
                   if (g->transparent >= 0) {
-                     g->pal[g->transparent][3] = 255; 
-                  } 
+                     g->pal[g->transparent][3] = 255;
+                  }
                   if (g->eflags & 0x01) {
                      g->transparent = stbi__get8(s);
                      if (g->transparent >= 0) {
-                        g->pal[g->transparent][3] = 0; 
+                        g->pal[g->transparent][3] = 0;
                      }
                   } else {
                      // don't need transparent
-                     stbi__skip(s, 1); 
-                     g->transparent = -1; 
+                     stbi__skip(s, 1);
+                     g->transparent = -1;
                   }
                } else {
                   stbi__skip(s, len);
                   break;
                }
-            } 
+            }
             while ((len = stbi__get8(s)) != 0) {
                stbi__skip(s, len);
             }
@@ -6618,15 +6617,15 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
 static void *stbi__load_gif_main(stbi__context *s, int **delays, int *x, int *y, int *z, int *comp, int req_comp)
 {
    if (stbi__gif_test(s)) {
-      int layers = 0; 
+      int layers = 0;
       stbi_uc *u = 0;
       stbi_uc *out = 0;
-      stbi_uc *two_back = 0; 
+      stbi_uc *two_back = 0;
       stbi__gif g;
-      int stride; 
+      int stride;
       memset(&g, 0, sizeof(g));
       if (delays) {
-         *delays = 0; 
+         *delays = 0;
       }
 
       do {
@@ -6636,44 +6635,44 @@ static void *stbi__load_gif_main(stbi__context *s, int **delays, int *x, int *y,
          if (u) {
             *x = g.w;
             *y = g.h;
-            ++layers; 
-            stride = g.w * g.h * 4; 
-         
+            ++layers;
+            stride = g.w * g.h * 4;
+
             if (out) {
-               out = (stbi_uc*) STBI_REALLOC( out, layers * stride ); 
+               out = (stbi_uc*) STBI_REALLOC( out, layers * stride );
                if (delays) {
-                  *delays = (int*) STBI_REALLOC( *delays, sizeof(int) * layers ); 
+                  *delays = (int*) STBI_REALLOC( *delays, sizeof(int) * layers );
                }
             } else {
-               out = (stbi_uc*)stbi__malloc( layers * stride ); 
+               out = (stbi_uc*)stbi__malloc( layers * stride );
                if (delays) {
-                  *delays = (int*) stbi__malloc( layers * sizeof(int) ); 
+                  *delays = (int*) stbi__malloc( layers * sizeof(int) );
                }
             }
-            memcpy( out + ((layers - 1) * stride), u, stride ); 
+            memcpy( out + ((layers - 1) * stride), u, stride );
             if (layers >= 2) {
-               two_back = out - 2 * stride; 
+               two_back = out - 2 * stride;
             }
 
             if (delays) {
-               (*delays)[layers - 1U] = g.delay; 
+               (*delays)[layers - 1U] = g.delay;
             }
          }
-      } while (u != 0); 
+      } while (u != 0);
 
-      // free temp buffer; 
-      STBI_FREE(g.out); 
-      STBI_FREE(g.history); 
-      STBI_FREE(g.background); 
+      // free temp buffer;
+      STBI_FREE(g.out);
+      STBI_FREE(g.history);
+      STBI_FREE(g.background);
 
-      // do the final conversion after loading everything; 
+      // do the final conversion after loading everything;
       if (req_comp && req_comp != 4)
          out = stbi__convert_format(out, 4, req_comp, layers * g.w, g.h);
 
-      *z = layers; 
+      *z = layers;
       return out;
    } else {
-      return stbi__errpuc("not GIF", "Image was not as a gif type."); 
+      return stbi__errpuc("not GIF", "Image was not as a gif type.");
    }
 }
 
@@ -6690,14 +6689,14 @@ static void *stbi__gif_load(stbi__context *s, int *x, int *y, int *comp, int req
       *y = g.h;
 
       // moved conversion to after successful load so that the same
-      // can be done for multiple frames. 
+      // can be done for multiple frames.
       if (req_comp && req_comp != 4)
          u = stbi__convert_format(u, 4, req_comp, g.w, g.h);
    }
 
-   // free buffers needed for multiple frame loading; 
+   // free buffers needed for multiple frame loading;
    STBI_FREE(g.history);
-   STBI_FREE(g.background); 
+   STBI_FREE(g.background);
 
    return u;
 }
