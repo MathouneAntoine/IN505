@@ -4,7 +4,11 @@ using namespace std;
 #include "Point.h"
 #include "Triangle.h"
 
+<<<<<<< HEAD
 /*
+=======
+/*  
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
   0)   .P1.		1) P2\	   2)  P2 ------P3  3)     /P2
 	  ......		| P1          .....          P1 |
 	P2------P3 	   P3/	           p1 			   \P3
@@ -69,6 +73,7 @@ void Triangle::afficher()
 	cout <<"p3.x() = " << p3.getX() << " p3.y = " << p3.getY() << endl;
 }
 
+<<<<<<< HEAD
 Point Triangle::getP1()
 {
 	return this->p1;
@@ -83,5 +88,7 @@ Point Triangle::getP3()
 {
 	return this->p3;
 }
+=======
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 Triangle::~Triangle(){ cout << "destruction Triangle " << endl; }
 

@@ -1,6 +1,6 @@
 #include "Field.h"
 #include "mes_formes.h"
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 

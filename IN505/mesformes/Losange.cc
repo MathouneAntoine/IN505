@@ -81,7 +81,11 @@ Point Losange::getP1()
 
 Point Losange::getP2()
 {
+<<<<<<< HEAD
 	return this->p2;
+=======
+	return this->p3;
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 }
 
 Point Losange::getP3()

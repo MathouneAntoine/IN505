@@ -1,6 +1,6 @@
 #include "./mesformes/Forme.h"
+#include "./mesformes/Point.h"
 #include "./mesformes/Rectangle.h"
 #include "./mesformes/Cercle.h"
-#include "./mesformes/Point.h"
 #include "./mesformes/Triangle.h"
 #include "./mesformes/Losange.h"

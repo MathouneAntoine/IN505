@@ -11,8 +11,8 @@ class Tree :  public Objects
 
 	Tree();
 	Tree(Tree& t);
-	Tree(Field* field, int life, int high, int diameter, int FromCenterX, int FromCenterY,  int depth);
-	Tree(Forme* f,int life, int high, int diameter);
+	Tree(Field* field, int high, int diameter, int FromCenterX, int FromCenterY);
+	Tree(Forme* f, int high, int diameter);
 	Forme* getForme();
 	void print();
 	~Tree();

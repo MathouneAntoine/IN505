@@ -19,8 +19,11 @@ Rock::Rock()
 	Point p3(50,10);
 	Point p4(50,60);
 
+<<<<<<< HEAD
     srand(time(NULL));
 
+=======
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 	int i= rand()%2;
 	if(i==0)
 	{
@@ -28,7 +31,11 @@ Rock::Rock()
 		this->center.setX((p1.getX()-p2.getX()));
 		this->center.setY((p1.getY()-p3.getY()));
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 	if(i==1)
 	{
 		p2.setX(10);
@@ -37,16 +44,25 @@ Rock::Rock()
 		this->f= new Losange(p1,p3,p2,p4);
 	}
 
+<<<<<<< HEAD
 	this->high=20;
+=======
+	this->high=20;	
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 	this->diameter=10;
 	this->life=(high+diameter)/2+20;
 }
 
+<<<<<<< HEAD
 Rock::Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenterY)
+=======
+Rock::Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenterY)	
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 {
 	this->center.setX(FromCenterX + field->getCenter().getX());
 	this->center.setY(FromCenterY + field->getCenter().getY());
 
+<<<<<<< HEAD
     srand(time(NULL));
 
 
@@ -56,6 +72,14 @@ Rock::Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenter
 	if(i==1) this->f= new Losange(center,diameter,high);
 
 	this->high=high;
+=======
+	int i= rand()%2;
+
+	if(i==0) this->f= new Rectangle(center,diameter,high);
+	if(i==1) this->f= new Losange(center,diameter,high);
+
+	this->high=high;	
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 	this->diameter=diameter;
 	this->life=(high+diameter)/2+20;
 
@@ -67,11 +91,19 @@ Rock::Rock(int high, int diameter, Point center)
 	this->center.setY(center.getY());
 
 	int i= rand()%2;
+<<<<<<< HEAD
 
 	if(i==0) this->f= new Rectangle(center,diameter,high);
 	if(i==1) this->f= new Losange(center,diameter,high);
 
 	this->high=high;
+=======
+	
+	if(i==0) this->f= new Rectangle(center,diameter,high);
+	if(i==1) this->f= new Losange(center,diameter,high);
+
+	this->high=high;	
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 	this->diameter=diameter;
 	this->life=(high+diameter)/2+20;
 }
@@ -87,7 +119,11 @@ void Rock::print()
 	this->f->afficher();
 }
 
+<<<<<<< HEAD
 void Rock::print_Rock()
+=======
+void Rock::print_Rectangle()
+>>>>>>> ee00255256108fac5d405208d5fdc777a9bee254
 {
 /*
 unsigned int texture;
