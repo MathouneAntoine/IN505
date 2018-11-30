@@ -20,9 +20,10 @@ Tree::Tree()
 	if(i==1)
 		this->f = new Cercle(Point(10,10),10);
 	
-	this->high=20;	
-	this->life=this->high/2+5;
+	this->high=10;	
 	this->diameter=20;
+	this->altitude=50;
+	this->life=(altitude/4)+(high+diameter);
 }
 
 Tree::Tree(Tree& t)
@@ -32,9 +33,10 @@ Tree::Tree(Tree& t)
 	this->life=t.life;
 	this->high=t.high;	
 	this->diameter=t.diameter;
+	this->altitude=t.altitude;
 }
 
-Tree::Tree(Field* field, int high, int diameter, int FromCenterX, int FromCenterY)
+Tree::Tree(Field* field, int high, int diameter, int altitude, int FromCenterX, int FromCenterY)
 {
 	this->center.setX(FromCenterX + field->getCenter().getX());
 	this->center.setY(FromCenterY + field->getCenter().getY());
@@ -42,7 +44,6 @@ Tree::Tree(Field* field, int high, int diameter, int FromCenterX, int FromCenter
 	int i= rand()%2;
 	if(i==0)
 	{
-		
 		this->f= new Triangle(this->center,diameter,high);
 	}
 	if(i==1)
@@ -51,15 +52,28 @@ Tree::Tree(Field* field, int high, int diameter, int FromCenterX, int FromCenter
 
 	this->high=high;
 	this->diameter=diameter;
-	this->life=(high+diameter)/2+5;	
+	this->altitude=altitude;
+	this->life=(altitude/4)+(high+diameter);	
 }
 
-Tree::Tree(Forme* f, int high, int diameter)
+Tree::Tree(Forme* f, int high, int diameter, int altitude)
 {
 	this->f= f;
 	this->high=high;	
 	this->diameter=diameter;
-	this->life=(high+diameter)/2+5;	
+	this->altitude=altitude;
+	this->life=(altitude/4)+(high+diameter);	
+
+}
+
+Tree::Tree(Point center)
+{
+	this->center.setX(center.getX());
+	this->center.setY(center.getY());
+
+	int diam=rand()%100+60;
+	int high=rand()%100+60;
+	int altitude=rand()%150+80;
 
 }
 

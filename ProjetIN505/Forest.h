@@ -1,3 +1,6 @@
+#ifndef FOREST_H
+#define FOREST_H
+
 #include <vector>
 #include "mes_perso.h"
 #include "mes_formes.h"
@@ -9,6 +12,7 @@ class Forest
 	public:
 
 		Forest();
+		void init_forest();
 		~Forest();
 
 	private:
@@ -18,3 +22,5 @@ class Forest
 		Character p2;
 	
 };
+
+#endif

@@ -29,40 +29,42 @@ Rock::Rock()
 		this->f= new Losange(p1,p3,p2,p4);
 	}
 
-	this->high=20;	
+	this->height=20;	
 	this->diameter=10;
-	this->life=(high+diameter)/2+20;
+	this->altitude=30;
+	this->life=(altitude/2)+diameter+height;
 }
 
-Rock::Rock(Field* field, int high, int diameter, int FromCenterX, int FromCenterY)	
+Rock::Rock(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY)	
 {
 	this->center.setX(FromCenterX + field->getCenter().getX());
 	this->center.setY(FromCenterY + field->getCenter().getY());
 
 	int i= rand()%2;
 
-	if(i==0) this->f= new Rectangle(center,diameter,high);
-	if(i==1) this->f= new Losange(center,diameter,high);
+	if(i==0) this->f= new Rectangle(center,diameter,height);
+	if(i==1) this->f= new Losange(center,diameter,height);
 
-	this->high=high;	
+	this->height=height;	
 	this->diameter=diameter;
-	this->life=(high+diameter)/2+20;
+	this->life=(altitude/2)+diameter+height;
 
 }
 
-Rock::Rock(int high, int diameter, Point center)
+Rock::Rock(int height, int diameter, int altitude, Point center)
 {
 	this->center.setX(center.getX());
 	this->center.setY(center.getY());
 
 	int i= rand()%2;
 	
-	if(i==0) this->f= new Rectangle(center,diameter,high);
-	if(i==1) this->f= new Losange(center,diameter,high);
+	if(i==0) this->f= new Rectangle(center,diameter,height);
+	if(i==1) this->f= new Losange(center,diameter,height);
 
-	this->high=high;	
+	this->height=height;	
 	this->diameter=diameter;
-	this->life=(high+diameter)/2+20;
+	this->altitude=altitude;
+	this->life=(altitude/2)+diameter+height;
 }
 
 Forme* Rock::getForme()

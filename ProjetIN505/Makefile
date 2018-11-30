@@ -20,14 +20,18 @@ $(EXEC):
 	@(cd $(PERSO_DIR) && $(MAKE))
 	
 
-game: $(OBJ) $(OBJ_Formes)
+game: $(OBJ) $(OBJ_Formes) $(OBJ_Perso)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 Field.o: 
 Objects.o: Field.h 
 Rock.o: Objects.h 
-Tree.o: Objects.h 
+Tree.o: Objects.h
+Forest.o:
+editorForest.o:Forest.h
+
 main.o: Field.h Rock.h 
+
 
 %.o: %.c mes_formes.h
 	$(CXX) -o $@ -c $< $(CXXFLAGS)
