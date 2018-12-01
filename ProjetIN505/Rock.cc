@@ -35,6 +35,24 @@ Rock::Rock()
 	this->life=(altitude/2)+diameter+height;
 }
 
+Rock::Rock(Point center)
+{
+	this->center.setX(center.getX());
+	this->center.setY(center.getY());
+
+	this->diameter=rand()%100+60;
+	this->height=rand()%100+60;
+	this->altitude=rand()%150+80;
+
+	int i= rand()%2;
+	if(i==0)
+	{
+		this->f= new Rectangle(this->center,this->diameter,this->height);
+	}
+	if(i==1)
+		this->f = new Losange(this->center,this->diameter,this->height);
+}
+
 Rock::Rock(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY)	
 {
 	this->center.setX(FromCenterX + field->getCenter().getX());

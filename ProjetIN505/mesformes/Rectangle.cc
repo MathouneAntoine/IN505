@@ -14,24 +14,24 @@ Rectangle::Rectangle()
 	this->p3.setY(0);
 	this->p4.setX(10);
 	this->p4.setY(10);
-	this->center.setX((p1.getX()+p4.getX())/2);
-	this->center.setY((p1.getY()+p2.getY())/2);
+	this->center.setX((p4.getX()-p1.getX())/2);
+	this->center.setY((p1.getY()-p2.getY())/2);
 }
 
-Rectangle::Rectangle(Point center, int diameter, int depth)
+Rectangle::Rectangle(Point center, int diameter, int height)
 {
 	this->center=Point(center);
 	this->p1.setX(center.getX()-(diameter/2));
-	this->p1.setY(center.getY()+(depth/2));
+	this->p1.setY(center.getY()+(height/2));
 
 	this->p2.setX(center.getX()-(diameter/2));
-	this->p2.setY(center.getY()-(depth/2));
+	this->p2.setY(center.getY()-(height/2));
 
 	this->p3.setX(center.getX()+(diameter/2));
-	this->p3.setY(center.getY()-(depth/2));
+	this->p3.setY(center.getY()-(height/2));
 
 	this->p4.setX(center.getX()+(diameter/2));
-	this->p4.setY(center.getY()+(depth/2));
+	this->p4.setY(center.getY()+(height/2));
 }
 
 
@@ -80,7 +80,7 @@ Point Rectangle::getP1()
 
 Point Rectangle::getP2()
 {
-	return this->p3;
+	return this->p2;
 }
 
 Point Rectangle::getP3()
@@ -91,11 +91,6 @@ Point Rectangle::getP3()
 Point Rectangle::getP4()
 {
 	return this->p4;
-}
-
-Point Rectangle::getCenter()
-{
-	return this->center;
 }
 
 Rectangle::~Rectangle()

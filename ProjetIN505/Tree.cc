@@ -20,10 +20,10 @@ Tree::Tree()
 	if(i==1)
 		this->f = new Cercle(Point(10,10),10);
 	
-	this->high=10;	
+	this->height=10;	
 	this->diameter=20;
 	this->altitude=50;
-	this->life=(altitude/4)+(high+diameter);
+	this->life=(altitude/4)+(height+diameter);
 }
 
 Tree::Tree(Tree& t)
@@ -31,12 +31,12 @@ Tree::Tree(Tree& t)
 
 	this->f=new Cercle(Point(10,10),10);
 	this->life=t.life;
-	this->high=t.high;	
+	this->height=t.height;	
 	this->diameter=t.diameter;
 	this->altitude=t.altitude;
 }
 
-Tree::Tree(Field* field, int high, int diameter, int altitude, int FromCenterX, int FromCenterY)
+Tree::Tree(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY)
 {
 	this->center.setX(FromCenterX + field->getCenter().getX());
 	this->center.setY(FromCenterY + field->getCenter().getY());
@@ -44,25 +44,25 @@ Tree::Tree(Field* field, int high, int diameter, int altitude, int FromCenterX, 
 	int i= rand()%2;
 	if(i==0)
 	{
-		this->f= new Triangle(this->center,diameter,high);
+		this->f= new Triangle(this->center,diameter,height);
 	}
 	if(i==1)
 		this->f = new Cercle(this->center,diameter);
 
 
-	this->high=high;
+	this->height=height;
 	this->diameter=diameter;
 	this->altitude=altitude;
-	this->life=(altitude/4)+(high+diameter);	
+	this->life=(altitude/4)+(height+diameter);	
 }
 
-Tree::Tree(Forme* f, int high, int diameter, int altitude)
+Tree::Tree(Forme* f, int height, int diameter, int altitude)
 {
 	this->f= f;
-	this->high=high;	
+	this->height=height;	
 	this->diameter=diameter;
 	this->altitude=altitude;
-	this->life=(altitude/4)+(high+diameter);	
+	this->life=(altitude/4)+(height+diameter);	
 
 }
 
@@ -71,9 +71,18 @@ Tree::Tree(Point center)
 	this->center.setX(center.getX());
 	this->center.setY(center.getY());
 
-	int diam=rand()%100+60;
-	int high=rand()%100+60;
-	int altitude=rand()%150+80;
+	this->diameter=rand()%100+60;
+	this->height=rand()%100+60;
+	this->altitude=rand()%150+80;
+
+	int i= rand()%2;
+	if(i==0)
+	{
+		this->f= new Triangle(this->center,this->diameter,this->height);
+	}
+	if(i==1)
+		this->f = new Cercle(this->center,this->diameter);
+
 
 }
 

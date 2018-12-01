@@ -21,14 +21,13 @@ class Rectangle: public Forme
 
 	public:
 		Rectangle();
-		Rectangle(Point p1, int diameter, int depth);
+		Rectangle(Point p1, int diameter, int height);
 		Rectangle(Point p1, Point p2, Point p3, Point p4);
 		Rectangle(Rectangle& r);
 		Point getP1();
 		Point getP2();
 		Point getP3();
 		Point getP4();
-		Point getCenter();
 		void deplacer(int dx, int dy);
 
 		~Rectangle();

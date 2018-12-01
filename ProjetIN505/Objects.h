@@ -10,16 +10,19 @@ class Objects
 	public:
 		Objects();
 		int getLife();
-		int getHigh();
+		int getHeight();
 		int getDiameter();
+		Point getCenter();
 		void printInfo();
 		virtual ~Objects();
 		
 	protected:
 		Forme * f;
 		int life;
-		int high;	
+		int height;	
 		int diameter;
+		int altitude;
+
 		Point center;
 
 		

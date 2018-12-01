@@ -5,9 +5,7 @@ OBJ= $(SRC:.cc=.o)
 all: $(EXEC)
 
 perso: 
-
-
-
+	
 %.o: %.c
 	@$(CXX) -o $@ -c $< $(CXXFLAGS)
 

@@ -15,9 +15,9 @@ class Forest
 		void init_forest();
 		~Forest();
 
-	private:
+	
 		Field f;
-		vector<Objects> List_Obj;
+		std::vector<Objects*> List_Obj;
 		Character p1;
 		Character p2;
 	

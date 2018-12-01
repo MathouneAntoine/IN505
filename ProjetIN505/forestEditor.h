@@ -2,31 +2,35 @@
 #define FORESTEDITOR_H
 
 #include "Forest.h"
+#include "Rock.h"
+#include "Tree.h"
+#include "mes_perso.h"
+#include "Objects.h"
 
 class forestEditor
 {
 	public:
 		forestEditor();
 
-		void create_forest();
+		void create_forest(Forest f);
 
-		Forest add_Element();
-		Forest add_Rock();
-		Forest add_Tree();
-		Forest add_Character1();
-		Forest add_Character2();
+		Forest add_Element(Forest f);
+		Forest add_Rock(Forest f, Point center);
+		Forest add_Tree(Forest f, Point center);
+		Forest add_Character1(Forest f, Point center);
+		Forest add_Character2(Forest f, Point center);
 
-		Forest write_Element();
-		Forest write_Rock();
-		Forest write_Tree();
-		Forest write_Character1();
-		Forest write_Character2();
+		void write_Forest(Forest f);
+		void write_Rock(Rock * r);
+		void write_Tree(Tree* t);
+		void write_Character1(Character* c);
+		void write_Character2(Character* c);
 
-		Forest read_File();
-		Forest read_Rock();
-		Forest read_Tree();
-		Forest read_Character1();
-		Forest read_Character2();
+		Forest read_File(Forest f);
+		Forest read_Rock(Forest f);
+		Forest read_Tree(Forest f);
+		Forest read_Character1(Forest f);
+		Forest read_Character2(Forest f);
 
 		~forestEditor();
 

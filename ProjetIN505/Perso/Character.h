@@ -12,7 +12,7 @@ class Character
 
 	private:
 
-}
+};
 
 
 #endif
