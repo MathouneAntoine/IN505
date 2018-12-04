@@ -12,14 +12,16 @@ class Forest
 	public:
 
 		Forest();
+		Character* getP1();
+		Character* getP2();
 		void init_forest();
 		~Forest();
 
 	
 		Field f;
 		std::vector<Objects*> List_Obj;
-		Character p1;
-		Character p2;
+		Character* p1;
+		Character* p2;
 	
 };
 

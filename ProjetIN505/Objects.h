@@ -12,6 +12,7 @@ class Objects
 		int getLife();
 		int getHeight();
 		int getDiameter();
+		int getAltitude();
 		Point getCenter();
 		void printInfo();
 		virtual ~Objects();

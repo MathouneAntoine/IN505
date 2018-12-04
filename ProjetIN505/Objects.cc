@@ -22,6 +22,11 @@ int Objects::getDiameter()
 	return this->diameter;
 }
 
+int Objects::getAltitude()
+{
+	return this->altitude;
+}
+
 Point Objects::getCenter()
 {
 	return this->center;
