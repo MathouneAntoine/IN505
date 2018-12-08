@@ -17,6 +17,7 @@ class Objects
 		Forme* getForme();
 		char getType();
 		void printInfo();
+		virtual void print();
 		virtual ~Objects();
 		
 	protected:

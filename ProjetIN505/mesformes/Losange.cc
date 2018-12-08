@@ -18,28 +18,28 @@ Losange::Losange()
 	this->center.setY((p1.getY()+p3.getY())/2);
 }
 
-Losange::Losange(Point center, int diameter, int depth)
+Losange::Losange(Point center, int diameter, int height)
 {
 	this->center=Point(center);
+
 	this->p1.setX(center.getX());
-	this->p1.setY(center.getY()+(depth/2));
+	this->p1.setY(center.getY()+(height/2));
 
 	this->p2.setX(center.getX()+(diameter/2));
 	this->p2.setY(center.getY());
 
 	this->p3.setX(center.getX());
-	this->p3.setY(center.getY()-(depth/2));
+	this->p3.setY(center.getY()-(height/2));
 
-	this->p4.setX(center.getX()-(diameter/2));
+	this->p4.setX((center.getX())-(diameter/2));
 	this->p4.setY(center.getY());
 }
 
 
 Losange::Losange(Point p1, Point p2, Point p3, Point p4): p1(p1), p2(p2), p3(p3), p4(p4)
 {
-
-	this->center.setX((p2.getX()+p4.getX())/2);
-	this->center.setY((p1.getY()+p3.getY())/2);
+	this->center.setX((p2.getX()-p4.getX())/2);
+	this->center.setY((p3.getY()-p1.getY())/2);
 }
 
 Losange::Losange(Losange& r)

@@ -140,7 +140,7 @@ void forestEditor::write_Character2(Character* c, ofstream &file){}
 
 Forest forestEditor::read_File(Forest f, int i)
 {
-    ifstream file("test.txt", ios::in);  
+    ifstream file("./Saves/test.txt", ios::in);  
     char c,t;
     Point center;
     int height, diameter, altitude, life, x, y;

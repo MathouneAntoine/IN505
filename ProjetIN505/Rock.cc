@@ -12,29 +12,33 @@ Rock::Rock()
 {
 	Point p1(20,60);
 	Point p2(20,10);
-	Point p3(50,10);
-	Point p4(50,60);
+	Point p3(60,10);
+	Point p4(60,60);
 
 	int i= rand()%2;
 	if(i==0)
 	{
 		this->f= new Rectangle(p1,p2,p3,p4);
-		this->center.setX((p1.getX()-p2.getX()));
-		this->center.setY((p1.getY()-p3.getY()));
+		this->center.setX((p1.getX()-p3.getX())/2);
+		this->center.setY((p1.getY()-p2.getY())/2);
 		this->type='R';
 	}
 	
 	if(i==1)
 	{
-		p2.setX(10);
-		p2.setY(15);
-		p3.setY(15);
-		this->f= new Losange(p1,p3,p2,p4);
+		p1.setX(70);p1.setY(75);
+		p2.setX(90);p2.setY(50);
+		p3.setX(70);p3.setY(25);
+		p4.setX(50);p4.setY(50);
+
+		this->center.setX(p1.getX());
+		this->center.setY(p2.getY());
+		this->f= new Losange(p1,p2,p3,p4);
 		this->type='L';
 	}
 
-	this->height=20;	
-	this->diameter=10;
+	this->height=50;	
+	this->diameter=40;
 	this->altitude=30;
 	this->life=(altitude/2)+diameter+height;
 }
@@ -91,6 +95,7 @@ Rock::Rock(char t, Point center, int height, int diameter, int altitude, int lif
 	this->diameter=diameter;
 	this->altitude=altitude;
 	this->life=life;
+	this->type=t;
 }
 
 void Rock::print()
