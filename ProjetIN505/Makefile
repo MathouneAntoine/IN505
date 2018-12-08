@@ -28,9 +28,8 @@ Objects.o: Field.h
 Rock.o: Objects.h 
 Tree.o: Objects.h
 Forest.o:
-editorForest.o:Forest.h Rock.h Tree.h mes_perso.h
-
-main.o: Field.h Rock.h 
+forestEditor.o:Forest.h Rock.h Tree.h mes_perso.h
+main.o: Field.h Rock.h Forest.h forestEditor.h
 
 
 %.o: %.c mes_formes.h

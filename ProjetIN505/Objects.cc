@@ -32,6 +32,15 @@ Point Objects::getCenter()
 	return this->center;
 }
 
+char Objects::getType()
+{
+	return this->type;
+}
+
+Forme* Objects::getForme()
+{
+	return this->f;
+}
 
 void Objects::printInfo()
 {

@@ -121,22 +121,76 @@ void forestEditor::write_Forest(Forest f)
 
 void forestEditor::write_Rock(Rock* r, ofstream &file)
 {
-    file << "R" << r->getCenter().getX() << " " << r->getCenter().getY();
+    file << "R" << " " << r->getCenter().getX() << " " << r->getCenter().getY();
     file << " " << r->getHeight() << " " <<r->getDiameter() << " " << r->getAltitude();
-    file << " " << r->getLife() <<endl;
+    file << " " << r->getLife()<< " " << r->getType() <<endl;
 } //FAUT RAJOUTER LA FORME
 
 void forestEditor::write_Tree(Tree* t, ofstream &file)
 {
-    file << "T" << r->getCenter().getX() << " " << r->getCenter().getY();
-    file << " " << r->getHeight() << " " <<r->getDiameter() << " " << r->getAltitude();
-    file << " " << r->getLife() <<endl;
+    file << "T"  << " " << t->getCenter().getX() << " " << t->getCenter().getY();
+    file << " " << t->getHeight() << " " <<t->getDiameter() << " " << t->getAltitude();
+    file << " " << t->getLife() << " " << t->getType() <<endl;
 }
-void forestEditor::write_Character1(Character* c, ofstream &file){}
+void forestEditor::write_Character1(Character* c, ofstream &file)
+{
+
+}
 void forestEditor::write_Character2(Character* c, ofstream &file){}
-Forest forestEditor::read_File(Forest f){return f;}
-Forest forestEditor::read_Rock(Forest f){return f;}
-Forest forestEditor::read_Tree(Forest f){return f;}
-Forest forestEditor::read_Character1(Forest f){return f;}
-Forest forestEditor::read_Character2(Forest f){return f;}
+
+Forest forestEditor::read_File(Forest f, int i)
+{
+    ifstream file("test.txt", ios::in);  
+    char c,t;
+    Point center;
+    int height, diameter, altitude, life, x, y;
+
+        if(file) 
+        {       
+            while(!file.eof())
+            {
+                file >> c;
+                switch (c)
+                {
+                    case 'R':
+                    {
+                        file >> x >> y >> height >> diameter >> altitude >> life >> t;
+                        center.setX(x);
+                        center.setY(y);
+                        Rock* r= new Rock(t, center, height, diameter, altitude, life);
+                        f.List_Obj.push_back(r);
+                    }
+                    break;
+
+                    case 'T':
+                    {
+                        file >> x >> y >> height >> diameter >> altitude >> life >> t;
+                        center.setX(x);
+                        center.setY(y);
+                        Rock* r= new Rock(t, center, height, diameter, altitude, life);
+                        f.List_Obj.push_back(r);
+                    }
+                    break;
+
+                    case 'C':
+
+                    break;
+
+                    default: cout << "Erreur lecture" ;
+
+                }
+            }
+
+            file.close(); 
+        }
+        else  
+                cerr << "Impossible d'ouvrir le fichier !" << endl;
+
+    return f;
+}
+
+Forest forestEditor::read_Rock(Forest f, ifstream &file){return f;}
+Forest forestEditor::read_Tree(Forest f, ifstream &file){return f;}
+Forest forestEditor::read_Character1(Forest f, ifstream &file){return f;}
+Forest forestEditor::read_Character2(Forest f, ifstream &file){return f;}
 forestEditor::~forestEditor(){}

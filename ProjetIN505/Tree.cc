@@ -16,9 +16,13 @@ Tree::Tree()
 		Point p2(10,10); 
 		Point p3(20,10);
 		this->f= new Triangle(p1,p2,p3);
+		this->type='T';
 	}
 	if(i==1)
+	{
 		this->f = new Cercle(Point(10,10),10);
+		this->type='C';
+	}
 	
 	this->height=10;	
 	this->diameter=20;
@@ -28,8 +32,10 @@ Tree::Tree()
 
 Tree::Tree(Tree& t)
 {
-
-	this->f=new Cercle(Point(10,10),10);
+	if (t.type=='T') {this->f= new Triangle(t.getCenter(),t.diameter,t.height);}
+	if (t.type=='C')	{this->f = new Cercle(t.getCenter(),t.diameter);}
+	if (t.type!='C' && t.type!='T') {cout << "erreur construction arbre : type non reconnu";}
+	this->type=t.type;
 	this->life=t.life;
 	this->height=t.height;	
 	this->diameter=t.diameter;
@@ -45,10 +51,13 @@ Tree::Tree(Field* field, int height, int diameter, int altitude, int FromCenterX
 	if(i==0)
 	{
 		this->f= new Triangle(this->center,diameter,height);
+		this->type='T';
 	}
 	if(i==1)
+	{
 		this->f = new Cercle(this->center,diameter);
-
+		this->type='C';
+	}
 
 	this->height=height;
 	this->diameter=diameter;
@@ -56,13 +65,20 @@ Tree::Tree(Field* field, int height, int diameter, int altitude, int FromCenterX
 	this->life=(altitude/4)+(height+diameter);	
 }
 
-Tree::Tree(Forme* f, int height, int diameter, int altitude)
+Tree::Tree(char t, Point center, int height, int diameter, int altitude, int life)
 {
-	this->f= f;
+	this->center.setX(center.getX());
+	this->center.setY(center.getY());
+	this->type=type;
+
+	if (t=='T') {this->f= new Triangle(this->center,diameter,height);}
+	if (t=='C')	{this->f = new Cercle(this->center,diameter);}
+	if (t!='C' && t!='T') {cout << "erreur construction arbre : type non reconnu";}
+
 	this->height=height;	
 	this->diameter=diameter;
 	this->altitude=altitude;
-	this->life=(altitude/4)+(height+diameter);	
+	this->life=life;	
 
 }
 
@@ -79,18 +95,14 @@ Tree::Tree(Point center)
 	if(i==0)
 	{
 		this->f= new Triangle(this->center,this->diameter,this->height);
+		this->type='T';
 	}
 	if(i==1)
+	{
 		this->f = new Cercle(this->center,this->diameter);
-
-
+		this->type='C';
+	}
 }
-
-Forme* Tree::getForme()
-{
-	return this->f;
-}
-
 
 void Tree::print()
 {

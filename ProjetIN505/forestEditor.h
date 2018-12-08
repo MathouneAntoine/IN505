@@ -26,11 +26,11 @@ class forestEditor
 		void write_Character1(Character* c, std::ofstream &file);
 		void write_Character2(Character* c, std::ofstream &file);
 
-		Forest read_File(Forest f);
-		Forest read_Rock(Forest f);
-		Forest read_Tree(Forest f);
-		Forest read_Character1(Forest f);
-		Forest read_Character2(Forest f);
+		Forest read_File(Forest f, int i);
+		Forest read_Rock(Forest f, std::ifstream &file);
+		Forest read_Tree(Forest f, std::ifstream &file);
+		Forest read_Character1(Forest f, std::ifstream &file);
+		Forest read_Character2(Forest f, std::ifstream &file);
 
 		~forestEditor();
 

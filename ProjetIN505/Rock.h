@@ -11,9 +11,8 @@ class Rock :  public Objects
 
 		Rock();
 		Rock(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY);
-		Rock(int height, int diameter, int altitude, Point center); //Le point centre doit etre deja definie par rapport au centre de la carte
 		Rock(Point center);	
-		Forme* getForme();
+		Rock(char t, Point center, int height, int diameter, int altitude, int life);
 		void print();
 		~Rock();
 

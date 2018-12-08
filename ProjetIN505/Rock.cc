@@ -4,6 +4,8 @@
 #include "Objects.h"
 #include "mes_formes.h"
 
+
+
 using namespace std;
 
 Rock::Rock()
@@ -19,6 +21,7 @@ Rock::Rock()
 		this->f= new Rectangle(p1,p2,p3,p4);
 		this->center.setX((p1.getX()-p2.getX()));
 		this->center.setY((p1.getY()-p3.getY()));
+		this->type='R';
 	}
 	
 	if(i==1)
@@ -27,6 +30,7 @@ Rock::Rock()
 		p2.setY(15);
 		p3.setY(15);
 		this->f= new Losange(p1,p3,p2,p4);
+		this->type='L';
 	}
 
 	this->height=20;	
@@ -41,16 +45,22 @@ Rock::Rock(Point center)
 	this->center.setY(center.getY());
 
 	this->diameter=rand()%100+60;
+	if (this->diameter%2!=0) this->diameter++;
 	this->height=rand()%100+60;
+	if (this->height%2!=0) this->height++;
 	this->altitude=rand()%150+80;
+	if (this->altitude%2!=0) this->altitude++;
+	this->life=(altitude/2)+diameter+height;
 
 	int i= rand()%2;
 	if(i==0)
 	{
 		this->f= new Rectangle(this->center,this->diameter,this->height);
+		this->type='R';
 	}
 	if(i==1)
-		this->f = new Losange(this->center,this->diameter,this->height);
+		{this->f = new Losange(this->center,this->diameter,this->height);
+		this->type='L';}
 }
 
 Rock::Rock(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY)	
@@ -60,8 +70,8 @@ Rock::Rock(Field* field, int height, int diameter, int altitude, int FromCenterX
 
 	int i= rand()%2;
 
-	if(i==0) this->f= new Rectangle(center,diameter,height);
-	if(i==1) this->f= new Losange(center,diameter,height);
+	if(i==0) {this->f= new Rectangle(center,diameter,height); this->type='R';}
+	if(i==1) {this->f= new Losange(center,diameter,height); this->type='L';}
 
 	this->height=height;	
 	this->diameter=diameter;
@@ -69,25 +79,18 @@ Rock::Rock(Field* field, int height, int diameter, int altitude, int FromCenterX
 
 }
 
-Rock::Rock(int height, int diameter, int altitude, Point center)
+Rock::Rock(char t, Point center, int height, int diameter, int altitude, int life)
 {
 	this->center.setX(center.getX());
 	this->center.setY(center.getY());
-
-	int i= rand()%2;
 	
-	if(i==0) this->f= new Rectangle(center,diameter,height);
-	if(i==1) this->f= new Losange(center,diameter,height);
+	if(t=='R') this->f= new Rectangle(center,diameter,height);
+	if(t=='L') this->f= new Losange(center,diameter,height);
 
 	this->height=height;	
 	this->diameter=diameter;
 	this->altitude=altitude;
-	this->life=(altitude/2)+diameter+height;
-}
-
-Forme* Rock::getForme()
-{
-	return this->f;
+	this->life=life;
 }
 
 void Rock::print()

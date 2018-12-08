@@ -14,6 +14,8 @@ class Objects
 		int getDiameter();
 		int getAltitude();
 		Point getCenter();
+		Forme* getForme();
+		char getType();
 		void printInfo();
 		virtual ~Objects();
 		
@@ -23,6 +25,7 @@ class Objects
 		int height;	
 		int diameter;
 		int altitude;
+		char type;
 
 		Point center;
 

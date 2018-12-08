@@ -12,9 +12,8 @@ class Tree :  public Objects
 	Tree();
 	Tree(Tree& t);
 	Tree(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY);
-	Tree(Forme* f, int height, int diameter, int altitude);
+	Tree(char t, Point center, int height, int diameter, int altitude, int life);
 	Tree(Point center);
-	Forme* getForme();
 	void print();
 	~Tree();
 
