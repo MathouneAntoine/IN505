@@ -547,3 +547,14 @@
 	"Objects.h"
 	"mes_formes.h"
 
+1544711852 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/main.cpp
+	"Screen.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<iostream>
+	"Rock.h"
+	"./mesformes/Point.h"
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/Screen.h
+

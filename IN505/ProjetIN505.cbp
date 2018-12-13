@@ -89,6 +89,7 @@
 		<Unit filename="cb.bmp" />
 		<Unit filename="forestEditor.cc" />
 		<Unit filename="forestEditor.h" />
+		<Unit filename="main.cpp" />
 		<Unit filename="mes_formes.h" />
 		<Unit filename="mesformes/Cercle.cc" />
 		<Unit filename="mesformes/Cercle.h" />

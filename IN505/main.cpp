@@ -1,96 +1,3 @@
-/*#ifdef __cplusplus
-    #include <cstdlib>
-#else
-    #include <stdlib.h>
-#endif
-
-#include <SDL2/SDL.h>
-#include "Rock.h"
-#include "Screen.h"
-#include <iostream>
-
-
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <GL/gl.h>
-
-
-// Includes
-
-
-int main ( int argc, char** argv )
-{
-    SDL_Window* window = Init_Screen();
-    SDL_Event evenements;
-
-                // Variables
-
-    bool terminer(false);
-    float vertices[] = {-0.5, -0.5,   0.0, 0.5,   0.5, -0.5};
-
-    SDL_GLContext contexteOpenGL; // SDL de créer un contexte OpenGL.
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3); //Spécifie la version OpenGL que SDL va utiliser
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);  //Double buffering
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-
-    contexteOpenGL = SDL_GL_CreateContext(window);  //Création contexte OPENGL dans la fenetre SDL
-    if(contexteOpenGL == 0)
-    {
-        std::cout << SDL_GetError() << std::endl;
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return -1;
-    }
-
-
-    Field* f= new Field(0,0);
-    Rock* R= new Rock(f,10, 30, 200, 200, 50, 50);
-
-     // Boucle principale
-
-    while(!terminer)
-    {
-        SDL_WaitEvent(&evenements);
-
-	if(evenements.window.event == SDL_WINDOWEVENT_CLOSE)
-	    terminer = true;
-
-	       // Nettoyage de l'écran
-        glClear(GL_COLOR_BUFFER_BIT);
-        float vertices[] = {
-     0.0f,  0.5f, // Sommet 1 (X, Y)
-     0.5f, -0.5f, // Sommet 2 (X, Y)
-    -0.5f, -0.5f  // Sommet 3 (X, Y)
-};
-
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-        // Actualisation de la fenêtre
-
-        SDL_GL_SwapWindow(window);
-    }
-    //R->sdl_print(window);
-
-    // DRAWING ENDS HERE
-
-
-    //free loaded rectangle
-    //SDL_FreeSurface(rectangle);
-
-
-
-    printf("Exited cleanly\n");
-    // On quitte la SDL
-    SDL_GL_DeleteContext(contexteOpenGL);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
-    return 0;
-}*/
-
-
 #include "Screen.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -140,7 +47,7 @@ void display()
 
 
     Field* f= new Field(250,250);
-    Rock* R= new Rock(f, 100, 100, 0, 0);
+    Rock* R= new Rock(f, 100, 100, 0, 0,5);
 
     R->print_Rock();
     R->print();
@@ -176,7 +83,7 @@ int main(int argc,char *argv[]){
 
 
     Field* f= new Field(250,250);
-    Rock* R= new Rock(f, 100, 100, 0, 0);
+    Rock* R= new Rock(f, 100, 100, 0, 0, 5);
 
     R->print_Rock();
     R->print();
