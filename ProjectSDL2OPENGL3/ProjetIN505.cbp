@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ProjetIN505" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ProjetIN505" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ProjetIN505" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="`sdl-config --cflags`" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add option="`sdl-config --libs`" />
+		</Linker>
+		<Unit filename="Button.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Button.h" />
+		<Unit filename="Field.cc" />
+		<Unit filename="Field.h" />
+		<Unit filename="Forest.cc" />
+		<Unit filename="Forest.h" />
+		<Unit filename="Objects.cc" />
+		<Unit filename="Objects.h" />
+		<Unit filename="Perso/Ai.cc" />
+		<Unit filename="Perso/Ai.h" />
+		<Unit filename="Perso/Character.cc" />
+		<Unit filename="Perso/Character.h" />
+		<Unit filename="Perso/Player.cc" />
+		<Unit filename="Perso/Player.h" />
+		<Unit filename="Rock.cc" />
+		<Unit filename="Rock.h" />
+		<Unit filename="Screen.cc" />
+		<Unit filename="Screen.h" />
+		<Unit filename="Tree.cc" />
+		<Unit filename="Tree.h" />
+		<Unit filename="cb.bmp" />
+		<Unit filename="forestEditor.cc" />
+		<Unit filename="forestEditor.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="mes_formes.h" />
+		<Unit filename="mesformes/Cercle.cc" />
+		<Unit filename="mesformes/Cercle.h" />
+		<Unit filename="mesformes/Forme.cc" />
+		<Unit filename="mesformes/Forme.h" />
+		<Unit filename="mesformes/Losange.cc" />
+		<Unit filename="mesformes/Losange.h" />
+		<Unit filename="mesformes/Point.cc" />
+		<Unit filename="mesformes/Point.h" />
+		<Unit filename="mesformes/Rectangle.cc" />
+		<Unit filename="mesformes/Rectangle.h" />
+		<Unit filename="mesformes/Triangle.cc" />
+		<Unit filename="mesformes/Triangle.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

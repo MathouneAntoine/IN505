@@ -1,0 +1,1021 @@
+# depslib dependency file v1.0
+1542909484 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/main.cpp
+	<cstdlib>
+	<stdlib.h>
+	<SDL/SDL.h>
+
+1542723861 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/main.cc
+	"Field.h"
+	"Rock.h"
+	"Tree.h"
+	<QApplication>
+	<QPushButton>
+
+1542553168 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Field.h
+	"./mesformes/Point.h"
+
+1542388672 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Point.h
+	<iostream>
+
+1542552851 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Rock.h
+	"Field.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+
+1542909835 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Objects.h
+	"./mesformes/Forme.h"
+	"./mesformes/Point.h"
+	"Field.h"
+	<iostream>
+
+1542549750 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Forme.h
+	"Point.h"
+
+1542910031 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Tree.h
+	"Field.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+
+1542722791 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Field.cc
+	"Field.h"
+	"./mesformes/Point.h"
+	<iostream>
+
+1542909951 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Cercle.cc
+	<iostream>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"Point.h"
+	"Cercle.h"
+
+1542909705 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Cercle.h
+	"Point.h"
+	"Forme.h"
+
+1542549786 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Forme.cc
+	"Point.h"
+	"Forme.h"
+
+1542388552 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Point.cc
+	"Point.h"
+
+1542553287 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Rectangle.cc
+	<iostream>
+	"Point.h"
+	"Rectangle.h"
+
+1542551468 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Rectangle.h
+	"Forme.h"
+	"Point.h"
+
+1542388219 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Segment.cc
+	"Segment.h"
+	"Point.h"
+	"Forme.h"
+	<iostream>
+
+1542388175 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Segment.h
+	"Forme.h"
+	"Point.h"
+
+1542388778 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Triangle.cc
+	<iostream>
+	"Point.h"
+	"Triangle.h"
+
+1542389070 /home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/mesformes/Triangle.h
+	"Point.h"
+
+1542553306 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Objects.cc
+	<iostream>
+	"Objects.h"
+	"./mesformes/Forme.h"
+
+1542909511 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Rock.cc
+	<iostream>
+	"Rock.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+	"./mesformes/Rectangle.h"
+
+1542910028 source:/home/mathoune/Documents/Langages Avances/IN505/ProjetIN505/Tree.cc
+	<iostream>
+	"Tree.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+	"./mesformes/Cercle.h"
+
+1543165533 source:/home/script0ny/Documents/IN505/ProjetIN5052/main.cpp
+	<cstdlib>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	"Rock.h"
+	"Screen.h"
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<iostream>
+
+1542811664 source:/home/script0ny/Documents/IN505/ProjetIN5052/Field.cc
+	"Field.h"
+	"./mesformes/Point.h"
+	<iostream>
+
+1542811664 /home/script0ny/Documents/IN505/ProjetIN5052/Field.h
+	"./mesformes/Point.h"
+
+1542811664 /home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Point.h
+	<iostream>
+
+1543147092 /home/script0ny/Documents/IN505/ProjetIN5052/Rock.h
+	"Field.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+	"./mesformes/Point.h"
+	<SDL2/SDL.h>
+
+1542914360 /home/script0ny/Documents/IN505/ProjetIN5052/Objects.h
+	"./mesformes/Forme.h"
+	"./mesformes/Point.h"
+	"Field.h"
+	<iostream>
+
+1542811664 /home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Forme.h
+	"Point.h"
+
+1543145405 /home/script0ny/Documents/IN505/ProjetIN5052/Screen.h
+
+1542914360 source:/home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Cercle.cc
+	<iostream>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"Point.h"
+	"Cercle.h"
+
+1542914360 /home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Cercle.h
+	"Point.h"
+	"Forme.h"
+
+1542811664 source:/home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Forme.cc
+	"Point.h"
+	"Forme.h"
+
+1542811664 source:/home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Point.cc
+	"Point.h"
+
+1542811664 source:/home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Rectangle.cc
+	<iostream>
+	"Point.h"
+	"Rectangle.h"
+
+1542811664 /home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Rectangle.h
+	"Forme.h"
+	"Point.h"
+
+1542811664 source:/home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Segment.cc
+	"Segment.h"
+	"Point.h"
+	"Forme.h"
+	<iostream>
+
+1542811664 /home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Segment.h
+	"Forme.h"
+	"Point.h"
+
+1542811664 source:/home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Triangle.cc
+	<iostream>
+	"Point.h"
+	"Triangle.h"
+
+1542811664 /home/script0ny/Documents/IN505/ProjetIN5052/mesformes/Triangle.h
+	"Point.h"
+
+1542811664 source:/home/script0ny/Documents/IN505/ProjetIN5052/Objects.cc
+	<iostream>
+	"Objects.h"
+	"./mesformes/Forme.h"
+
+1543152830 source:/home/script0ny/Documents/IN505/ProjetIN5052/Screen.cc
+	<SDL2/SDL.h>
+	"iostream"
+
+1543146881 source:/home/script0ny/Documents/IN505/ProjetIN5052/Tree.cc
+	<iostream>
+	"Tree.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+	"./mesformes/Cercle.h"
+	<SDL2/SDL.h>
+	<math.h>
+
+1543146839 /home/script0ny/Documents/IN505/ProjetIN5052/Tree.h
+	"Field.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+	<SDL2/SDL.h>
+
+1543148767 source:/home/script0ny/Documents/IN505/ProjetIN5052/Rock.cc
+	<iostream>
+	"Rock.h"
+	"Objects.h"
+	"./mesformes/Forme.h"
+	"./mesformes/Rectangle.h"
+	"./mesformes/Point.h"
+	<SDL2/SDL.h>
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/Field.cc
+	"Field.h"
+	"mes_formes.h"
+	<iostream>
+
+1543584686 /home/script0ny/Documents/IN505/IN505/Field.h
+	"mes_formes.h"
+
+1543584686 /home/script0ny/Documents/IN505/IN505/mesformes/Point.h
+	<iostream>
+
+1544352159 source:/home/script0ny/Documents/IN505/IN505/main.cpp
+	"Screen.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<iostream>
+	"Rock.h"
+	"Tree.h"
+	"Button.h"
+	"./mesformes/Point.h"
+	"./mesformes/Point.h"
+	<SDL2/SDL.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<iostream>
+	"Screen.h"
+	"Rock.h"
+	"Tree.h"
+	"Button.h"
+	<SDL2/SDL.h>
+	<iostream>
+	<GL/gl.h>
+	"Rock.h"
+	"Tree.h"
+	"Button.h"
+	"Screen.h"
+	"./mesformes/Point.h"
+
+1543668345 /home/script0ny/Documents/IN505/IN505/Rock.h
+	"Field.h"
+	"Objects.h"
+	"mes_formes.h"
+
+1543584686 /home/script0ny/Documents/IN505/IN505/Objects.h
+	"./mesformes/Point.h"
+	"Field.h"
+	<iostream>
+
+1543584686 /home/script0ny/Documents/IN505/IN505/mesformes/Forme.h
+	"Point.h"
+
+1544283556 /home/script0ny/Documents/IN505/IN505/Screen.h
+
+1543675607 source:/home/script0ny/Documents/IN505/IN505/mesformes/Cercle.cc
+	<iostream>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"Point.h"
+	"Cercle.h"
+
+1543675591 /home/script0ny/Documents/IN505/IN505/mesformes/Cercle.h
+	"Point.h"
+	"Forme.h"
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/mesformes/Forme.cc
+	"Point.h"
+	"Forme.h"
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/mesformes/Point.cc
+	"Point.h"
+
+1544110426 source:/home/script0ny/Documents/IN505/IN505/mesformes/Rectangle.cc
+	<iostream>
+	"Point.h"
+	"Rectangle.h"
+	"Forme.h"
+	<iostream>
+
+1544110357 /home/script0ny/Documents/IN505/IN505/mesformes/Rectangle.h
+	"Forme.h"
+	"Point.h"
+
+1543515696 source:/home/script0ny/Documents/IN505/IN505/mesformes/Segment.cc
+	"Segment.h"
+	"Point.h"
+	"Forme.h"
+	<iostream>
+
+1543515696 /home/script0ny/Documents/IN505/IN505/mesformes/Segment.h
+	"Forme.h"
+	"Point.h"
+
+1543669248 source:/home/script0ny/Documents/IN505/IN505/mesformes/Triangle.cc
+	<iostream>
+	<time.h>
+	"Point.h"
+	"Triangle.h"
+
+1543584686 /home/script0ny/Documents/IN505/IN505/mesformes/Triangle.h
+	"Point.h"
+	"Forme.h"
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/Objects.cc
+	<iostream>
+	"Objects.h"
+	"mes_formes.h"
+
+1544362256 source:/home/script0ny/Documents/IN505/IN505/Rock.cc
+	<iostream>
+	<time.h>
+	"Rock.h"
+	"Objects.h"
+	"mes_formes.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<SDL2/SDL.h>
+
+1544350353 source:/home/script0ny/Documents/IN505/IN505/Screen.cc
+	<GL/gl.h>
+	<SDL2/SDL.h>
+	<iostream>
+
+1544281905 source:/home/script0ny/Documents/IN505/IN505/Tree.cc
+	<iostream>
+	<time.h>
+	"Tree.h"
+	"Objects.h"
+	"mes_formes.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	"sdlglutils.h"
+
+1543668329 /home/script0ny/Documents/IN505/IN505/Tree.h
+	"Field.h"
+	"Objects.h"
+	"mes_formes.h"
+
+1543584686 /home/script0ny/Documents/IN505/IN505/mes_formes.h
+	"./mesformes/Forme.h"
+	"./mesformes/Rectangle.h"
+	"./mesformes/Cercle.h"
+	"./mesformes/Point.h"
+	"./mesformes/Triangle.h"
+	"./mesformes/Losange.h"
+
+1543584686 /home/script0ny/Documents/IN505/IN505/mesformes/Losange.h
+	"Forme.h"
+	"Point.h"
+
+1543515696 /home/script0ny/Documents/IN505/IN505/stb_image.h
+	<GL/gl.h>
+	<GL/glu.h>
+	<png.h>
+	<cstdio>
+	<string>
+	"stb_image.h"
+	<stdio.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/Forest.cc
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/forestEditor.cc
+	"Forest.h"
+	"forestEditor.h"
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/mesformes/Losange.cc
+	<iostream>
+	"Point.h"
+	"Losange.h"
+	"Forme.h"
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/Perso/Ai.cc
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/Perso/Character.cc
+
+1543584686 source:/home/script0ny/Documents/IN505/IN505/Perso/Player.cc
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Field.cc
+	"Field.h"
+	"mes_formes.h"
+	<iostream>
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/Field.h
+	"mes_formes.h"
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/mes_formes.h
+	"./mesformes/Forme.h"
+	"./mesformes/Rectangle.h"
+	"./mesformes/Cercle.h"
+	"./mesformes/Point.h"
+	"./mesformes/Triangle.h"
+	"./mesformes/Losange.h"
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Forme.h
+	"Point.h"
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Point.h
+	<iostream>
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Rectangle.h
+	"Forme.h"
+	"Point.h"
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Cercle.h
+	"Point.h"
+	"Forme.h"
+
+1543583626 /home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Triangle.h
+	"Point.h"
+	"Forme.h"
+
+1543583159 /home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Losange.h
+	"Forme.h"
+	"Point.h"
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Forest.cc
+
+1543583733 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/forestEditor.cc
+	"Forest.h"
+	"forestEditor.h"
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Cercle.cc
+	<iostream>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"Point.h"
+	"Cercle.h"
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Forme.cc
+	"Point.h"
+	"Forme.h"
+
+1543584055 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Losange.cc
+	<iostream>
+	"Point.h"
+	"Losange.h"
+	"Forme.h"
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Point.cc
+	"Point.h"
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Rectangle.cc
+	<iostream>
+	"Point.h"
+	"Rectangle.h"
+	"Forme.h"
+
+1543584224 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Objects.cc
+	<iostream>
+	"Objects.h"
+	"mes_formes.h"
+
+1543584216 /home/mathoune/Documents/Langages Avances/IN505/IN505/Objects.h
+	"./mesformes/Point.h"
+	"Field.h"
+	<iostream>
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Perso/Ai.cc
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Perso/Character.cc
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Perso/Player.cc
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Screen.cc
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<iostream>
+
+1543584343 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Tree.cc
+	<iostream>
+	<time.h>
+	"Tree.h"
+	"Objects.h"
+	"mes_formes.h"
+
+1543583709 /home/mathoune/Documents/Langages Avances/IN505/IN505/Tree.h
+	"Field.h"
+	"Objects.h"
+	"mes_formes.h"
+
+1543583850 /home/mathoune/Documents/Langages Avances/IN505/IN505/Forest.h
+	<vector>
+	"Perso/Character.h"
+	"Field.h"
+	"Objects.h"
+
+1543583801 /home/mathoune/Documents/Langages Avances/IN505/IN505/Perso/Character.h
+
+1543583746 /home/mathoune/Documents/Langages Avances/IN505/IN505/forestEditor.h
+	"Forest.h"
+
+1543583860 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/mesformes/Triangle.cc
+	<iostream>
+	<time.h>
+	"Point.h"
+	"Triangle.h"
+
+1543583159 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Perso/main.cc
+	<iostream>
+
+1543584396 source:/home/mathoune/Documents/Langages Avances/IN505/IN505/Rock.cc
+	<iostream>
+	<time.h>
+	"Rock.h"
+	"Objects.h"
+	"mes_formes.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<stdlib.h>
+
+1543583427 /home/mathoune/Documents/Langages Avances/IN505/IN505/Rock.h
+	"Field.h"
+	"Objects.h"
+	"mes_formes.h"
+
+1543584686 /home/script0ny/Documents/IN505/IN505/Forest.h
+	<vector>
+	"Perso/Character.h"
+	"Field.h"
+	"Objects.h"
+
+1543584686 /home/script0ny/Documents/IN505/IN505/Perso/Character.h
+
+1544352261 /home/script0ny/Documents/IN505/IN505/forestEditor.h
+	"Forest.h"
+
+1543600036 source:/home/script0ny/Documents/IN505/IN505/Perso/main.cc
+
+1544281242 /home/script0ny/Documents/IN505/IN505/sdlglutils.h
+	<GL/gl.h>
+	<SDL2/SDL.h>
+
+1147351434 source:/home/script0ny/Documents/IN505/IN505/sdlglutils.cpp
+	"sdlglutils.h"
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	<GL/glu.h>
+	<cstring>
+	<cstdlib>
+
+1544281798 source:/home/script0ny/Documents/IN505/IN505/Button.cc
+	"Button.h"
+	"./mesformes/Point.h"
+	"./mesformes/Rectangle.h"
+	<iostream>
+	"Objects.h"
+	"mes_formes.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	"sdlglutils.h"
+	<SDL2/SDL.h>
+
+1544195358 /home/script0ny/Documents/IN505/IN505/Button.h
+	"./mesformes/Rectangle.h"
+	<string>
+	"Objects.h"
+	"mes_formes.h"
+	<GL/glu.h>
+
+1500378381 /usr/include/SDL/SDL.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1500378381 /usr/include/SDL/SDL_platform.h
+
+1500378381 /usr/include/SDL/begin_code.h
+
+1500378381 /usr/include/SDL/close_code.h
+
+1500378381 /usr/include/SDL/SDL_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_keysym.h
+
+1500378381 /usr/include/SDL/SDL_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1500378381 /usr/include/SDL/SDL_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1500378381 /usr/include/SDL/SDL_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG.c
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"SDL_image.h"
+
+1327110693 /home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/SDL_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_bmp.c
+	<stdio.h>
+	<string.h>
+	"SDL_image.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_endian.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_gif.c
+	<stdio.h>
+	<string.h>
+	"SDL_image.h"
+	<stdio.h>
+	<string.h>
+	"SDL.h"
+	"image.h"
+	"rwTable.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_jpg.c
+	<stdio.h>
+	<string.h>
+	<setjmp.h>
+	"SDL_image.h"
+	<jpeglib.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_lbm.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_pcx.c
+	<stdio.h>
+	<stdlib.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_png.c
+	<stdlib.h>
+	<stdio.h>
+	"SDL_image.h"
+	"SDL_endian.h"
+	<png.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_pnm.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_tga.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_tif.c
+	<stdio.h>
+	"SDL_image.h"
+	<tiffio.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_webp.c
+	<stdlib.h>
+	<stdio.h>
+	"SDL_image.h"
+	"SDL_endian.h"
+	<webp/decode.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_xcf.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdlib.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_xpm.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_xv.c
+	<stdio.h>
+	<string.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/IMG_xxx.c
+	<stdio.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/SDL_image-1.2.12/showimage.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"SDL.h"
+	"SDL_image.h"
+	"picture.xpm"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG.c
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"SDL_image.h"
+
+1327110693 /home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/SDL_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_bmp.c
+	<stdio.h>
+	<string.h>
+	"SDL_image.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_endian.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_gif.c
+	<stdio.h>
+	<string.h>
+	"SDL_image.h"
+	<stdio.h>
+	<string.h>
+	"SDL.h"
+	"image.h"
+	"rwTable.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_jpg.c
+	<stdio.h>
+	<string.h>
+	<setjmp.h>
+	"SDL_image.h"
+	<jpeglib.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_lbm.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_pcx.c
+	<stdio.h>
+	<stdlib.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_png.c
+	<stdlib.h>
+	<stdio.h>
+	"SDL_image.h"
+	"SDL_endian.h"
+	<png.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_pnm.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_tga.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_tif.c
+	<stdio.h>
+	"SDL_image.h"
+	<tiffio.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_webp.c
+	<stdlib.h>
+	<stdio.h>
+	"SDL_image.h"
+	"SDL_endian.h"
+	<webp/decode.h>
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_xcf.c
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdlib.h>
+	"SDL_endian.h"
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_xpm.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_xv.c
+	<stdio.h>
+	<string.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/IMG_xxx.c
+	<stdio.h>
+	"SDL_image.h"
+
+1327110693 source:/home/script0ny/Documents/IN505/IN505/usr/include/SDL_image/showimage.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"SDL.h"
+	"SDL_image.h"
+	"picture.xpm"
+

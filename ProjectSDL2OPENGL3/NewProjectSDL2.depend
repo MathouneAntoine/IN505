@@ -1,0 +1,566 @@
+# depslib dependency file v1.0
+1544708368 source:/home/script0ny/Documents/NewProjectSDL2/Button.cc
+	"Button.h"
+	"./mesformes/Point.h"
+	"./mesformes/Rectangle.h"
+	<iostream>
+	"Objects.h"
+	"mes_formes.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+
+1544195358 /home/script0ny/Documents/NewProjectSDL2/Button.h
+	"./mesformes/Rectangle.h"
+	<string>
+	"Objects.h"
+	"mes_formes.h"
+	<GL/glu.h>
+
+1544110357 /home/script0ny/Documents/NewProjectSDL2/mesformes/Rectangle.h
+	"Forme.h"
+	"Point.h"
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/mesformes/Forme.h
+	"Point.h"
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/mesformes/Point.h
+	<iostream>
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/Objects.h
+	"./mesformes/Point.h"
+	"Field.h"
+	<iostream>
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/Field.h
+	"mes_formes.h"
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/mes_formes.h
+	"./mesformes/Forme.h"
+	"./mesformes/Rectangle.h"
+	"./mesformes/Cercle.h"
+	"./mesformes/Point.h"
+	"./mesformes/Triangle.h"
+	"./mesformes/Losange.h"
+
+1543675591 /home/script0ny/Documents/NewProjectSDL2/mesformes/Cercle.h
+	"Point.h"
+	"Forme.h"
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/mesformes/Triangle.h
+	"Point.h"
+	"Forme.h"
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/mesformes/Losange.h
+	"Forme.h"
+	"Point.h"
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/Field.cc
+	"Field.h"
+	"mes_formes.h"
+	<iostream>
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/Forest.cc
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/forestEditor.cc
+	"Forest.h"
+	"forestEditor.h"
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/Forest.h
+	<vector>
+	"Perso/Character.h"
+	"Field.h"
+	"Objects.h"
+
+1543584686 /home/script0ny/Documents/NewProjectSDL2/Perso/Character.h
+
+1544352261 /home/script0ny/Documents/NewProjectSDL2/forestEditor.h
+	"Forest.h"
+
+1544713780 source:/home/script0ny/Documents/NewProjectSDL2/main.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<iostream>
+	"Rock.h"
+	"Tree.h"
+	"Button.h"
+	"Screen.h"
+	"./mesformes/Point.h"
+	"MouseKeyboard.h"
+
+1544283556 /home/script0ny/Documents/NewProjectSDL2/Screen.h
+
+1543668345 /home/script0ny/Documents/NewProjectSDL2/Rock.h
+	"Field.h"
+	"Objects.h"
+	"mes_formes.h"
+
+1543668329 /home/script0ny/Documents/NewProjectSDL2/Tree.h
+	"Field.h"
+	"Objects.h"
+	"mes_formes.h"
+
+1543675607 source:/home/script0ny/Documents/NewProjectSDL2/mesformes/Cercle.cc
+	<iostream>
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"Point.h"
+	"Cercle.h"
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/mesformes/Forme.cc
+	"Point.h"
+	"Forme.h"
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/mesformes/Losange.cc
+	<iostream>
+	"Point.h"
+	"Losange.h"
+	"Forme.h"
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/mesformes/Point.cc
+	"Point.h"
+
+1544110426 source:/home/script0ny/Documents/NewProjectSDL2/mesformes/Rectangle.cc
+	<iostream>
+	"Point.h"
+	"Rectangle.h"
+	"Forme.h"
+	<iostream>
+
+1543669248 source:/home/script0ny/Documents/NewProjectSDL2/mesformes/Triangle.cc
+	<iostream>
+	<time.h>
+	"Point.h"
+	"Triangle.h"
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/Objects.cc
+	<iostream>
+	"Objects.h"
+	"mes_formes.h"
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/Perso/Ai.cc
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/Perso/Character.cc
+
+1543600036 source:/home/script0ny/Documents/NewProjectSDL2/Perso/main.cc
+
+1543584686 source:/home/script0ny/Documents/NewProjectSDL2/Perso/Player.cc
+
+1544709042 source:/home/script0ny/Documents/NewProjectSDL2/Rock.cc
+	<iostream>
+	<time.h>
+	"Rock.h"
+	"Objects.h"
+	"mes_formes.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+
+1544711742 source:/home/script0ny/Documents/NewProjectSDL2/Screen.cc
+	<GL/gl.h>
+	<SDL2/SDL.h>
+	<iostream>
+
+1544626241 source:/home/script0ny/Documents/NewProjectSDL2/Tree.cc
+	<iostream>
+	<time.h>
+	"Tree.h"
+	"Objects.h"
+	"mes_formes.h"
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+
+1544626116 source:/home/script0ny/Documents/NewProjectSDL2/sdlglutils.cpp
+	"sdlglutils.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<GL/glu.h>
+	<cstring>
+	<cstdlib>
+	<string>
+	<iostream>
+
+1544624731 /home/script0ny/Documents/NewProjectSDL2/sdlglutils.h
+	<string>
+	<GL/gl.h>
+	<SDL2/SDL.h>
+
+1544453412 source:/home/script0ny/Documents/NewProjectSDL2/Texture.cpp
+	"Texture.h"
+
+1544460171 /home/script0ny/Documents/NewProjectSDL2/Texture.h
+	<iostream>
+	<string>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glut.h>
+
+1544627770 /home/script0ny/Documents/NewProjectSDL2/stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+
+1544713790 source:/home/script0ny/Documents/NewProjectSDL2/MouseKeyboard.cc
+	<SDL.h>
+	<iostream>
+
+1526973860 /usr/include/SDL2/SDL.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_config.h
+	"SDL_platform.h"
+
+1526973860 /usr/include/SDL2/SDL_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/begin_code.h
+
+1526973860 /usr/include/SDL2/close_code.h
+
+1526973860 /usr/include/SDL2/SDL_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mm3dnow.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1526973860 /usr/include/SDL2/SDL_scancode.h
+	"SDL_stdinc.h"
+
+1526973860 /usr/include/SDL2/SDL_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1526973860 /usr/include/SDL2/SDL_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1526973860 /usr/include/SDL2/SDL_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1544460120 /home/script0ny/Documents/NewProjectSDL2/MouseKeyboard.h
+
