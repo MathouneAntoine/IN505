@@ -13,7 +13,7 @@ class Forme
 		Forme();
 		Point getCenter();
 		virtual void afficher()=0;
-		~Forme();
+		virtual ~Forme();
 };
 #endif
 
