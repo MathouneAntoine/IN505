@@ -2,24 +2,26 @@
 #define FOREST_H
 
 #include <vector>
-#include "Perso/Character.h"
+#include "mes_perso.h"
+#include "mes_formes.h"
 #include "Field.h"
 #include "Objects.h"
-using namespace std;
 
 class Forest
 {
 	public:
 
 		Forest();
+		Character* getP1();
+		Character* getP2();
 		void init_forest();
 		~Forest();
 
-	private:
+
 		Field f;
-		vector<Objects> List_Obj;
-		Character p1;
-		Character p2;
+		std::vector<Objects*> List_Obj;
+		Character* p1;
+		Character* p2;
 
 };
 

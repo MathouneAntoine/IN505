@@ -22,10 +22,39 @@ int Objects::getDiameter()
 	return this->diameter;
 }
 
+int Objects::getAltitude()
+{
+	return this->altitude;
+}
+
+Point Objects::getCenter()
+{
+	return this->center;
+}
+
+char Objects::getType()
+{
+	return this->type;
+}
+
+Forme* Objects::getForme()
+{
+	return this->f;
+}
+
 void Objects::printInfo()
 {
-	cout<<"Point de vie : "<< this->life << "  Hauteur : " << this->height << "  Diametre : " << this->diameter <<endl;
+	cout<< endl <<" Height : "<< this->height << "  Diameter : "
+		 << this->diameter << "  Altitude : " << this->altitude<< " Life : " << this->life <<endl;
+	cout << "center X : " << center.getX() << " center Y : " << center.getY() << endl;
+}
+
+void Objects::print()
+{
+	cout<<"undefined"<<endl;
 }
 
 Objects::~Objects()
-{}
+{
+	delete this->f;
+}

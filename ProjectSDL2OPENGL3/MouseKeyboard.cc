@@ -1,16 +1,9 @@
 #include <SDL.h>
 #include <iostream>
 using namespace std;
-void MouseKeyboard()
+
+void MouseKeyboard(SDL_Event &event)
 {
-
-   // while(!end)
-   // {
-            // Gestion des évènements
-        //SDL_WaitEvent(&event);
-       // int x,y;
-     //   SDL_GetMouseState(&x, &y);
-
 
             switch(event.type)
                 {

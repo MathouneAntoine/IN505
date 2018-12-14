@@ -3,7 +3,6 @@
 #include <GL/glut.h>
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
 #include "Rock.h"
 #include "Tree.h"
@@ -64,7 +63,7 @@ int main(int argc, char **argv)
         {
             end = true;
         }
-        MouseKeyboard();
+        MouseKeyboard(event);
 
     }
 

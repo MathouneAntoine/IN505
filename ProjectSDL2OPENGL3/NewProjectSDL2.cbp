@@ -56,7 +56,6 @@
 		<Unit filename="Rock.h" />
 		<Unit filename="Screen.cc" />
 		<Unit filename="Screen.h" />
-		<Unit filename="Texture.h" />
 		<Unit filename="Tree.cc" />
 		<Unit filename="Tree.h" />
 		<Unit filename="forestEditor.cc" />
@@ -75,7 +74,6 @@
 		<Unit filename="mesformes/Rectangle.h" />
 		<Unit filename="mesformes/Triangle.cc" />
 		<Unit filename="mesformes/Triangle.h" />
-		<Unit filename="stb_image.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

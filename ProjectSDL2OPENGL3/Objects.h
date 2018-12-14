@@ -12,20 +12,23 @@ class Objects
 		int getLife();
 		int getHeight();
 		int getDiameter();
+		int getAltitude();
+		Point getCenter();
+		Forme* getForme();
+		char getType();
 		void printInfo();
-		virtual void print()=0;
-		~Objects();
+		virtual void print();
+		virtual ~Objects();
 
 	protected:
 		Forme * f;
 		int life;
 		int height;
-		int altitude;
 		int diameter;
+		int altitude;
+		char type;
+
 		Point center;
-
-
-
 };
 
 #endif

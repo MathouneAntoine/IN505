@@ -1,2 +1,2 @@
-void MouseKeyboard();
+void MouseKeyboard(SDL_Event &event);
 

@@ -2,31 +2,35 @@
 #define FORESTEDITOR_H
 
 #include "Forest.h"
+#include "Rock.h"
+#include "Tree.h"
+#include "mes_perso.h"
+#include "Objects.h"
 
 class forestEditor
 {
 	public:
 		forestEditor();
 
-		void create_forest();
+		void create_forest(Forest f);
 
-		Forest add_Element();
-		Forest add_Rock();
-		Forest add_Tree();
-		Forest add_Character1();
-		Forest add_Character2();
+		Forest add_Element(Forest f, Objects* r, Point center);
+		Forest add_Rock(Forest f, Point center);
+		Forest add_Tree(Forest f, Point center);
+		Forest add_Player(Forest f, Point center);
+		Forest add_Ai(Forest f, Point center);
 
-		Forest write_Element();
-		Forest write_Rock();
-		Forest write_Tree();
-		Forest write_Character1();
-		Forest write_Character2();
+		void write_Forest(Forest f);
+		void write_Rock(Rock * r, std::ofstream &file);
+		void write_Tree(Tree* t, std::ofstream &file);
+		void write_Character1(Character* c, std::ofstream &file);
+		void write_Character2(Character* c, std::ofstream &file);
 
-		Forest read_File();
-		Forest read_Rock();
-		Forest read_Tree();
-		Forest read_Character1();
-		Forest read_Character2();
+		Forest read_File(Forest f, int i);
+		Forest read_Rock(Forest f, std::ifstream &file);
+		Forest read_Tree(Forest f, std::ifstream &file);
+		Forest read_Character1(Forest f, std::ifstream &file);
+		Forest read_Character2(Forest f, std::ifstream &file);
 
 		~forestEditor();
 

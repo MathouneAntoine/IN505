@@ -11,22 +11,18 @@ class Triangle:public Forme
 		Point p1;
 		Point p2;
 		Point p3;
-		int d;
 
 	public:
 		Triangle();
-		Triangle(Point p1, Point p2, Point p3,int d);
+		Triangle(Point p1, Point p2, Point p3);
 		Triangle(Point center,int diameter, int high);
 		Triangle(Triangle& pc);
 		void afficher();
 		void cloner(const Point& p);
 		Point getP1();
-        Point getP2();
-        Point getP3();
-
+		Point getP2();
+		Point getP3();
 		~Triangle();
 };
 #endif
-
-
 
