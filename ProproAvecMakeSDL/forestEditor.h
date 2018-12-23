@@ -1,6 +1,7 @@
 #ifndef FORESTEDITOR_H
 #define FORESTEDITOR_H
 
+#include <string>
 #include "Forest.h"
 #include "Rock.h"
 #include "Tree.h"
@@ -26,7 +27,7 @@ class forestEditor
 		void write_Character1(Character* c, std::ofstream &file);
 		void write_Character2(Character* c, std::ofstream &file);
 
-		Forest read_File(Forest f, int i);
+		Forest read_File(Forest f, std::string s);
 		Forest read_Rock(Forest f, std::ifstream &file);
 		Forest read_Tree(Forest f, std::ifstream &file);
 		Forest read_Character1(Forest f, std::ifstream &file);

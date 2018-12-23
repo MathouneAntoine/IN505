@@ -120,7 +120,6 @@ void Rock::print()
         glVertex2i(rect->getP3().getX(),rect->getP3().getY());
      glTexCoord2d(1,1);
         glVertex2i(rect->getP4().getX(),rect->getP4().getY());
-
     glEnd();
     }
     else if(Losange *losa= dynamic_cast <Losange*> (this->getForme()))
@@ -134,7 +133,7 @@ void Rock::print()
     glEnd();
 
     }
-    //glFlush();
+    glFlush();
 }
 
 Rock::~Rock()

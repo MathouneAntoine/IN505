@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Forest.h"
 #include "forestEditor.h"
 #include "Rock.h"
@@ -24,9 +25,6 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
     {
         std::cout << "SDL Error : " << SDL_GetError() << std::endl;
     }
-
-    //SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
-    //SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
   SDL_Surface * text=NULL;
@@ -45,20 +43,22 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
 
     SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text); 
 
-    SDL_RenderCopy(renderer, Message, NULL, &Message_rect); //you put the renderer's name first, the Message, the crop size(you can ignore this if you don't want to dabble with cropping), and the rect which is the size and coordinate of your texture
-
+    //SDL_RenderCopy(renderer, Message, NULL, &Message_rect); //you put the renderer's name first, the Message, the crop size(you can ignore this if you don't want to dabble with cropping), and the rect which is the size and coordinate of your texture
+    SDL_RenderPresent(renderer);
     SDL_Event event;
     char res='b';
     Point center;
 
-     while (res!='s' && res!='q' )
+     while (res !='s' && res!='q' )
      {
+         f.print(renderer);
+
         while(res=='b')
         {
             SDL_WaitEvent(&event);  
             res=editor_Key(event);
         }
-        while(center.getX()==0 && center.getY()==0)
+        while(center.getX()==0 && center.getY()==0 && res !='s' && res!='q' )
         {
            SDL_WaitEvent(&event);
            clic(event,&center);
@@ -70,8 +70,8 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
             {
                 int t=f.List_Obj.size();               
                dynamic_cast<Tree*>(f.List_Obj[t-1])->print(f.f);
-               f.print(renderer);
             }
+            res='b';
         }
         if (res=='r')
         {
@@ -79,23 +79,20 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
             {
                 int t=f.List_Obj.size();               
                dynamic_cast<Rock*>(f.List_Obj[t-1])->print();
-               f.print(renderer);
+              
             }
+            res='b';
         }
 
         center.setX(0);
-        center.setY(0);
-        res='b';      
+        center.setY(0);             
      }
-
+     SDL_DestroyRenderer(renderer);
      if (res=='s')
      {
-        //write_Forest(f);
+        write_Forest(f);
      }
-     if (res=='q')
-     {
 
-     }
      cout<< "FIN EDITION";
 }
 
@@ -164,10 +161,7 @@ Forest forestEditor::add_Ai(Forest f, Point center)
 
 void forestEditor::write_Forest(Forest f)
 {
-   // string path = "./Saves  ";
-   // int nbFichiersSD = Directory.GetFiles(path, "*.*", SearchOption.TopDirectory).Length - 1;
-
-    ofstream file("Saves/test.txt",  ios::out | ios::trunc);
+    ofstream file("Saves/personalisee.txt",  ios::out | ios::trunc);
  
     if(file)  
     {       
@@ -204,9 +198,9 @@ void forestEditor::write_Character1(Character* c, ofstream &file)
 }
 void forestEditor::write_Character2(Character* c, ofstream &file){}
 
-Forest forestEditor::read_File(Forest f, int i)
+Forest forestEditor::read_File(Forest f, string s)
 {
-    ifstream file("./Saves/test.txt", ios::in);  
+    ifstream file(s, ios::in);  
     char c,t;
     Point center;
     int height, diameter, altitude, life, x, y;

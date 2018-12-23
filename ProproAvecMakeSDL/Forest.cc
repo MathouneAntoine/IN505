@@ -49,14 +49,17 @@ void Forest::init_forest()
 
 void Forest::print(SDL_Renderer *renderer)
 {
+
   for(int unsigned i=0; i < this->List_Obj.size() ;i++)
   {
     if (dynamic_cast<Tree*>(this->List_Obj[i]))dynamic_cast<Tree*>(this->List_Obj[i])->print(f);
     if (dynamic_cast<Rock*>(this->List_Obj[i]))dynamic_cast<Rock*>(this->List_Obj[i])->print();
   }
-   // SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
-    SDL_RenderClear(renderer);
+   SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
+    
     SDL_RenderPresent(renderer);
+        SDL_RenderClear(renderer);
+
 }
 
 Forest::~Forest()

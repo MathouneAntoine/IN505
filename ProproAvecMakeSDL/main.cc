@@ -24,25 +24,10 @@ int main(int argc, char **argv)
     SDL_Event evenements;
     bool terminer(false);
 
-    // Création du contexte OpenGL
+    Menu m;
+    int joue=0;
+    joue=m.Boucle_Menu(fenetre);
 
-    // Vertices et coordonnées
-    /*SDL_Renderer *renderer;
-    renderer = SDL_CreateRenderer(fenetre, -1, 0);
-    if(!renderer)
-    {
-        std::cout << "SDL Error : " << SDL_GetError() << std::endl;
-        return -1;
-    }
-
-    SDL_RenderPresent(renderer); //Dessiner entre 2 render*/
-	
-      Menu m;
-    m.Boucle_Menu(fenetre);
-
-    
-
-    //SDL_RenderPresent(renderer);
 
     SDL_Event event;
     int x,y;
@@ -50,25 +35,23 @@ int main(int argc, char **argv)
     bool end;
     end = false;
 
-    // Boucle principale
-  
-  
-
-    while(!end)
+    if (!joue)
     {
-        SDL_WaitEvent(&event);
-        SDL_GetMouseState(&x, &y);
-
-        if(event.window.event == SDL_WINDOWEVENT_CLOSE)
-        {
-            end = true;
-        }
-        //MouseKeyboard(event);
-
+        Forest forest;
+        if (m.getGame_Type()==1){f= read_File(forest, "./Saves/hard.txt");}
+        if (m.getGame_Type()==2){f= read_File(forest, "./Saves/normal.txt");}
+        if (m.getGame_Type()==3){f= read_File(forest, "./Saves/perso.txt");}
     }
+     /*   while(!end)
+        {
+            SDL_WaitEvent(&event);
+            SDL_GetMouseState(&x, &y);
 
-    // On quitte la SDL
-    //SDL_DestroyRenderer(renderer);
+            if(event.window.event == SDL_WINDOWEVENT_CLOSE)
+            {
+                end = true;
+            }
+        }*/
     SDL_DestroyWindow(fenetre);
     
     TTF_Quit();
