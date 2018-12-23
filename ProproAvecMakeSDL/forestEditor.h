@@ -14,9 +14,9 @@ class forestEditor
 
 		void create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf);
 
-		Forest add_Element(Forest f, Objects* r, Point center);
-		Forest add_Rock(Forest f, Point center);
-		Forest add_Tree(Forest f, Point center);
+		bool add_Element(Forest *f, Objects* r, Point center);
+		bool add_Rock(Forest *f, Point center);
+		bool add_Tree(Forest *f, Point center);
 		Forest add_Player(Forest f, Point center);
 		Forest add_Ai(Forest f, Point center);
 

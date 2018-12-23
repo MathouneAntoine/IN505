@@ -122,22 +122,14 @@ void Rock::print()
         glVertex2i(rect->getP4().getX(),rect->getP4().getY());
 
     glEnd();
-//glFlush();
-
-
     }
     else if(Losange *losa= dynamic_cast <Losange*> (this->getForme()))
     {
-    cout <<"ici"<<endl;
     glBegin(GL_QUADS);
             glColor3ub(255,0,0);
-        //glTexCoord2d(0,1);
         glVertex2i(losa->getP1().getX(),losa->getP1().getY());
-      //  glTexCoord2d(0,0);
         glVertex2i(losa->getP2().getX(),losa->getP2().getY());
-      //  glTexCoord2d(1,0);
         glVertex2i(losa->getP3().getX(),losa->getP3().getY());
-      //  glTexCoord2d(1,1);
         glVertex2i(losa->getP4().getX(),losa->getP4().getY());
     glEnd();
 

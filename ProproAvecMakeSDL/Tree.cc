@@ -116,29 +116,25 @@ void Tree::print(Field f)
 {
 	int x = f.getCenter().getX();
 	int y = f.getCenter().getY();
+	
     if(Triangle *tria= dynamic_cast <Triangle*> (this->getForme()))
     {
+    	cout << "Triangle" << endl;
     glEnable(GL_TEXTURE_2D);
-//    GLuint texture1 = loadTexture("wall.jpg");
-//    glBindTexture(GL_TEXTURE_2D,texture1);
+
     glBegin(GL_TRIANGLES);
-        glColor3f(0.0, 1.28, 0.0);
-     //   glTexCoord2d(0,0);
+        glColor3f(1, 1, 1);
         glVertex2i(tria->getP1().getX()+x,tria->getP1().getY()+y);
-      //  glTexCoord2d(1,0);
         glVertex2i(tria->getP2().getX()+x,tria->getP2().getY()+y);
-    //    glTexCoord2d(0.5,1);
         glVertex2i(tria->getP3().getX()+x,tria->getP3().getY()+y);
     glEnd();
-//    glDisable(GL_TEXTURE_2D);
 
     }
     else if(Cercle *cerc= dynamic_cast <Cercle*> (this->getForme()))
     {
+    	cout << "Rond" << endl;
     glEnable(GL_TEXTURE_2D);
-    //GLuint texture1 = loadTexture("wall.jpg");
-    glColor3f(0.0, 1.28, 0.0);
-   // glBindTexture(GL_TEXTURE_2D,texture1);
+    glColor3f(1, 1, 1);
 
     GLUquadric* params;
     params = gluNewQuadric();
@@ -147,7 +143,6 @@ void Tree::print(Field f)
     gluDisk(params,0,(diameter/2),50,1);
     gluDeleteQuadric(params);
     glEnd();
-   // glDisable(GL_TEXTURE_2D);
 
     }
 }

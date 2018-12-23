@@ -2,8 +2,8 @@
 
 	Point::Point()
 	{
-		x = 50;
-		y = 100;
+		x = 0;
+		y = 0;
 	}
 
 	Point::Point(int a, int b)

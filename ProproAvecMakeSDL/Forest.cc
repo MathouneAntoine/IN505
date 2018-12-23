@@ -1,15 +1,19 @@
-#include "Forest.h"
+#include <SDL2/SDL.h>
 #include <vector>
+#include "Forest.h"
 #include "mes_perso.h"
 #include "mes_formes.h"
 #include "Field.h"
 #include "Objects.h"
 #include "Rock.h"
 #include "Tree.h"
-#include <SDL2/SDL.h>
+
 
 Forest::Forest()
-{}
+{
+    Field field;
+    this->f=field;
+}
 
 Forest::Forest(Field field)
 {
@@ -43,9 +47,14 @@ void Forest::init_forest()
     }
 }
 
-void Forest::print(SDL_Window* screen, SDL_Renderer *renderer)
+void Forest::print(SDL_Renderer *renderer)
 {
-    SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
+  for(int unsigned i=0; i < this->List_Obj.size() ;i++)
+  {
+    if (dynamic_cast<Tree*>(this->List_Obj[i]))dynamic_cast<Tree*>(this->List_Obj[i])->print(f);
+    if (dynamic_cast<Rock*>(this->List_Obj[i]))dynamic_cast<Rock*>(this->List_Obj[i])->print();
+  }
+   // SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 }

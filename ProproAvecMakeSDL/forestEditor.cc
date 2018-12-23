@@ -1,15 +1,15 @@
-#include<vector>
-#include<iostream>
-#include<fstream>
-//  #include <filesystem>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <vector>
+#include <iostream>
+#include <fstream>
 #include "Forest.h"
 #include "forestEditor.h"
 #include "Rock.h"
 #include "Tree.h"
 #include "mes_perso.h"
 #include "Objects.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include "MouseKeyboard.h"
 
 using namespace std;
 
@@ -25,8 +25,8 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
         std::cout << "SDL Error : " << SDL_GetError() << std::endl;
     }
 
-    SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
-    SDL_RenderClear(renderer);
+    //SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
+    //SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 
   SDL_Surface * text=NULL;
@@ -38,35 +38,79 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
 
   text=TTF_RenderText_Blended(police, "Appuyer sur A pour placer un arbre, R pour un Rocher, P un personnage", c);
   SDL_Rect Message_rect; //create a rect
-Message_rect.x = 0;  //controls the rect's x coordinate 
-Message_rect.y = 0; // controls the rect's y coordinte
-Message_rect.w = text->w; // controls the width of the rect
-Message_rect.h = text->h; // controls the height of the rect
+    Message_rect.x = 0;  //controls the rect's x coordinate 
+    Message_rect.y = 0; // controls the rect's y coordinte
+    Message_rect.w = text->w; // controls the width of the rect
+    Message_rect.h = text->h; // controls the height of the rect
 
-SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text); 
+    SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text); 
 
-SDL_RenderCopy(renderer, Message, NULL, &Message_rect); //you put the renderer's name first, the Message, the crop size(you can ignore this if you don't want to dabble with cropping), and the rect which is the size and coordinate of your texture
+    SDL_RenderCopy(renderer, Message, NULL, &Message_rect); //you put the renderer's name first, the Message, the crop size(you can ignore this if you don't want to dabble with cropping), and the rect which is the size and coordinate of your texture
 
-SDL_RenderPresent(renderer);
+    SDL_Event event;
+    char res='b';
+    Point center;
 
- while (editor_Key(SDL_Event &event)=='s' || editor_Key(SDL_Event &event)=='q' )
+     while (res!='s' && res!='q' )
+     {
+        while(res=='b')
+        {
+            SDL_WaitEvent(&event);  
+            res=editor_Key(event);
+        }
+        while(center.getX()==0 && center.getY()==0)
+        {
+           SDL_WaitEvent(&event);
+           clic(event,&center);
+        }
+
+        if (res=='a')
+        {  
+            if (add_Tree(&f,center)==true)
+            {
+                int t=f.List_Obj.size();               
+               dynamic_cast<Tree*>(f.List_Obj[t-1])->print(f.f);
+               f.print(renderer);
+            }
+        }
+        if (res=='r')
+        {
+            if (add_Rock(&f,center)==true)
+            {
+                int t=f.List_Obj.size();               
+               dynamic_cast<Rock*>(f.List_Obj[t-1])->print();
+               f.print(renderer);
+            }
+        }
+
+        center.setX(0);
+        center.setY(0);
+        res='b';      
+     }
+
+     if (res=='s')
+     {
+        //write_Forest(f);
+     }
+     if (res=='q')
+     {
+
+     }
+     cout<< "FIN EDITION";
 }
 
-Forest forestEditor::add_Element(Forest f, Objects* r, Point center)
+bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
 {
-    Objects* r_list;
+    Objects* obj;
     bool ok=0;
 
-   for(int j=0; j<5; j++)
-    {
-        ok=0;
-        for(int unsigned i=0;i<f.List_Obj.size()&& ok !=1 ;i++)
+        for(int unsigned i=0; i < f->List_Obj.size()&& ok !=1 ;i++)
         {
-            r_list=f.List_Obj[i];
-            int rx=r_list->getCenter().getX();
-            int ry=r_list->getCenter().getY();
-            int rd=r_list->getDiameter()/2;
-            int rh=r_list->getHeight()/2;
+            obj=f->List_Obj[i];
+            int rx=obj->getCenter().getX();
+            int ry=obj->getCenter().getY();
+            int rd=obj->getDiameter()/2;
+            int rh=obj->getHeight()/2;
 
             if (((r->getCenter().getX()+(r->getDiameter()/2) > (rx-(rd)) && r->getCenter().getX()+(r->getDiameter()/2) < (rx+(rd)) 
                         && (r->getCenter().getY()-(r->getHeight()/2)) < (ry+(rh)) && (r->getCenter().getY()-(r->getHeight() /2)) > (ry-(rh)))
@@ -80,41 +124,30 @@ Forest forestEditor::add_Element(Forest f, Objects* r, Point center)
                     (r->getCenter().getX()-(r->getDiameter()/2) < (rx+(rd)) && r->getCenter().getX()-(r->getDiameter()/2) > (rx-(rd)) 
                         && (r->getCenter().getY()+(r->getHeight()/2)) > (ry-(rh))) && (r->getCenter().getY()+(r->getHeight()/2)) < (ry+(rh))))
                 ok=1;
-            delete r_list;
         }
 
-        if (ok==1)
-        {
-            delete r;
-            Objects* r=new Rock(center);
-        }
-        else
-        {
-            f.List_Obj.push_back(r);  
-            //this->write_Rock(dynamic_cast<Rock*>(r));
-            return f;
-        }
-    }
     if (ok==1)
         {
-            delete r;
             cout << "Veuillez cliquer autre part." << endl;
+            return false;
         }
-    return f;       
+
+     if (ok==0)
+        {
+           f->List_Obj.push_back(r);
+            return true;
+        }
+    return false;       
 }
 
-Forest forestEditor::add_Rock(Forest f, Point center)
+bool forestEditor::add_Rock(Forest* f, Point center)
 {
-    Objects* r=new Rock(center);
-    this->add_Element(f,r,center);
-    return f;
+    return this->add_Element(f,new Rock(center),center);
 }
 
-Forest forestEditor::add_Tree(Forest f, Point center)
+bool forestEditor::add_Tree(Forest* f, Point center)
 {
-    Objects* t=new Tree(center);
-    this->add_Element(f,t,center);
-    return f;
+    return this->add_Element(f,new Tree(center),center);
 }
 
 Forest forestEditor::add_Player(Forest f, Point center)

@@ -18,7 +18,7 @@ class Forest
 		Forest(Forest &f);
 		Character* getP1();
 		Character* getP2();
-		void print(SDL_Window* screen, SDL_Renderer *renderer);
+		void print(SDL_Renderer *renderer);
 		std::vector<Objects*> getList();
 		void init_forest();
 		~Forest();
