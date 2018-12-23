@@ -1,6 +1,6 @@
 export CXX=g++
 export CXXFLAGS=`sdl2-config --cflags`  
-export LDFLAGS=`sdl2-config --libs` -lGL -lGLU -lglut -lSDL2_ttf
+export LDFLAGS=`sdl2-config --libs` -lGL -lGLU -lglut -lSDL2_ttf 
 SRC= $(wildcard *.cc)
 OBJ= $(SRC:.cc=.o)
 

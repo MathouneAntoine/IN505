@@ -112,20 +112,16 @@ void Rock::print()
     {
     glBegin(GL_QUADS);
         glColor3f(0.5, 0.5, 0.5);
-       glTexCoord2d(0,1);
         glVertex2i(rect->getP1().getX(),rect->getP1().getY());
-       glTexCoord2d(0,0);
         glVertex2i(rect->getP2().getX(),rect->getP2().getY());
-     glTexCoord2d(1,0);
         glVertex2i(rect->getP3().getX(),rect->getP3().getY());
-     glTexCoord2d(1,1);
         glVertex2i(rect->getP4().getX(),rect->getP4().getY());
     glEnd();
     }
     else if(Losange *losa= dynamic_cast <Losange*> (this->getForme()))
     {
     glBegin(GL_QUADS);
-            glColor3ub(255,0,0);
+        glColor3f(0.5, 0.5, 0.5);
         glVertex2i(losa->getP1().getX(),losa->getP1().getY());
         glVertex2i(losa->getP2().getX(),losa->getP2().getY());
         glVertex2i(losa->getP3().getX(),losa->getP3().getY());

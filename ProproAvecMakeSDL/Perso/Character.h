@@ -1,20 +1,26 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-
-class Character 
+#include "../mes_formes.h"
+class Character
 {
 
 	public:
 		Character();
-		//Character(Point p);
+		Character(const Point p);
+		Character(const Point p, int orientation, int pv, int weaponDamage, int weaponRange);
+        Cercle*  getForme();
 		void PrintInfo();
 		void attack();
+		~Character();
+	protected:
+		Point p;
+		int orientation;
+	    Cercle * cerc;
 
-	private:
-		int d;
 		//Formes * f;
-		int life;
+		int pv;
+		int weaponRange;
 		int weaponDamage;
 
 };

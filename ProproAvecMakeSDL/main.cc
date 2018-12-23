@@ -35,13 +35,13 @@ int main(int argc, char **argv)
     bool end;
     end = false;
 
-    if (!joue)
+   /* if (!joue)
     {
         Forest forest;
         if (m.getGame_Type()==1){f= read_File(forest, "./Saves/hard.txt");}
         if (m.getGame_Type()==2){f= read_File(forest, "./Saves/normal.txt");}
         if (m.getGame_Type()==3){f= read_File(forest, "./Saves/perso.txt");}
-    }
+    }*/
      /*   while(!end)
         {
             SDL_WaitEvent(&event);

@@ -25,6 +25,11 @@ Cercle::Cercle(Cercle& c)
 	this->p = c.p;
 	this->diametre = c.diametre;
 }
+
+int Cercle::getDiametre()
+{
+	return this->diametre;
+}
 void Cercle::deplacer(int dx, int dy)
 {
 	p.deplacer(dx, dy);

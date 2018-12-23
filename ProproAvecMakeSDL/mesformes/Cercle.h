@@ -16,7 +16,7 @@ class Cercle:public Forme
 		void deplacer(int dx, int dy);
 		void afficher();
 		Point getP();
-
+		int getDiametre();
 		~Cercle();
 };
 #endif

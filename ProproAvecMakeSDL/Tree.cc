@@ -6,7 +6,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-
+#include <math.h>
 using namespace std;
 
 Tree::Tree()
@@ -120,10 +120,8 @@ void Tree::print(Field f)
     if(Triangle *tria= dynamic_cast <Triangle*> (this->getForme()))
     {
     	cout << "Triangle" << endl;
-    glEnable(GL_TEXTURE_2D);
-
     glBegin(GL_TRIANGLES);
-        glColor3f(1, 1, 1);
+        glColor3f(0, 1, 0);
         glVertex2i(tria->getP1().getX()+x,tria->getP1().getY()+y);
         glVertex2i(tria->getP2().getX()+x,tria->getP2().getY()+y);
         glVertex2i(tria->getP3().getX()+x,tria->getP3().getY()+y);
@@ -133,15 +131,23 @@ void Tree::print(Field f)
     else if(Cercle *cerc= dynamic_cast <Cercle*> (this->getForme()))
     {
     	cout << "Rond" << endl;
-    glEnable(GL_TEXTURE_2D);
-    glColor3f(1, 1, 1);
+  	GLfloat x =cerc->getP().getX() ;
+    GLfloat y =cerc->getP().getY();
+    GLfloat radius = this->diameter/2;
+    int i;
+    int triangleAmount = 1000;
+    float PI =3.14;
+    GLfloat twicePi = 2.0f * PI;
+    glEnable(GL_LINE_SMOOTH);
+    glLineWidth(5.0);
 
-    GLUquadric* params;
-    params = gluNewQuadric();
-    gluQuadricTexture(params,GL_TRUE);
-    glTranslatef(cerc->getP().getX()+x, cerc->getP().getY()+y, 0.0);
-    gluDisk(params,0,(diameter/2),50,1);
-    gluDeleteQuadric(params);
+    glBegin(GL_LINES);
+        glColor3f(0, 1, 0);
+    for(i = 0; i <= triangleAmount; i++)
+    {
+        glVertex2f( x, y);
+        glVertex2f(x + (radius * cos(i * twicePi / triangleAmount)), y + (radius * sin(i * twicePi / triangleAmount)));
+    }
     glEnd();
 
     }
