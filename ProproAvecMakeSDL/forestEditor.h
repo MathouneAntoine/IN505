@@ -18,20 +18,14 @@ class forestEditor
 		bool add_Element(Forest *f, Objects* r, Point center);
 		bool add_Rock(Forest *f, Point center);
 		bool add_Tree(Forest *f, Point center);
-		Forest add_Player(Forest f, Point center);
-		Forest add_Ai(Forest f, Point center);
+		bool add_Player(Forest *f, Point center, int i);
 
 		void write_Forest(Forest f);
 		void write_Rock(Rock * r, std::ofstream &file);
 		void write_Tree(Tree* t, std::ofstream &file);
-		void write_Character1(Character* c, std::ofstream &file);
-		void write_Character2(Character* c, std::ofstream &file);
+		void write_Character(Character* c, std::ofstream &file,int i);
 
 		Forest read_File(Forest f, std::string s);
-		Forest read_Rock(Forest f, std::ifstream &file);
-		Forest read_Tree(Forest f, std::ifstream &file);
-		Forest read_Character1(Forest f, std::ifstream &file);
-		Forest read_Character2(Forest f, std::ifstream &file);
 
 		~forestEditor();
 

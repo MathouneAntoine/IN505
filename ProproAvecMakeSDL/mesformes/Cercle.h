@@ -4,10 +4,9 @@
 #include "Point.h"
 #include "Forme.h"
 
-class Cercle:public Forme
+class Cercle: public Forme
 {
 	private:
-		Point p;
 		int diametre;
 	public:
 		Cercle();
@@ -15,7 +14,6 @@ class Cercle:public Forme
 		Cercle(Cercle &cer);
 		void deplacer(int dx, int dy);
 		void afficher();
-		Point getP();
 		int getDiametre();
 		~Cercle();
 };

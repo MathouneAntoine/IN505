@@ -113,6 +113,11 @@ char editor_Key(SDL_Event &event)
                         c='r';
 
                         break;
+                        case SDLK_p:
+                        std::cout <<"P"<<std::endl;
+                        c='p';
+
+                        break;
                         case SDLK_s:
                         std::cout <<"S"<<std::endl;
                         c='s';

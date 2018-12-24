@@ -74,40 +74,14 @@ void Player::movePlayer(SDL_Event event , int x, int y)
                         }
                         break;
                     }
-
-                    case SDL_MOUSEBUTTONDOWN:
-
-                    switch(event.button.button)
-                    {
-                         case SDL_BUTTON_RIGHT:
-                         cout <<"Clic Right"<<endl;
-                         cout<< "m_x = " << event.motion.x << endl;
-                         cout<< "m_y = " << event.motion.y<<endl;
-                         break;
-
-                          case SDL_BUTTON_LEFT:
-                         cout <<"Clic Left"<<endl;
-                         cout<< "m_x = " << event.motion.x << endl;
-                         cout<< "m_y = " << event.motion.y<<endl;
-                         break;
-
-                         default:
-                         break;
-                    }
-
-                   /* case SDL_MOUSEMOTION:
-                        cout<< "m_x = " << event.motion.x << endl;
-                        cout<< "m_y = " << event.motion.y<<endl;
-                        break;*/
-
         }
 }
 
-void Player::print_Player()
+void Player::print()
 {
   cout << "Player" << endl;
-    GLfloat x =cerc->getP().getX() ;
-    GLfloat y =cerc->getP().getY();
+    GLfloat x =cerc->getCenter().getX() ;
+    GLfloat y =cerc->getCenter().getY();
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;
@@ -131,28 +105,28 @@ void Player::Translate(int direction)
     switch(direction)
     {
         case 0:
-        if(colision( cerc->getP().getX() , (cerc->getP().getY()+cerc->getDiametre()/2 +3)) )
+        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3)) )
         {
         	cerc->deplacer( 0,  3);
         }
         break;
 
         case 90:
-        if(colision( cerc->getP().getX()+cerc->getDiametre()/2 +3 , (cerc->getP().getY())) )
+        if(colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY())) )
         {
         	cerc->deplacer( 3,  0);
         }
         break;
 
         case 180:
-        if(colision( cerc->getP().getX() , (cerc->getP().getY()-cerc->getDiametre()/2 -3)) )
+        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3)) )
         {
         	cerc->deplacer( 0,  -3);
         }
         break;
 
         case 270:
-        if(colision( cerc->getP().getX()-cerc->getDiametre()/2 -3 , (cerc->getP().getY())) )
+        if(colision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())) )
 		{
     	    cerc->deplacer( -3,  0);
     	}

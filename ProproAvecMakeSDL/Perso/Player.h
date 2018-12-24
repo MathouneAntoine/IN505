@@ -8,7 +8,7 @@ class Player : public Character
 	public:
 		Player();
         void movePlayer(SDL_Event event , int x, int y);
-        void print_Player();
+        void print();
         void Translate(int direction);
 
 

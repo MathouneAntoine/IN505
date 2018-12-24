@@ -39,11 +39,11 @@ void Ai::live_Ai()
 			Translate(270);
 		}
 }
-void Ai::print_Ai()
+void Ai::print()
 {
-  cout << "Ai" << endl;
-    GLfloat x =cerc->getP().getX() ;
-    GLfloat y =cerc->getP().getY();
+    cout << "Ai" << endl;
+    GLfloat x =cerc->getCenter().getX() ;
+    GLfloat y =cerc->getCenter().getY();
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;
@@ -67,28 +67,28 @@ void Ai::Translate(int direction)
     switch(direction)
     {
         case 0:
-        if(colision( cerc->getP().getX() , (cerc->getP().getY()+cerc->getDiametre()/2 +3)) )
+        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3)) )
         {
         	cerc->deplacer( 0,  3);
         }
         break;
 
         case 90:
-        if(colision( cerc->getP().getX()+cerc->getDiametre()/2 +3 , (cerc->getP().getY())) )
+        if(colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY())) )
         {
         	cerc->deplacer( 3,  0);
         }
         break;
 
         case 180:
-        if(colision( cerc->getP().getX() , (cerc->getP().getY()-cerc->getDiametre()/2 -3)) )
+        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3)) )
         {
         	cerc->deplacer( 0,  -3);
         }
         break;
 
         case 270:
-        if(colision( cerc->getP().getX()-cerc->getDiametre()/2 -3 , (cerc->getP().getY())) )
+        if(colision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())) )
 		{
     	    cerc->deplacer( -3,  0);
     	}

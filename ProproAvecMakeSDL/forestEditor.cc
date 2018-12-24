@@ -48,7 +48,7 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
     SDL_Event event;
     char res='b';
     Point center;
-
+    int count =1;
      while (res !='s' && res!='q' )
      {
          f.print(renderer);
@@ -83,6 +83,20 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
             }
             res='b';
         }
+        if (res=='p' && count <3)
+        {
+            if (add_Player(&f,center,count)==true)
+            {
+                if (count ==1) f.p1->print();
+                if (count ==2) f.p2->print(); 
+                 count++;
+            }
+            res='b';
+        }
+
+        if (res=='p' && count >=3)res='b';
+        if (res=='s' && (f.p1==NULL || f.p2==NULL))res='b';
+
 
         center.setX(0);
         center.setY(0);             
@@ -101,27 +115,44 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
     Objects* obj;
     bool ok=0;
 
+    int r_x=r->getCenter().getX();
+    int r_y=r->getCenter().getY();
+    int r_d=r->getDiameter()/2;
+    int r_h=r->getHeight()/2;
+
         for(int unsigned i=0; i < f->List_Obj.size()&& ok !=1 ;i++)
         {
             obj=f->List_Obj[i];
-            int rx=obj->getCenter().getX();
-            int ry=obj->getCenter().getY();
-            int rd=obj->getDiameter()/2;
-            int rh=obj->getHeight()/2;
+            int obj_x=obj->getCenter().getX();
+            int obj_y=obj->getCenter().getY();
+            int obj_d=obj->getDiameter()/2;
+            int obj_h=obj->getHeight()/2;
 
-            if (((r->getCenter().getX()+(r->getDiameter()/2) > (rx-(rd)) && r->getCenter().getX()+(r->getDiameter()/2) < (rx+(rd)) 
-                        && (r->getCenter().getY()-(r->getHeight()/2)) < (ry+(rh)) && (r->getCenter().getY()-(r->getHeight() /2)) > (ry-(rh)))
+            if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
+                        && (r_y-r_h) <= (obj_y+(obj_h)) && (r_y-r_h) >= (obj_y-(obj_h)))
                 )||(                
-                    (r->getCenter().getX()-(r->getDiameter()/2) < (rx+(rd)) && r->getCenter().getX()-(r->getDiameter()/2) > (rx-(rd))
-                        && (r->getCenter().getY()-(r->getHeight()/2)) < (ry+(rh))) && (r->getCenter().getY()-(r->getHeight()/2)) > (ry-(rh))
+                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d))
+                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y-r_h) >= (obj_y-(obj_h))
                 )||(
-                    (r->getCenter().getX()+(r->getDiameter()/2) > (rx-(rd)) && r->getCenter().getX()+(r->getDiameter()/2) < (rx+(rd))
-                        && (r->getCenter().getY()+(r->getHeight()/2)) > (ry-(rh))) && (r->getCenter().getY()+(r->getHeight()/2)) < (ry+(rh))
+                    (r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d))
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
                 )||(
-                    (r->getCenter().getX()-(r->getDiameter()/2) < (rx+(rd)) && r->getCenter().getX()-(r->getDiameter()/2) > (rx-(rd)) 
-                        && (r->getCenter().getY()+(r->getHeight()/2)) > (ry-(rh))) && (r->getCenter().getY()+(r->getHeight()/2)) < (ry+(rh))))
-                ok=1;
+                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d)) 
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
+                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y+r_h) >= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
+                        && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
+                ))
+                {ok=1;}
         }
+
+        cout << "OK val : " << ok << endl;
 
     if (ok==1)
         {
@@ -131,9 +162,78 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
 
      if (ok==0)
         {
-           f->List_Obj.push_back(r);
-            return true;
+            if (f->p1 != NULL)
+            {
+                 cout << "P1 existe" <<endl;
+                int obj_x=f->p1->getForme()->getCenter().getX();
+                int obj_y=f->p1->getForme()->getCenter().getY();
+                int obj_d=f->p1->getForme()->getDiametre()/2;
+                int obj_h=obj_d;
+
+               if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
+                        && (r_y-r_h) <= (obj_y+(obj_h)) && (r_y-r_h) >= (obj_y-(obj_h)))
+                )||(                
+                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d))
+                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y-r_h) >= (obj_y-(obj_h))
+                )||(
+                    (r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d))
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d)) 
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
+                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y+r_h) >= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
+                        && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
+                ))
+                {ok=1;}
+            }
+
+            if (f->p2 != NULL)
+            {
+                cout << "P2 existe" <<endl;
+
+                int obj_x=f->p2->getForme()->getCenter().getX();
+                int obj_y=f->p2->getForme()->getCenter().getY();
+                int obj_d=f->p2->getForme()->getDiametre()/2;
+                int obj_h=obj_d;
+
+              if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
+                        && (r_y-r_h) <= (obj_y+(obj_h)) && (r_y-r_h) >= (obj_y-(obj_h)))
+                )||(                
+                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d))
+                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y-r_h) >= (obj_y-(obj_h))
+                )||(
+                    (r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d))
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d)) 
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
+                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y+r_h) >= (obj_y+(obj_h))
+                )||(
+                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
+                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
+                )||(
+                    (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
+                        && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
+                ))
+                {ok=1;}
+            }
         }
+
+    if (ok ==0)
+    {
+        f->List_Obj.push_back(r);
+        return true;
+    }
+
     return false;       
 }
 
@@ -147,16 +247,50 @@ bool forestEditor::add_Tree(Forest* f, Point center)
     return this->add_Element(f,new Tree(center),center);
 }
 
-Forest forestEditor::add_Player(Forest f, Point center)
+bool forestEditor::add_Player(Forest* f, Point center, int i)
 {
-   /* Character *c=new Player();
-   */
-}
+    Character *c=new Character(center);
+    cout<< "Perso x" << c->getForme()->getCenter().getX() << " Y " << c->getForme()->getCenter().getY() << endl;
+    Objects* obj;
+    bool ok=0;
 
-Forest forestEditor::add_Ai(Forest f, Point center)
-{
-   /* Character *c=new Player();
-   */
+    for(int unsigned i=0; i < f->List_Obj.size()&& ok !=1 ;i++)
+        {
+            obj=f->List_Obj[i];
+            int rx=obj->getCenter().getX();
+            int ry=obj->getCenter().getY();
+            int rd=obj->getDiameter()/2;
+            int obj_h=obj->getHeight()/2;
+
+            if (((c->getForme()->getCenter().getX()+(c->getForme()->getDiametre()/2) > (rx-(rd)) && c->getForme()->getCenter().getX()+(c->getForme()->getDiametre()/2) < (rx+(rd)) 
+                        && (c->getForme()->getCenter().getY())+(c->getForme()->getDiametre()/2) < (ry+(obj_h)) && (c->getForme()->getCenter().getY()+(c->getForme()->getDiametre()/2)) > (ry-(obj_h)))
+                )||(                
+                    (c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) < (rx+(rd)) && c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) > (rx-(rd))
+                        && (c->getForme()->getCenter().getY()-(c->getForme()->getDiametre()/2)) < (ry+(obj_h)) && c->getForme()->getCenter().getX()+(c->getForme()->getDiametre()/2)) > (ry-(obj_h))
+                )||(
+                    (c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) > (rx-(rd)) && c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) < (rx+(rd))
+                        && (c->getForme()->getCenter().getY()-(c->getForme()->getDiametre()/2)) > (ry-(obj_h))) && (c->getForme()->getCenter().getY()+(c->getForme()->getDiametre()/2) < (ry+(obj_h))
+                )||(
+                    (c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2)< (rx+(rd)) && c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) > (rx-(rd)) 
+                        && (c->getForme()->getCenter().getY()+(c->getForme()->getDiametre()/2)) > (ry-(obj_h)) && (c->getForme()->getCenter().getY()-(c->getForme()->getDiametre()/2)) < (ry+(obj_h))))))
+                ok=1;
+        }
+
+    if (ok==1)
+        {
+            cout << "Veuillez cliquer autre part." << endl;
+            return false;
+        }
+
+     if (ok==0 && (i==1 || i==2))
+        {
+            if (i==1) { cout << "ADD 1" <<endl; f->p1=c;}
+            if (i==2) { cout << "ADD 2" <<endl; f->p2=c;}
+            return true;
+        }
+    return false;  
+
+   
 }
 
 void forestEditor::write_Forest(Forest f)
@@ -170,8 +304,9 @@ void forestEditor::write_Forest(Forest f)
             if (dynamic_cast<Rock*>(f.List_Obj[i])) this->write_Rock(dynamic_cast<Rock*>(f.List_Obj[i]), file );
             if (dynamic_cast<Tree*>(f.List_Obj[i])) this->write_Tree(dynamic_cast<Tree*>(f.List_Obj[i]), file);
         }
-        write_Character1(f.getP1(), file);
-        write_Character1(f.getP2(), file);
+
+        write_Character(f.getP1(), file,1);
+        write_Character(f.getP2(), file,2);
 
         file.close();
     }
@@ -181,7 +316,7 @@ void forestEditor::write_Forest(Forest f)
 
 void forestEditor::write_Rock(Rock* r, ofstream &file)
 {
-    file << "R" << " " << r->getCenter().getX() << " " << r->getCenter().getY();
+    file << "R" << " " << r->getCenter().getX() << " " <<  r->getCenter().getY() ;
     file << " " << r->getHeight() << " " <<r->getDiameter() << " " << r->getAltitude();
     file << " " << r->getLife()<< " " << r->getType() <<endl;
 } 
@@ -192,11 +327,11 @@ void forestEditor::write_Tree(Tree* t, ofstream &file)
     file << " " << t->getHeight() << " " <<t->getDiameter() << " " << t->getAltitude();
     file << " " << t->getLife() << " " << t->getType() <<endl;
 }
-void forestEditor::write_Character1(Character* c, ofstream &file)
-{
 
+void forestEditor::write_Character(Character* c, ofstream &file, int i)
+{
+    file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
 }
-void forestEditor::write_Character2(Character* c, ofstream &file){}
 
 Forest forestEditor::read_File(Forest f, string s)
 {
@@ -204,6 +339,7 @@ Forest forestEditor::read_File(Forest f, string s)
     char c,t;
     Point center;
     int height, diameter, altitude, life, x, y;
+    int i=0;
 
         if(file) 
         {       
@@ -237,6 +373,16 @@ Forest forestEditor::read_File(Forest f, string s)
                     break;
 
                     case 'C':
+                    {
+                        file >> i >> x >> y;
+                        cout << x <<y <<endl;
+                        center.setX(x);
+                        center.setY(y);
+                        Character* perso=new Character(center);
+                        if (i==1) f.p1=perso;
+                        if (i==2) f.p2=perso;
+                        if (i!=1 && i!=2) cout<<"ERREUR LECTURE FICHIER PERSO";
+                    }
 
                     break;
 
@@ -252,9 +398,4 @@ Forest forestEditor::read_File(Forest f, string s)
 
     return f;
 }
-
-Forest forestEditor::read_Rock(Forest f, ifstream &file){return f;}
-Forest forestEditor::read_Tree(Forest f, ifstream &file){return f;}
-Forest forestEditor::read_Character1(Forest f, ifstream &file){return f;}
-Forest forestEditor::read_Character2(Forest f, ifstream &file){return f;}
 forestEditor::~forestEditor(){}

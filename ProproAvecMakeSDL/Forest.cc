@@ -13,11 +13,15 @@ Forest::Forest()
 {
     Field field;
     this->f=field;
+    p1=NULL;
+    p2=NULL;
 }
 
 Forest::Forest(Field field)
 {
 	this->f=field;
+    p1=NULL;
+    p2=NULL;
 }
 
 Forest::Forest(Forest& f)
@@ -26,6 +30,8 @@ Forest::Forest(Forest& f)
     this->p1=f.p1;
     this->p2=f.p2;
     this->List_Obj= f.List_Obj;
+    p1=NULL;
+    p2=NULL;
 }
 
 Character* Forest::getP1(){return this->p1;}
@@ -55,6 +61,10 @@ void Forest::print(SDL_Renderer *renderer)
     if (dynamic_cast<Tree*>(this->List_Obj[i]))dynamic_cast<Tree*>(this->List_Obj[i])->print(f);
     if (dynamic_cast<Rock*>(this->List_Obj[i]))dynamic_cast<Rock*>(this->List_Obj[i])->print();
   }
+
+  if (p1 != NULL) p1->print();
+  if (p2 != NULL) p2->print();
+
    SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
     
     SDL_RenderPresent(renderer);
@@ -63,4 +73,7 @@ void Forest::print(SDL_Renderer *renderer)
 }
 
 Forest::~Forest()
-{}
+{
+    delete p1;
+    delete p2;
+}

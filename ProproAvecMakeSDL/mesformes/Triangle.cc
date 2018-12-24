@@ -19,6 +19,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	int i= rand()%4;
 	if (i==0)
 	{
+		cout<<"TRIANGLE 0";
 		this->orientation = 0;
 		this->p1.setX(center.getX());
 		this->p1.setY(center.getY()+high/2);
@@ -29,6 +30,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	}
 	if (i==1)
 	{
+		cout<<"TRIANGLE 1";
 		this->orientation = 1;
 		this->p1.setX(center.getX()+(diameter/2));
 		this->p1.setY(center.getY());
@@ -39,6 +41,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	}
 	if (i==2)
 	{
+		cout<<"TRIANGLE 2";
 		this->orientation = 2;
 		this->p1.setX(center.getX());
 		this->p1.setY(center.getY()-high/2);
@@ -49,6 +52,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	}
 	if (i==3)
 	{
+		cout<<"TRIANGLE 3";
 		this->orientation = 3;
 		this->p1.setX(center.getX()-(diameter/2));
 		this->p1.setY(center.getY());

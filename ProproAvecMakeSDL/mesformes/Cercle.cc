@@ -10,19 +10,21 @@ using namespace std;
 
 Cercle::Cercle()
 {
-	this->p.setX(50);
-	this->p.setY(50);
+	this->center.setX(50);
+	this->center.setY(50);
 	this->diametre = 15;
 }
 
-Cercle::Cercle(Point p, int diam): p(p)
+Cercle::Cercle(Point p, int diam)
 {
+	this->center.setX(p.getX());
+	this->center.setY(p.getY());
 	this->diametre = diam;
 }
 
 Cercle::Cercle(Cercle& c)
 {
-	this->p = c.p;
+	this->center = c.center;
 	this->diametre = c.diametre;
 }
 
@@ -32,17 +34,12 @@ int Cercle::getDiametre()
 }
 void Cercle::deplacer(int dx, int dy)
 {
-	p.deplacer(dx, dy);
+	center.deplacer(dx, dy);
 }
-Point Cercle::getP()
-{
-	return this->p;
-}
-
 void Cercle::afficher()
 {
     cout << "Cercle"<<endl;
-	cout << " p.x = " << p.getX() << " p.y = " << p.getY() << endl;
+	cout << " p.x = " << center.getX() << " p.y = " << center.getY() << endl;
 }
 
 Cercle::~Cercle(){ cout << "destruction Cercle " << endl; }

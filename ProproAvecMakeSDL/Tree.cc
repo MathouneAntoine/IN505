@@ -89,9 +89,14 @@ Tree::Tree(Point center)
 	this->center.setX(center.getX());
 	this->center.setY(center.getY());
 
+	
 	this->diameter=rand()%100+60;
+	if (this->diameter%2!=0) this->diameter++;
 	this->height=rand()%100+60;
+	if (this->height%2!=0) this->height++;
 	this->altitude=rand()%150+80;
+	if (this->altitude%2!=0) this->altitude++;
+	this->life=(altitude/2)+diameter+height;
 
 	int i= rand()%2;
 	if(i==0)
@@ -122,17 +127,17 @@ void Tree::print(Field f)
     	cout << "Triangle" << endl;
     glBegin(GL_TRIANGLES);
         glColor3f(0, 1, 0);
-        glVertex2i(tria->getP1().getX()+x,tria->getP1().getY()+y);
-        glVertex2i(tria->getP2().getX()+x,tria->getP2().getY()+y);
-        glVertex2i(tria->getP3().getX()+x,tria->getP3().getY()+y);
+        glVertex2i(tria->getP1().getX(),tria->getP1().getY());
+        glVertex2i(tria->getP2().getX(),tria->getP2().getY());
+        glVertex2i(tria->getP3().getX(),tria->getP3().getY());
     glEnd();
 
     }
     else if(Cercle *cerc= dynamic_cast <Cercle*> (this->getForme()))
     {
     	cout << "Rond" << endl;
-  	GLfloat x =cerc->getP().getX() ;
-    GLfloat y =cerc->getP().getY();
+  	GLfloat x =cerc->getCenter().getX() ;
+    GLfloat y =cerc->getCenter().getY();
     GLfloat radius = this->diameter/2;
     int i;
     int triangleAmount = 1000;

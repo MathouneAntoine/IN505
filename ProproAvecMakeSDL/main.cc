@@ -25,7 +25,12 @@ int main(int argc, char **argv)
     Field f(800,600);
     SDL_Window* fenetre = Screen_Init(argc, argv, f);
     SDL_GLContext contexteOpenGL(0);
-//ME
+
+
+
+    Menu m;
+    int joue=0;
+    joue=m.Boucle_Menu(fenetre);
 
      SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(fenetre, -1, 0);
@@ -53,10 +58,10 @@ int main(int argc, char **argv)
             end = true;
         }
         SDL_RenderClear(renderer);
-        ai->print_Ai();
+        ai->print();
         ai->live_Ai();
         ai->PrintInfo();
-        c->print_Player();
+        c->print();
         c->PrintInfo();
         c->getForme()->afficher();
         c->movePlayer(event, x, y);
@@ -66,9 +71,6 @@ int main(int argc, char **argv)
 
         }
         //you
-    Menu m;
-    int joue=0;
-    joue=m.Boucle_Menu(fenetre);
 
 
 

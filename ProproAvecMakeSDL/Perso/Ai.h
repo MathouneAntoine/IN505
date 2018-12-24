@@ -11,7 +11,7 @@ class Ai :public  Character
 	public:
 		Ai();
 		void live_Ai();
-		void print_Ai();
+		void print();
 
 		void Translate(int direction);
 
