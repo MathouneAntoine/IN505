@@ -19,6 +19,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	int i= rand()%4;
 	if (i==0)
 	{
+		this->orientation = 0;
 		this->p1.setX(center.getX());
 		this->p1.setY(center.getY()+high/2);
 		this->p2.setX(center.getX()-(diameter/2));
@@ -28,6 +29,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	}
 	if (i==1)
 	{
+		this->orientation = 1;
 		this->p1.setX(center.getX()+(diameter/2));
 		this->p1.setY(center.getY());
 		this->p2.setX(center.getX()-(diameter/2));
@@ -37,6 +39,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	}
 	if (i==2)
 	{
+		this->orientation = 2;
 		this->p1.setX(center.getX());
 		this->p1.setY(center.getY()-high/2);
 		this->p2.setX(center.getX()-(diameter/2));
@@ -46,6 +49,7 @@ Triangle::Triangle(Point center,int diameter, int high)
 	}
 	if (i==3)
 	{
+		this->orientation = 3;
 		this->p1.setX(center.getX()-(diameter/2));
 		this->p1.setY(center.getY());
 		this->p2.setX(center.getX()+(diameter/2));
@@ -74,6 +78,10 @@ Point Triangle::getP1(){return this->p1;}
 Point Triangle::getP2(){return this->p2;}
 
 Point Triangle::getP3(){return this->p3;}
+int Triangle::getOrientation()
+{
+	return this->orientation;
+}
 
 Triangle::~Triangle(){ cout << "destruction Triangle " << endl; }
 

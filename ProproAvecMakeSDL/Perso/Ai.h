@@ -6,10 +6,14 @@
 
 #include <iostream>
 using namespace std;
-class Ai : Character
+class Ai :public  Character
 {
 	public:
 		Ai();
+		void live_Ai();
+		void print_Ai();
+
+		void Translate(int direction);
 
 		~Ai();
 	private:

@@ -12,15 +12,72 @@
 #include "MouseKeyboard.h"
 #include "Forest.h"
 #include "Menu.h"
+#include <time.h>
+
 
 #include "forestEditor.h"
 
 int main(int argc, char **argv)
 {
+    srand(time(NULL));
+
      // Notre fenêtre
     Field f(800,600);
     SDL_Window* fenetre = Screen_Init(argc, argv, f);
     SDL_GLContext contexteOpenGL(0);
+//ME
+
+     SDL_Renderer *renderer;
+    renderer = SDL_CreateRenderer(fenetre, -1, 0);
+    if(!renderer)
+    {
+        std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+        return -1;
+    }
+    Player *c = new Player();
+    Ai *ai = new Ai();
+    SDL_Event event;
+
+    int x,y;
+
+
+    bool end;
+    end = false;
+    while(!end)
+    {
+        SDL_WaitEvent(&event);
+        SDL_GetMouseState(&x, &y);
+
+        if(event.window.event == SDL_WINDOWEVENT_CLOSE)
+        {
+            end = true;
+        }
+        SDL_RenderClear(renderer);
+        ai->print_Ai();
+        ai->live_Ai();
+        ai->PrintInfo();
+        c->print_Player();
+        c->PrintInfo();
+        c->getForme()->afficher();
+        c->movePlayer(event, x, y);
+
+        SDL_RenderPresent(renderer);
+    
+
+        }
+        //you
+    Menu m;
+    int joue=0;
+    joue=m.Boucle_Menu(fenetre);
+
+
+
+
+
+
+
+
+    /*
     SDL_Event evenements;
     bool terminer(false);
 

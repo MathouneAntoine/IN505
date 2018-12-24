@@ -11,7 +11,7 @@ class Triangle:public Forme
 		Point p1;
 		Point p2;
 		Point p3;
-
+		int orientation;
 	public:
 		Triangle();
 		Triangle(Point p1, Point p2, Point p3);
@@ -22,6 +22,7 @@ class Triangle:public Forme
 		Point getP1();
 		Point getP2();
 		Point getP3();
+		int getOrientation();
 		~Triangle();
 };
 #endif

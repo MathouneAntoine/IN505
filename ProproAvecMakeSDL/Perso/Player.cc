@@ -131,19 +131,31 @@ void Player::Translate(int direction)
     switch(direction)
     {
         case 0:
-        cerc->deplacer( 0,  3);
-
+        if(colision( cerc->getP().getX() , (cerc->getP().getY()+cerc->getDiametre()/2 +3)) )
+        {
+        	cerc->deplacer( 0,  3);
+        }
         break;
+
         case 90:
-        cerc->deplacer( 3,  0);
+        if(colision( cerc->getP().getX()+cerc->getDiametre()/2 +3 , (cerc->getP().getY())) )
+        {
+        	cerc->deplacer( 3,  0);
+        }
         break;
 
         case 180:
-        cerc->deplacer( 0,  -3);
+        if(colision( cerc->getP().getX() , (cerc->getP().getY()-cerc->getDiametre()/2 -3)) )
+        {
+        	cerc->deplacer( 0,  -3);
+        }
         break;
 
         case 270:
-        cerc->deplacer( -3,  0);
+        if(colision( cerc->getP().getX()-cerc->getDiametre()/2 -3 , (cerc->getP().getY())) )
+		{
+    	    cerc->deplacer( -3,  0);
+    	}
         break;
     }
 
