@@ -6,7 +6,9 @@
 
 #include <iostream>
 using namespace std;
-class Ai :public  Character
+
+
+class Ai : public  Character
 {
 	public:
 		Ai();

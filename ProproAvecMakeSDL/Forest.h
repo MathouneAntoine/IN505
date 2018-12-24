@@ -24,7 +24,7 @@ class Forest
 		~Forest();
 
         // private:
-		Field f;
+			Field f;
 		std::vector<Objects*> List_Obj;
 		Character* p1;
 		Character* p2;

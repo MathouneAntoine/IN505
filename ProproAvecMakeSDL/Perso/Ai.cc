@@ -1,7 +1,6 @@
 #include "Ai.h"
 #include <SDL2/SDL.h>
 #include <time.h>
-#include <SDL2/SDL.h>
 
 #include <iostream>
 #include "../mes_formes.h"
@@ -64,7 +63,7 @@ void Ai::print()
 
 void Ai::Translate(int direction)
 {
-    switch(direction)
+  /*  switch(direction)
     {
         case 0:
         if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3)) )
@@ -94,7 +93,7 @@ void Ai::Translate(int direction)
     	}
         break;
     }
-
+*/
 }
 
 Ai::~Ai()

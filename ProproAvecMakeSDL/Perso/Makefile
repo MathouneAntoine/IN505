@@ -8,7 +8,7 @@ perso:
 
 
 
-%.o: %.c
+%.o: %.c ../ForestAction.h	
 	@$(CXX) -o $@ -c $< $(CXXFLAGS)
 
 .PHONY: clean mrproper

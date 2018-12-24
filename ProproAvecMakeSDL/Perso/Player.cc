@@ -1,6 +1,5 @@
 #include <time.h>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
 #include <iostream>
 #include "Player.h"
@@ -8,6 +7,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
+#include "../ForestAction.h"
 
 using namespace std;
 Player::Player()
@@ -102,31 +102,32 @@ void Player::print()
 
 void Player::Translate(int direction)
 {
+    ForestAction fa;
     switch(direction)
     {
         case 0:
-        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3)) )
+        if(fa.colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3)) )
         {
         	cerc->deplacer( 0,  3);
         }
         break;
 
         case 90:
-        if(colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY())) )
+        if(fa.colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY())) )
         {
         	cerc->deplacer( 3,  0);
         }
         break;
 
         case 180:
-        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3)) )
+        if(fa.colision( cerc->getCenter().getX() , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3)) )
         {
         	cerc->deplacer( 0,  -3);
         }
         break;
 
         case 270:
-        if(colision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())) )
+        if(fa.colision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())) )
 		{
     	    cerc->deplacer( -3,  0);
     	}

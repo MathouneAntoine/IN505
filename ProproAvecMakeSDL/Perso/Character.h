@@ -13,8 +13,7 @@ class Character
         Cercle*  getForme();
         virtual void print();
 		void PrintInfo();
-		bool colisionObjet(int curseur_x,int curseur_y);
-		bool colision(int x, int y);
+		
 		~Character();
 	protected:
 		Point p;
