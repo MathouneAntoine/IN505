@@ -1,13 +1,15 @@
 #include <time.h>
 #include <SDL2/SDL.h>
-
 #include <iostream>
-#include "Player.h"
-#include "../mes_formes.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include "../ForestAction.h"
+#include <vector>
+
+#include "Player.h"
+#include "../mes_formes.h"
+#include "../Objects.h"
+#include "Character.h"
 
 using namespace std;
 Player::Player()
@@ -15,12 +17,12 @@ Player::Player()
 
 }
 
-void Player::movePlayer(SDL_Event event , int x, int y)
+void Player::movePlayer(SDL_Event event , int x, int y,vector<Objects*> obj)
 {
  switch(event.type)
                 {
                     case SDL_QUIT:
-                    break;
+                    break;  
                     case SDL_KEYDOWN:
                     switch(event.key.keysym.sym)
                     {
@@ -34,7 +36,7 @@ void Player::movePlayer(SDL_Event event , int x, int y)
                         }
                         else
                         {
-                            Translate(0);
+                            Translate(0,obj);
                         }
                         break;
 
@@ -46,7 +48,7 @@ void Player::movePlayer(SDL_Event event , int x, int y)
                         }
                         else
                         {
-                            Translate(180);
+                            Translate(180,obj);
                         }
                         break;
 
@@ -58,7 +60,7 @@ void Player::movePlayer(SDL_Event event , int x, int y)
                         }
                         else
                         {
-                            Translate(90);
+                            Translate(90,obj);
                         }
                         break;
 
@@ -70,7 +72,7 @@ void Player::movePlayer(SDL_Event event , int x, int y)
                         }
                         else
                         {
-                            Translate(270);
+                            Translate(270,obj);
                         }
                         break;
                     }
@@ -79,7 +81,7 @@ void Player::movePlayer(SDL_Event event , int x, int y)
 
 void Player::print()
 {
-  cout << "Player" << endl;
+    cout << "Player" << endl;
     GLfloat x =cerc->getCenter().getX() ;
     GLfloat y =cerc->getCenter().getY();
     GLfloat radius = cerc->getDiametre()/2;
@@ -100,34 +102,34 @@ void Player::print()
     glEnd();
 }
 
-void Player::Translate(int direction)
+void Player::Translate(int direction, vector<Objects*> obj)
 {
-    ForestAction fa;
+
     switch(direction)
     {
         case 0:
-        if(fa.colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3)) )
+        if(colision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj ) && colision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 -3) ,obj ))
         {
-        	cerc->deplacer( 0,  3);
+        	cerc->deplacer( 0,  -3);
         }
         break;
 
         case 90:
-        if(fa.colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY())) )
+        if(colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj) && colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj))
         {
         	cerc->deplacer( 3,  0);
         }
         break;
 
         case 180:
-        if(fa.colision( cerc->getCenter().getX() , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3)) )
+        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj))
         {
-        	cerc->deplacer( 0,  -3);
+        	cerc->deplacer( 0,  3);
         }
         break;
 
         case 270:
-        if(fa.colision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())) )
+        if(colision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY()) ,obj))
 		{
     	    cerc->deplacer( -3,  0);
     	}

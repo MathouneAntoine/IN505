@@ -1,8 +1,11 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#include <vector>
 #include "../mes_formes.h"
+#include "../Objects.h"
 
+using namespace std;
 class Character
 {
 
@@ -13,7 +16,9 @@ class Character
         Cercle*  getForme();
         virtual void print();
 		void PrintInfo();
-		
+		bool colision(int x, int y, vector<Objects*> obj);
+		bool colisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj );  
+
 		~Character();
 	protected:
 		Point p;

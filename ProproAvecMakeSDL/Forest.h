@@ -21,6 +21,9 @@ class Forest
 		void print(SDL_Renderer *renderer);
 		std::vector<Objects*> getList();
 		void init_forest();
+		bool colisionObjet(int curseur_x,int curseur_y);
+		bool colision(int x, int y);
+
 		~Forest();
 
         // private:

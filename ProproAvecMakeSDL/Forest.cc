@@ -70,7 +70,8 @@ void Forest::print(SDL_Renderer *renderer)
     SDL_RenderPresent(renderer);
         SDL_RenderClear(renderer);
 
-}
+} 
+
 
 Forest::~Forest()
 {

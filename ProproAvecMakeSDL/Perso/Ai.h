@@ -3,7 +3,7 @@
 #include "Character.h"
 #include "../mes_formes.h"
 #include <SDL2/SDL.h>
-
+#include <vector>
 #include <iostream>
 using namespace std;
 

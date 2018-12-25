@@ -39,11 +39,9 @@ int main(int argc, char **argv)
         std::cout << "SDL Error : " << SDL_GetError() << std::endl;
         return -1;
     }
-
-    vector<Objects> v;
-    forestEditor edit;
+    Point p(150,150);
     Forest *forest  = new Forest();
-    Rock * r=new Rock();
+    Rock * r=new Rock(p);
     //r->printInfo();
     //r->print();
     forest->List_Obj.push_back(r);
@@ -75,9 +73,9 @@ int main(int argc, char **argv)
         //ai->live_Ai();
         //ai->PrintInfo();
        c->print();
-      // c->PrintInfo();
+       c->PrintInfo();
        //c->getForme()->afficher();
-        c->movePlayer(event, x, y);
+        c->movePlayer(event, x, y, forest->List_Obj);
 
         SDL_RenderPresent(renderer);
 

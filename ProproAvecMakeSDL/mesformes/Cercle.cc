@@ -12,7 +12,7 @@ Cercle::Cercle()
 {
 	this->center.setX(50);
 	this->center.setY(50);
-	this->diametre = 15;
+	this->diametre = 18;
 }
 
 Cercle::Cercle(Point p, int diam)
