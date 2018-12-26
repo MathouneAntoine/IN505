@@ -35,6 +35,12 @@ bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
                     case SDL_KEYDOWN:
                     switch(event.key.keysym.sym)
                     {
+                        case 't':
+                        cout <<"Tirer!"<<endl;
+                        Attack(this->orientation, 10,  obj, 50);
+
+                        break;
+
                         case SDLK_UP:
                         cout <<"Up"<<endl;
                         if(this->orientation!=0)
@@ -123,7 +129,7 @@ void Player::Translate(int direction, vector<Objects*> obj)
     switch(direction)
     {
         case 0:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj ))
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0 ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0 ))
         {
             cout<< "CASE 0"<<endl;
         	cerc->deplacer( 0,  -3);
@@ -131,7 +137,7 @@ void Player::Translate(int direction, vector<Objects*> obj)
         break;
 
         case 90:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj))
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj,0) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj,0))
         {
             cout<< "CASE 1"<<endl;
         	cerc->deplacer( 3,  0);
@@ -139,7 +145,7 @@ void Player::Translate(int direction, vector<Objects*> obj)
         break;
 
         case 180:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj))
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0))
         {
             cout<< "CASE 2"<<endl;
         	cerc->deplacer( 0,  3);
@@ -147,7 +153,7 @@ void Player::Translate(int direction, vector<Objects*> obj)
         break;
 
         case 270:
-        if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj))
+        if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj,0) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj,0))
 		{
             cout<< "CASE 3"<<endl;
     	    cerc->deplacer( -3,  0);
@@ -157,40 +163,28 @@ void Player::Translate(int direction, vector<Objects*> obj)
 
 }
 
-/*void Player::Attack(int direction, int range, int power,  vector<Objects*> obj)
+void Player::Attack(int direction, int range,  vector<Objects*> obj, int power)
 {
     switch(direction)
     {
         case 0:
-        if(collision( cerc->getCenter().getX(), (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj )) 
-        {
-            cerc->deplacer( 0,  -3);
-        }
+        collision( cerc->getCenter().getX(), (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power );
         break;
 
         case 90:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +range , (cerc->getCenter().getY()) ,obj))
-        {
-            cerc->deplacer( 3,  0);
-        }
+        collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +range , (cerc->getCenter().getY()) ,obj,power);
         break;
 
         case 180:
-        if(collision( cerc->getCenter().getX(), (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj))
-        {
-            cerc->deplacer( 0,  3);
-        }
+        collision( cerc->getCenter().getX(), (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power);
         break;
 
         case 270:
-        if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -range , (cerc->getCenter().getY()),obj))
-        {
-            cerc->deplacer( -3,  0);
-        }
+        collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -range , (cerc->getCenter().getY()),obj,power);
         break;
     }
 
-}*/
+}
 
 Player::~Player()
 {

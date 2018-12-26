@@ -47,10 +47,10 @@ int main(int argc, char **argv)
 
 
    
-    Player *c = new Player(p);
+    forest->setP1(new Player(p));
    // Ai *ai = new Ai();
-
-     Rock * r=new Rock(p2);
+    Player *player= dynamic_cast <Player*> (forest->getP1());
+         Rock * r=new Rock(p2);
     //r->printInfo();
     //r->print();
     forest->addList(r);
@@ -60,9 +60,11 @@ int main(int argc, char **argv)
     bool end;
     end = false;
     bool tour;
+    forest->print(renderer);
+
     while(!end)
     {
-      
+        //SDL_RenderClear(renderer);
         SDL_WaitEvent(&event);
         //SDL_GetMouseState(&x, &y);
 
@@ -70,14 +72,13 @@ int main(int argc, char **argv)
         {
             end = true;
         }
-        SDL_RenderClear(renderer);
         forest->print(renderer);
 
-        c->print(f);
+        forest->getP1()->print(f);
        //c->PrintInfo();
-        tour = c->movePlayer(event, forest->getList());
+        tour = player->movePlayer(event, forest->getList());
 
-        SDL_RenderPresent(renderer);
+        //SDL_RenderPresent(renderer);
 
 
     }

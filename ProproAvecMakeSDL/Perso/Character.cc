@@ -1,13 +1,15 @@
 #include <vector>
 #include <iostream>
 #include <math.h>
-
-#include "Character.h"
-#include "../mes_formes.h"
 #include <SDL2/SDL.h>
 #include <GL/gl.h>
+
+#include "../Forest.h"
+#include "Character.h"
+#include "../mes_formes.h"
 #include "../Objects.h"
 using namespace std;
+
 Character::Character()
 {
     Point p(50,50);
@@ -90,10 +92,8 @@ bool inTriangle (Point pt, Point P1, Point P2, Point P3)
 
     return !(negative && positive);
 }	
-bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> objet ) {     
+bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> objet,int power ) {     
     
-
-      cout << "HELLLLLLLLLLOOOOOOO "<<endl;
     for(int unsigned i=0; i < objet.size();i++)
         {
             Objects* obj;
@@ -105,41 +105,65 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj
                 && curseur_x <  rect->getP4().getX()
                 && curseur_y >= rect->getP2().getY()  
                 && curseur_y < rect->getP1().getY())
+                 {
+					takeDamage(objet,obj,i,power);
                    return true;
+                 }
             }	
 
             else if(Cercle *cerc= dynamic_cast <Cercle*> (obj->getForme()))
             {    
 
              	int dist = sqrt( pow((cerc->getCenter().getX() - curseur_x),2) + (pow((cerc->getCenter().getY() - curseur_y),2)));
-   				 return dist <= cerc->getDiametre()/2;
-                  // return false;
+
+   				 if(dist <= cerc->getDiametre()/2)
+   				 {
+					takeDamage(objet,obj,i,power);
+   				 	return true;
+   				 }
             }
 
             else if(Losange *losa= dynamic_cast <Losange*> (obj->getForme()))
             {
-                  Point pt ( curseur_x, curseur_y);
-
-            	return (inTriangle (pt, losa->getP1(),losa->getP2(),losa->getP3()) ||  inTriangle (pt,losa->getP3(),losa->getP4(),losa->getP1()));
+                Point pt ( curseur_x, curseur_y);
+                if(inTriangle (pt, losa->getP1(),losa->getP2(),losa->getP3()) ||  inTriangle (pt,losa->getP3(),losa->getP4(),losa->getP1()))
+                {
+					takeDamage(objet,obj,i,power);
+                	return true;
+                }
             }
             else if(Triangle *tria= dynamic_cast <Triangle*> (obj->getForme()))
             {
             	Point pt ( curseur_x, curseur_y);
-
-            	return inTriangle(pt, tria->getP1(),tria->getP2(),tria->getP3());
+            	if(inTriangle(pt, tria->getP1(),tria->getP2(),tria->getP3()))
+            	{
+					takeDamage(objet,obj,i,power);
+            		return true;
+            	}
             }
+
+
     }
-    cout << "True" <<  endl;
     return false;
 }
 
-bool Character::collision(int x, int y, vector<Objects*> obj)
+bool Character::collision(int x, int y, vector<Objects*> obj,int power)
 {
-    cout << "XXXX " << x << "YYYY " << y << endl;
-    if(x < 800 && x > -800 && y < 600 && y > -600 && !collisionObjet( x,y,obj) )
+    if(x < 800 && x > -800 && y < 600 && y > -600 && !collisionObjet( x,y,obj,power) )
         return true;
     else
         return false;
+}
+
+void Character::takeDamage(vector<Objects*> v ,Objects *o,int i, int power)
+{
+    if ((o->getLife() - power) <= 0) 
+    {
+    	cout << "dead" << v.size()<<  endl;
+        v.erase(v.begin()+i);
+       	cout << "dead after " << v.size()<<  endl;
+    }
+    else o->setLife(o->getLife() - power);
 }
 
 Character::~Character()

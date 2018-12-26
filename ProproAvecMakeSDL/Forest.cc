@@ -8,7 +8,7 @@
 #include "Objects.h"
 #include "Rock.h"
 #include "Tree.h"
-
+using namespace std;
 
 Forest::Forest()
 {
@@ -40,11 +40,16 @@ Objects* Forest::getObj(int i){
 void Forest::setP1(Character* c){ this->p1=c;}
 void Forest::setP2(Character* c){ this->p2=c;}
 
-std::vector<Objects*> Forest::getList(){return this->List_Obj;}
+vector<Objects*> Forest::getList(){return this->List_Obj;}
 
 void Forest::addList(Objects* o)
 {
    List_Obj.push_back(o);
+}
+void Forest::setList(vector<Objects*> v)
+{
+    this->List_Obj = v;
+
 }
 
 void Forest::init_forest()
@@ -64,6 +69,10 @@ void Forest::init_forest()
 
 void Forest::print(SDL_Renderer *renderer)
 {
+    SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
+
 
   for(int unsigned i=0; i < this->List_Obj.size() ;i++)
   {
@@ -74,11 +83,8 @@ void Forest::print(SDL_Renderer *renderer)
   if (p1 != NULL) p1->print(f);
   if (p2 != NULL) p2->print(f);
 
-   SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
     
-    SDL_RenderPresent(renderer);
-    SDL_RenderClear(renderer);
-
+   SDL_RenderPresent(renderer);
 } 
 
 

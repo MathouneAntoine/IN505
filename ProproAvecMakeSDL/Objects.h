@@ -10,6 +10,8 @@ class Objects
 	public:
 		Objects();
 		int getLife();
+		void setLife(int life);
+
 		int getHeight();
 		int getDiameter();
 		int getAltitude();

@@ -16,7 +16,7 @@ class Player: public Character
         bool movePlayer(SDL_Event event, vector<Objects*> obj);
         void print(Field f);
         void Translate(int direction,  vector<Objects*> obj);
-        //void Attack(int direction, int range, int power,  vector<Objects*> obj);
+        void Attack(int direction, int range,  vector<Objects*> obj, int power);
 
 		~Player();
 	private:

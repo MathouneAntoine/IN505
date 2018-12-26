@@ -21,12 +21,14 @@ class Forest
 		void addList(Objects* o);
 		void setP1(Character* c);
 		void setP2(Character* c);
+		 friend void setList(vector<Objects*> v);
+
 		Field getField();
+
 		void print(SDL_Renderer *renderer);
 		std::vector<Objects*> getList();
 		void init_forest();
-		bool colisionObjet(int curseur_x,int curseur_y);
-		bool colision(int x, int y);
+	
 
 		~Forest();
 

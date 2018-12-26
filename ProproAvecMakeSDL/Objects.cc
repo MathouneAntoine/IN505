@@ -12,6 +12,10 @@ int Objects::getLife()
 	return this->life;
 }
 
+void Objects::setLife(int life)
+{
+	this->life = life;
+}
 int Objects::getHeight()
 {
 	return this->height;

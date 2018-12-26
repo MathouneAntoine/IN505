@@ -18,8 +18,10 @@ class Character
         Cercle*  getForme();
         virtual void print(Field f);
 		void PrintInfo();
-		bool collision(int x, int y, vector<Objects*> obj);
-		bool collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj );  
+		bool collision(int x, int y, vector<Objects*> obj,int power);
+		bool collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj ,int power);  
+		void takeDamage(vector<Objects*> v ,Objects *o,int i, int power);
+
 
 		~Character();
 	protected:
