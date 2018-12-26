@@ -19,36 +19,21 @@ forestEditor::forestEditor()
 
 void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSurf  )
 {
+     message(screen);
+
     SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(screen, -1, 0);
     if(!renderer)
     {
         std::cout << "SDL Error : " << SDL_GetError() << std::endl;
     }
-    SDL_RenderPresent(renderer);
 
-  SDL_Surface * text=NULL;
-  TTF_Font * police = NULL;
-  SDL_Color c = {38, 26, 13};
-
-  police = TTF_OpenFont("./font.ttf", 15);
-    if(!police) printf("TTF_OpenFont: %s\n", TTF_GetError());
-
-  text=TTF_RenderText_Blended(police, "Appuyer sur A pour placer un arbre, R pour un Rocher, P un personnage", c);
-  SDL_Rect Message_rect; //create a rect
-    Message_rect.x = 0;  //controls the rect's x coordinate 
-    Message_rect.y = 0; // controls the rect's y coordinte
-    Message_rect.w = text->w; // controls the width of the rect
-    Message_rect.h = text->h; // controls the height of the rect
-
-    SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text); 
-
-    //SDL_RenderCopy(renderer, Message, NULL, &Message_rect); //you put the renderer's name first, the Message, the crop size(you can ignore this if you don't want to dabble with cropping), and the rect which is the size and coordinate of your texture
     SDL_RenderPresent(renderer);
     SDL_Event event;
     char res='b';
     Point center;
     int count =1;
+    f->print(renderer);
      while (res !='s' && res!='q' )
      {
          f->print(renderer);
@@ -68,7 +53,7 @@ void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSur
             if (add_Tree(f,center)==true)
             {
                 int t=f->getList().size();               
-              // dynamic_cast<Tree*>(f->getObj(t-1))->print(f->getField());
+               dynamic_cast<Tree*>(f->getObj(t-1))->print(f->getField());
             }
             res='b';
         }
@@ -78,7 +63,7 @@ void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSur
             {
                 int t=f->getList().size();       
                 cerr<< "T = " << t << endl; 
-               //dynamic_cast<Rock*>(f->getObj(t-1))->print();
+               dynamic_cast<Rock*>(f->getObj(t-1))->print();
               
             }
             res='b';
@@ -108,6 +93,49 @@ void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSur
      }
 
      cout<< "FIN EDITION";
+}
+
+void forestEditor::message(SDL_Window* screen)
+{
+    SDL_Renderer *renderer;
+    renderer = SDL_CreateRenderer(screen, -1, 0);
+    if(!renderer)
+    {
+        std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+    }
+    SDL_RenderPresent(renderer);
+    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 255, 255,255, 255);
+
+  SDL_Surface * text=NULL;
+  TTF_Font * police = NULL;
+  SDL_Color c = {38, 26, 13};
+
+  police = TTF_OpenFont("./font.ttf", 15);
+    if(!police) printf("TTF_OpenFont: %s\n", TTF_GetError());
+
+  text=TTF_RenderText_Blended(police, "Appuyer sur A pour placer un arbre, R pour un Rocher, P un personnage", c);
+  SDL_Rect Message_rect;
+    Message_rect.x = 0; 
+    Message_rect.y = 0;
+    Message_rect.w = text->w; 
+    Message_rect.h = text->h; 
+
+    SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text); 
+    SDL_RenderCopy(renderer, Message, NULL, &Message_rect); 
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+
+    SDL_Event event;
+
+    while(event.key.keysym.sym != SDLK_RETURN)
+    {
+        cout<< "OKK";
+     SDL_WaitEvent(&event);
+    }
+
+    SDL_DestroyRenderer(renderer);
+
 }
 
 bool forestEditor::add_Element(Forest* f, Objects* r, Point center)

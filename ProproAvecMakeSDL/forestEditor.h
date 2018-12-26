@@ -14,6 +14,7 @@ class forestEditor
 		forestEditor();
 
 		void create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSurf);
+		void message(SDL_Window* screen);
 
 		bool add_Element(Forest *f, Objects* r, Point center);
 		bool add_Rock(Forest *f, Point center);

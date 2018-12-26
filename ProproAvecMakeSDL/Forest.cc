@@ -77,7 +77,7 @@ void Forest::print(SDL_Renderer *renderer)
    SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
     
     SDL_RenderPresent(renderer);
-        SDL_RenderClear(renderer);
+    SDL_RenderClear(renderer);
 
 } 
 
