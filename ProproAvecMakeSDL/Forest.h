@@ -18,6 +18,8 @@ class Forest
 		Forest(Forest &f);
 		Character* getP1();
 		Character* getP2();
+		void setP1(Character* p1);
+		void setP2(Character* p2);
 		void print(SDL_Renderer *renderer);
 		std::vector<Objects*> getList();
 		void init_forest();

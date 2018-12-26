@@ -40,14 +40,17 @@ int main(int argc, char **argv)
         return -1;
     }
     Point p(150,150);
+
+    Point p2(444,444);
     Forest *forest  = new Forest();
     Rock * r=new Rock(p);
     //r->printInfo();
     //r->print();
     forest->List_Obj.push_back(r);
     Player *c = new Player();
-    //Ai *ai = new Ai();
-    //forest.List_Obj.push_back(*ai);
+    Ai *ai = new Ai();
+    Tree *t = new Tree(p2);
+    forest->List_Obj.push_back(t);
 
     SDL_Event event;
 
@@ -56,31 +59,33 @@ int main(int argc, char **argv)
 
     bool end;
     end = false;
+    bool tour;
     while(!end)
     {
+      
         SDL_WaitEvent(&event);
-        SDL_GetMouseState(&x, &y);
+        //SDL_GetMouseState(&x, &y);
 
         if(event.window.event == SDL_WINDOWEVENT_CLOSE)
         {
             end = true;
         }
         SDL_RenderClear(renderer);
-        //forest.List_Obj[0]->printInfo();
+    //forest->List_Obj[1]->print();
     forest->List_Obj[0]->print();
-    
-        //ai->print();
-        //ai->live_Ai();
+    //t->print(f);
+        ai->print();
+        ai->live_Ai(forest->List_Obj);
         //ai->PrintInfo();
        c->print();
-       c->PrintInfo();
+       //c->PrintInfo();
        //c->getForme()->afficher();
-        c->movePlayer(event, x, y, forest->List_Obj);
+        tour = c->movePlayer(event, x, y, forest->List_Obj);
 
         SDL_RenderPresent(renderer);
 
 
-        }
+    }
         //you
 
 

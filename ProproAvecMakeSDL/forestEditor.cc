@@ -95,13 +95,14 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
         }
 
         if (res=='p' && count >=3)res='b';
-        if (res=='s' && (f.p1==NULL || f.p2==NULL))res='b';
+        if (res=='s' && (f.p1==NULL || f.p2==NULL)) res='b';
 
 
         center.setX(0);
         center.setY(0);             
      }
      SDL_DestroyRenderer(renderer);
+     
      if (res=='s')
      {
         write_Forest(f);

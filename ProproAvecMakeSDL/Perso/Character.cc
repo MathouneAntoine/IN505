@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-
+#include <math.h>
 
 #include "Character.h"
 #include "../mes_formes.h"
@@ -71,89 +71,72 @@ Cercle* Character::getForme()
 {
     return this->cerc;
 }
+float sign (Point P1, Point P2, Point P3)
+{
+    return (P1.getX() - P3.getX()) * (P2.getY() - P3.getY()) - (P2.getX() - P3.getX()) * (P1.getY() - P3.getY());
+}
 
-bool Character::colisionObjet(int curseur_x,int curseur_y, vector<Objects*> objet ) {     
-    cout <<"Début size list objet = " << objet.size()<<  endl;
+bool inTriangle (Point pt, Point P1, Point P2, Point P3)
+{
+    float d1, d2, d3;
+    bool negative, positive;
+
+    d1 = sign(pt, P1, P2);
+    d2 = sign(pt, P2, P3);
+    d3 = sign(pt, P3, P1);
+
+    negative = (d1 < 0) || (d2 < 0) || (d3 < 0);
+    positive = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+    return !(negative && positive);
+}	
+bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> objet ) {     
     
     for(int unsigned i=0; i < objet.size();i++)
         {
             Objects* obj;
             obj=objet[i];
-            objet[0]->printInfo();
+            //objet[0]->printInfo();
             if(Rectangle *rect= dynamic_cast <Rectangle*> (obj->getForme()))
             {
+            	 cout <<"COLISION = " << endl;
+            	 obj->printInfo();
+
                  if (curseur_x >= rect->getP1().getX() 
                 && curseur_x <  rect->getP4().getX()
                 && curseur_y >= rect->getP2().getY()  
                 && curseur_y < rect->getP1().getY())
-                   return false;
-            }
+                   return true;
+            }	
 
             else if(Cercle *cerc= dynamic_cast <Cercle*> (obj->getForme()))
-            {
-                 if (curseur_x >= cerc->getCenter().getX()- cerc->getDiametre()/2
-                && curseur_x <   cerc->getCenter().getX()+ cerc->getDiametre()/2
-                && curseur_y >=  cerc->getCenter().getY()- cerc->getDiametre()/2
-                && curseur_y < cerc->getCenter().getY()+ cerc->getDiametre()/2)
-                   return false;
+            {    
+
+             	int dist = sqrt( pow((cerc->getCenter().getX() - curseur_x),2) + (pow((cerc->getCenter().getY() - curseur_y),2)));
+   				 return dist <= cerc->getDiametre()/2;
+                  // return false;
             }
 
             else if(Losange *losa= dynamic_cast <Losange*> (obj->getForme()))
             {
-                  if (curseur_x >= rect->getP4().getX() 
-                && curseur_x <  rect->getP2().getX()
-                && curseur_y >= rect->getP3().getY()  
-                && curseur_y < rect->getP1().getY())
-                   return false;
+                  Point pt ( curseur_x, curseur_y);
+
+            	return (inTriangle (pt, losa->getP1(),losa->getP2(),losa->getP3()) ||  inTriangle (pt,losa->getP3(),losa->getP4(),losa->getP1()));
             }
             else if(Triangle *tria= dynamic_cast <Triangle*> (obj->getForme()))
             {
-                if(tria->getOrientation()==0)
-                {
-                     if (curseur_x >= rect->getP2().getX() 
-                && curseur_x <  rect->getP3().getX()
-                && curseur_y >= rect->getP1().getY()  
-                && curseur_y < rect->getP2().getY())
-                   return false;
+            	Point pt ( curseur_x, curseur_y);
 
-
-                }
-                if(tria->getOrientation()==1)
-                {
-                    if (curseur_x >= rect->getP2().getX() 
-                && curseur_x <  rect->getP1().getX()
-                && curseur_y >= rect->getP3().getY()  
-                && curseur_y < rect->getP2().getY())
-                   return false;
-                    
-                }
-                if(tria->getOrientation()==2)
-                {
-                    if (curseur_x >= rect->getP2().getX() 
-                && curseur_x <  rect->getP3().getX()
-                && curseur_y >= rect->getP1().getY()  
-                && curseur_y < rect->getP2().getY())
-                   return false;
-                    
-                }
-                if(tria->getOrientation()==3)
-                {
-                    if (curseur_x >= rect->getP1().getX() 
-                && curseur_x <  rect->getP2().getX()
-                && curseur_y >= rect->getP3().getY()  
-                && curseur_y < rect->getP2().getY())
-                   return false;
-                }
+            	return inTriangle(pt, tria->getP1(),tria->getP2(),tria->getP3());
             }
     }
     cout << "True" <<  endl;
     return true;
 }
 
-bool Character::colision(int x, int y, vector<Objects*> obj)
+bool Character::collision(int x, int y, vector<Objects*> obj)
 {
-    cout << "colisionObjet:" << colisionObjet( x,y,obj) <<endl;
-    if(x < 800 && x > 0 && y < 600 && y > 0 && colisionObjet( x,y,obj) )
+    if(x < 800 && x > 0 && y < 600 && y > 0 && !collisionObjet( x,y,obj) )
         return true;
     else
         return false;

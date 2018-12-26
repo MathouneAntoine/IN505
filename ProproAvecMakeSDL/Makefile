@@ -22,7 +22,7 @@ $(EXEC):
 
 game: $(OBJ) $(OBJ_Formes) $(OBJ_Perso)
 	$(CXX) -o $@ $^ $(LDFLAGS)
-
+	
 Field.o: 
 Objects.o: Field.h 
 Rock.o: Objects.h 

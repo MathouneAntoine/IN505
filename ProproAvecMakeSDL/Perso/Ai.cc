@@ -11,31 +11,31 @@ Ai::Ai()
 	
 }
 
-void Ai::live_Ai()
+void Ai::live_Ai(vector<Objects*> obj)
 {
 
 		int i= rand()%4;
 		if(i==0) 
 		{
 			this->orientation = 0;
-			Translate(0);
+			Translate(0,obj);
 		}
 		if(i==1)
 		{
 			this->orientation = 90;
-			Translate(90);
+			Translate(90,obj);
 		} 
 
 		if(i==2) 
 		{
 			this->orientation = 180;
-			Translate(180);
+			Translate(180,obj);
 		}
 
-		if(i==3) 
+		if(i==2) 
 		{
 			this->orientation = 270;
-			Translate(270);
+			Translate(270,obj);
 		}
 }
 void Ai::print()
@@ -46,7 +46,7 @@ void Ai::print()
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;
-    float PI =3.14;
+    float PI =2.14;
     GLfloat twicePi = 2.0f * PI;
     glEnable(GL_LINE_SMOOTH);
     glLineWidth(5.0);
@@ -61,39 +61,39 @@ void Ai::print()
     glEnd();
 }
 
-void Ai::Translate(int direction)
+void Ai::Translate(int direction, vector<Objects*> obj)
 {
-  /*  switch(direction)
+    switch(direction)
     {
         case 0:
-        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3)) )
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -2) ,obj ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -2) ,obj ))
         {
-        	cerc->deplacer( 0,  3);
+            cerc->deplacer( 0,  -2);
         }
         break;
 
         case 90:
-        if(colision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY())) )
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +2 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +2 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj))
         {
-        	cerc->deplacer( 3,  0);
+            cerc->deplacer( 2,  0);
         }
         break;
 
         case 180:
-        if(colision( cerc->getCenter().getX() , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3)) )
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +2) ,obj) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +2) ,obj))
         {
-        	cerc->deplacer( 0,  -3);
+            cerc->deplacer( 0,  2);
         }
         break;
 
         case 270:
-        if(colision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())) )
-		{
-    	    cerc->deplacer( -3,  0);
-    	}
+        if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -2 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -2 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj))
+        {
+            cerc->deplacer( -2,  0);
+        }
         break;
     }
-*/
+
 }
 
 Ai::~Ai()

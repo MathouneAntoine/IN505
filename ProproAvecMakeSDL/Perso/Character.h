@@ -16,8 +16,8 @@ class Character
         Cercle*  getForme();
         virtual void print();
 		void PrintInfo();
-		bool colision(int x, int y, vector<Objects*> obj);
-		bool colisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj );  
+		bool collision(int x, int y, vector<Objects*> obj);
+		bool collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj );  
 
 		~Character();
 	protected:

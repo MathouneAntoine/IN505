@@ -12,9 +12,10 @@ class Player: public Character
 {
 	public:
 		Player();
-        void movePlayer(SDL_Event event , int x, int y, vector<Objects*> obj);
+        bool movePlayer(SDL_Event event , int x, int y, vector<Objects*> obj);
         void print();
         void Translate(int direction,  vector<Objects*> obj);
+        //void Attack(int direction, int range, int power,  vector<Objects*> obj);
 
 		~Player();
 	private:

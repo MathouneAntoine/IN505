@@ -36,6 +36,15 @@ Forest::Forest(Forest& f)
 
 Character* Forest::getP1(){return this->p1;}
 Character* Forest::getP2(){return this->p2;}
+void Forest::setP1(Character* p1)
+{
+    this->p1 = p1;
+
+}
+void Forest::setP2(Character* p2)
+{
+    this->p2 = p2;
+}
 std::vector<Objects*> Forest::getList(){return this->List_Obj;}
 
 void Forest::init_forest()
