@@ -12,11 +12,23 @@
 #include "Character.h"
 
 using namespace std;
-Player::Player(Point p,Field f)
+Player::Player()
 {
 
 }
+Player::Player(Point p)
+{
+    int o = rand()%4;
+    if(o == 0) {this->orientation = 0;}
+    if(o == 1) {this->orientation = 90;}
+    if(o == 2) {this->orientation = 180;}
+    if(o == 3) {this->orientation = 270;}
 
+    this->pv = 100;
+    this->weaponDamage = 50;
+    this->weaponRange= 5;
+    this->cerc = new Cercle();
+}
 bool Player::movePlayer(SDL_Event event , int x, int y,vector<Objects*> obj)
 {
  switch(event.type)

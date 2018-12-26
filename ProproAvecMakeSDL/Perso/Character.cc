@@ -32,16 +32,7 @@ Character::Character(Point p)
 	this->weaponRange= 5;
 	this->cerc = new Cercle(this->p,20);
 }
-Character::Character(Point p, Field f)
-{
- 	this->p.setX(p.getX() -f.getWidth()/2);
- 	this->p.setY(p.getY() - f.getHeight()/2);
-	this->orientation = 0;
-	this->pv = 100;
-	this->weaponDamage = 50;
-	this->weaponRange= 5;
-	this->cerc = new Cercle(this->p,20);
-}
+
 
 void Character::print(Field f)
 {

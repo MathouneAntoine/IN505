@@ -10,6 +10,16 @@ Ai::Ai()
 {
 	
 }
+Ai::Ai(Point p)
+{
+    this->p.setX(p.getX() );
+    this->p.setY(p.getY() );
+    this->orientation = 0;
+    this->pv = 100;
+    this->weaponDamage = 50;
+    this->weaponRange= 5;
+    this->cerc = new Cercle(this->p,20);
+}
 
 void Ai::live_Ai(vector<Objects*> obj)
 {

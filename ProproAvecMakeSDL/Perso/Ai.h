@@ -14,6 +14,8 @@ class Ai : public  Character
 {
 	public:
 		Ai();
+		Ai(Point p);
+
 		void live_Ai(vector<Objects*> obj);
 		void print(Field f);
 

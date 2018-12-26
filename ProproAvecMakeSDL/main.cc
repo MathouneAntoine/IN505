@@ -39,7 +39,7 @@ int main(int argc, char **argv)
         std::cout << "SDL Error : " << SDL_GetError() << std::endl;
         return -1;
     }
-    Point p(150-400,150-300);
+    Point p(150,150);
 
     Point p2(444,444);
 
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 
 
    
-    Player *c = new Player(p,f);
+    Player *c = new Player(p);
    // Ai *ai = new Ai();
 
      Rock * r=new Rock(p);
