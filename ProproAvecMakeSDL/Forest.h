@@ -15,11 +15,13 @@ class Forest
 
 		Forest();
 		Forest(Field f);
-		Forest(Forest &f);
 		Character* getP1();
 		Character* getP2();
-		void setP1(Character* p1);
-		void setP2(Character* p2);
+		Objects* getObj(int i);
+		void addList(Objects* o);
+		void setP1(Character* c);
+		void setP2(Character* c);
+		Field getField();
 		void print(SDL_Renderer *renderer);
 		std::vector<Objects*> getList();
 		void init_forest();
@@ -28,8 +30,9 @@ class Forest
 
 		~Forest();
 
-        // private:
-			Field f;
+        private:
+        	
+		Field f;
 		std::vector<Objects*> List_Obj;
 		Character* p1;
 		Character* p2;

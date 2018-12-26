@@ -17,7 +17,7 @@ using namespace std;
 forestEditor::forestEditor()
 {}
 
-void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf  )
+void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSurf  )
 {
     SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(screen, -1, 0);
@@ -51,8 +51,7 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
     int count =1;
      while (res !='s' && res!='q' )
      {
-         f.print(renderer);
-
+         f->print(renderer);
         while(res=='b')
         {
             SDL_WaitEvent(&event);  
@@ -66,44 +65,44 @@ void forestEditor::create_forest(Forest f, SDL_Window* screen,SDL_Surface* pSurf
 
         if (res=='a')
         {  
-            if (add_Tree(&f,center)==true)
+            if (add_Tree(f,center)==true)
             {
-                int t=f.List_Obj.size();               
-               dynamic_cast<Tree*>(f.List_Obj[t-1])->print(f.f);
+                int t=f->getList().size();               
+              // dynamic_cast<Tree*>(f->getObj(t-1))->print(f->getField());
             }
             res='b';
         }
         if (res=='r')
         {
-            if (add_Rock(&f,center)==true)
+            if (add_Rock(f,center)==true)
             {
-                int t=f.List_Obj.size();               
-               dynamic_cast<Rock*>(f.List_Obj[t-1])->print();
+                int t=f->getList().size();       
+                cerr<< "T = " << t << endl; 
+               //dynamic_cast<Rock*>(f->getObj(t-1))->print();
               
             }
             res='b';
         }
         if (res=='p' && count <3)
         {
-            if (add_Player(&f,center,count)==true)
+            if (add_Player(f,center,count)==true)
             {
-                if (count ==1) f.p1->print();
-                if (count ==2) f.p2->print(); 
+                if (count ==1) f->getP1()->print();
+                if (count ==2) f->getP2()->print(); 
                  count++;
             }
             res='b';
         }
 
         if (res=='p' && count >=3)res='b';
-        if (res=='s' && (f.p1==NULL || f.p2==NULL)) res='b';
-
+        if (res=='s' && (f->getP1()==NULL || f->getP2()==NULL))res='b';
 
         center.setX(0);
         center.setY(0);             
      }
      SDL_DestroyRenderer(renderer);
-     
-     if (res=='s')
+
+     if (res=='s'&& f->getP1()!=NULL && f->getP2()!=NULL)
      {
         write_Forest(f);
      }
@@ -121,9 +120,9 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
     int r_d=r->getDiameter()/2;
     int r_h=r->getHeight()/2;
 
-        for(int unsigned i=0; i < f->List_Obj.size()&& ok !=1 ;i++)
+    for(int unsigned i=0; i < f->getList().size() && ok !=1 ;i++)
         {
-            obj=f->List_Obj[i];
+            obj=f->getObj(i);
             int obj_x=obj->getCenter().getX();
             int obj_y=obj->getCenter().getY();
             int obj_d=obj->getDiameter()/2;
@@ -150,10 +149,9 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
                     (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
                         && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
                 ))
-                {ok=1;}
-        }
-
-        cout << "OK val : " << ok << endl;
+                {  cout << "DANS LE IF " << endl;
+                    ok=1;}
+        }      
 
     if (ok==1)
         {
@@ -163,12 +161,12 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
 
      if (ok==0)
         {
-            if (f->p1 != NULL)
+            if (f->getP1() != NULL)
             {
                  cout << "P1 existe" <<endl;
-                int obj_x=f->p1->getForme()->getCenter().getX();
-                int obj_y=f->p1->getForme()->getCenter().getY();
-                int obj_d=f->p1->getForme()->getDiametre()/2;
+                int obj_x=f->getP1()->getForme()->getCenter().getX();
+                int obj_y=f->getP1()->getForme()->getCenter().getY();
+                int obj_d=f->getP1()->getForme()->getDiametre()/2;
                 int obj_h=obj_d;
 
                if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
@@ -195,13 +193,13 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
                 {ok=1;}
             }
 
-            if (f->p2 != NULL)
+            if (f->getP2() != NULL)
             {
                 cout << "P2 existe" <<endl;
 
-                int obj_x=f->p2->getForme()->getCenter().getX();
-                int obj_y=f->p2->getForme()->getCenter().getY();
-                int obj_d=f->p2->getForme()->getDiametre()/2;
+                int obj_x=f->getP2()->getForme()->getCenter().getX();
+                int obj_y=f->getP2()->getForme()->getCenter().getY();
+                int obj_d=f->getP2()->getForme()->getDiametre()/2;
                 int obj_h=obj_d;
 
               if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
@@ -229,11 +227,14 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
             }
         }
 
+  
     if (ok ==0)
     {
-        f->List_Obj.push_back(r);
+        f->addList(r);
+        
         return true;
     }
+
 
     return false;       
 }
@@ -255,9 +256,9 @@ bool forestEditor::add_Player(Forest* f, Point center, int i)
     Objects* obj;
     bool ok=0;
 
-    for(int unsigned i=0; i < f->List_Obj.size()&& ok !=1 ;i++)
+    for(int unsigned i=0; i < f->getList().size()&& ok !=1 ;i++)
         {
-            obj=f->List_Obj[i];
+            obj=(f->getList())[i];
             int rx=obj->getCenter().getX();
             int ry=obj->getCenter().getY();
             int rd=obj->getDiameter()/2;
@@ -285,8 +286,8 @@ bool forestEditor::add_Player(Forest* f, Point center, int i)
 
      if (ok==0 && (i==1 || i==2))
         {
-            if (i==1) { cout << "ADD 1" <<endl; f->p1=c;}
-            if (i==2) { cout << "ADD 2" <<endl; f->p2=c;}
+            if (i==1) { cout << "ADD 1" <<endl; f->setP1(c);}
+            if (i==2) { cout << "ADD 2" <<endl; f->setP2(c);}
             return true;
         }
     return false;  
@@ -294,20 +295,22 @@ bool forestEditor::add_Player(Forest* f, Point center, int i)
    
 }
 
-void forestEditor::write_Forest(Forest f)
+void forestEditor::write_Forest(Forest* f)
 {
     ofstream file("Saves/personalisee.txt",  ios::out | ios::trunc);
  
     if(file)  
     {       
-       for(int unsigned i=0;i<f.List_Obj.size();i++)
+       for(int unsigned i=0;i<f->getList().size();i++)
         {
-            if (dynamic_cast<Rock*>(f.List_Obj[i])) this->write_Rock(dynamic_cast<Rock*>(f.List_Obj[i]), file );
-            if (dynamic_cast<Tree*>(f.List_Obj[i])) this->write_Tree(dynamic_cast<Tree*>(f.List_Obj[i]), file);
+            if (dynamic_cast<Rock*>(f->getList()[i])) this->write_Rock(dynamic_cast<Rock*>(f->getList()[i]), file );
+            if (dynamic_cast<Tree*>(f->getList()[i])) this->write_Tree(dynamic_cast<Tree*>(f->getList()[i]), file);
         }
 
-        write_Character(f.getP1(), file,1);
-        write_Character(f.getP2(), file,2);
+        cout<< "P1== " << endl; 
+        f->getP1()->PrintInfo();
+        write_Character(f->getP1(), file,1);
+        write_Character(f->getP2(), file,2);
 
         file.close();
     }
@@ -331,10 +334,14 @@ void forestEditor::write_Tree(Tree* t, ofstream &file)
 
 void forestEditor::write_Character(Character* c, ofstream &file, int i)
 {
-    file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
+   if(c!=NULL) cout<<"PAS NULL";
+   if(c==NULL) cout<<"NULL";
+
+
+   // file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
 }
 
-Forest forestEditor::read_File(Forest f, string s)
+Forest* forestEditor::read_File(Forest* f, string s)
 {
     ifstream file(s, ios::in);  
     char c,t;
@@ -358,7 +365,7 @@ Forest forestEditor::read_File(Forest f, string s)
                         center.setX(x);
                         center.setY(y);
                         Rock* r= new Rock(t, center, height, diameter, altitude, life);
-                        f.List_Obj.push_back(r);
+                        f->getList().push_back(r);
                     }
                     break;
 
@@ -369,7 +376,7 @@ Forest forestEditor::read_File(Forest f, string s)
                         center.setX(x);
                         center.setY(y);
                         Tree* r= new Tree(t, center, height, diameter, altitude, life);
-                        f.List_Obj.push_back(r);
+                        f->getList().push_back(r);
                     }
                     break;
 
@@ -380,8 +387,8 @@ Forest forestEditor::read_File(Forest f, string s)
                         center.setX(x);
                         center.setY(y);
                         Character* perso=new Character(center);
-                        if (i==1) f.p1=perso;
-                        if (i==2) f.p2=perso;
+                        if (i==1) f->setP1(perso);
+                        if (i==2) f->setP2(perso);
                         if (i!=1 && i!=2) cout<<"ERREUR LECTURE FICHIER PERSO";
                     }
 

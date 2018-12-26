@@ -122,8 +122,8 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
    {
      int x= event.motion.x;
      int y= event.motion.y;
-      Forest f;
-      forestEditor edit;
+     Forest *f=new Forest();
+     forestEditor edit;
 
     if((rect[0].x<x)&&(rect[0].x+rect[0].w>x)&&(rect[0].y<y)&&(rect[0].y+rect[0].h>y))
     {

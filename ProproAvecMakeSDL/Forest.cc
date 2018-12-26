@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <vector>
+#include <iostream>
 #include "Forest.h"
 #include "mes_perso.h"
 #include "mes_formes.h"
@@ -15,48 +16,47 @@ Forest::Forest()
     this->f=field;
     p1=NULL;
     p2=NULL;
+    std::vector<Objects*>List_Obj;
 }
 
 Forest::Forest(Field field)
 {
-	this->f=field;
+    this->f=field;
     p1=NULL;
     p2=NULL;
+    std::vector<Objects*>List_Obj;
 }
 
-Forest::Forest(Forest& f)
-{
-    this->f=f.f;
-    this->p1=f.p1;
-    this->p2=f.p2;
-    this->List_Obj= f.List_Obj;
-    p1=NULL;
-    p2=NULL;
-}
 
 Character* Forest::getP1(){return this->p1;}
 Character* Forest::getP2(){return this->p2;}
-void Forest::setP1(Character* p1)
-{
-    this->p1 = p1;
+Field Forest::getField(){return this->f;}
 
+Objects* Forest::getObj(int i){
+
+    return this->List_Obj[i];
 }
-void Forest::setP2(Character* p2)
-{
-    this->p2 = p2;
-}
+
+void Forest::setP1(Character* c){ this->p1=c;}
+void Forest::setP2(Character* c){ this->p2=c;}
+
 std::vector<Objects*> Forest::getList(){return this->List_Obj;}
+
+void Forest::addList(Objects* o)
+{
+   List_Obj.push_back(o);
+}
 
 void Forest::init_forest()
 {
-	std::cout << "YO" << List_Obj.size() << std::endl;
-	
+    std::cout << "YO" << List_Obj.size() << std::endl;
+    
 
     for (int i=0; i< List_Obj.size(); i++)
     {
-    	std::cout << List_Obj[i]->getType() << std::endl;
+        std::cout << List_Obj[i]->getType() << std::endl;
         if(dynamic_cast<Rock*> (List_Obj[i]))
-        	dynamic_cast <Rock*> (this->List_Obj[i])->print();
+            dynamic_cast <Rock*> (this->List_Obj[i])->print();
         if(dynamic_cast<Tree*> (List_Obj[i]))
             dynamic_cast <Tree*> (this->List_Obj[i])->print(this->f);    
     }
