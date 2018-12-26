@@ -14,7 +14,7 @@ class Character
 		Character(const Point p);
 		Character(const Point p, int orientation, int pv, int weaponDamage, int weaponRange);
         Cercle*  getForme();
-        virtual void print();
+        virtual void print(Field f);
 		void PrintInfo();
 		bool collision(int x, int y, vector<Objects*> obj);
 		bool collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj );  

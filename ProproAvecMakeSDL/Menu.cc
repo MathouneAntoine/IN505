@@ -141,7 +141,6 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
             break;
             case(2):
               map=1;
-                //map difficile
             break;
             default:
             exit(0);
@@ -181,7 +180,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
         switch (num_Menu)
         {
             case(0):
-                end_menu= -1;//quitter
+                end_menu= -1;
             break;
             case(1):
               game_type=3;

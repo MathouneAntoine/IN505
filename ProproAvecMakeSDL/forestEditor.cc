@@ -63,7 +63,7 @@ void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSur
             {
                 int t=f->getList().size();       
                 cerr<< "T = " << t << endl; 
-               dynamic_cast<Rock*>(f->getObj(t-1))->print();
+               dynamic_cast<Rock*>(f->getObj(t-1))->print(f->getField());
               
             }
             res='b';
@@ -72,8 +72,8 @@ void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSur
         {
             if (add_Player(f,center,count)==true)
             {
-                if (count ==1) f->getP1()->print();
-                if (count ==2) f->getP2()->print(); 
+                if (count ==1) f->getP1()->print(f->getField());
+                if (count ==2) f->getP2()->print(f->getField()); 
                  count++;
             }
             res='b';
@@ -105,32 +105,43 @@ void forestEditor::message(SDL_Window* screen)
     }
     SDL_RenderPresent(renderer);
     SDL_RenderClear(renderer);
-    SDL_SetRenderDrawColor(renderer, 255, 255,255, 255);
 
-  SDL_Surface * text=NULL;
+  SDL_Surface * text1=NULL;
+SDL_Surface * text2=NULL;
+      SDL_Surface * text3=NULL;
   TTF_Font * police = NULL;
-  SDL_Color c = {38, 26, 13};
+  SDL_Color c = {255, 255, 255};
 
-  police = TTF_OpenFont("./font.ttf", 15);
+  police = TTF_OpenFont("./edit_font.ttf", 15);
     if(!police) printf("TTF_OpenFont: %s\n", TTF_GetError());
 
-  text=TTF_RenderText_Blended(police, "Appuyer sur A pour placer un arbre, R pour un Rocher, P un personnage", c);
+  text1=TTF_RenderText_Blended(police, "Appuyez sur A pour placer un arbre, R pour un Rocher, P un personnage", c);
   SDL_Rect Message_rect;
-    Message_rect.x = 0; 
-    Message_rect.y = 0;
-    Message_rect.w = text->w; 
-    Message_rect.h = text->h; 
+    Message_rect.x = 10; 
+    Message_rect.y = 50;
+    Message_rect.w = text1->w; 
+    Message_rect.h = text1->h; 
+    SDL_Texture* Message2 = SDL_CreateTextureFromSurface(renderer, text1); 
+    SDL_RenderCopy(renderer, Message2, NULL, &Message_rect); 
 
-    SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text); 
+  text2=TTF_RenderText_Blended(police, "Puis cliquez ou vous voulez placer l'objet", c);
+    Message_rect.y = 150;
+    Message_rect.w = text2->w; 
+    Message_rect.h = text2->h; 
+    SDL_Texture* Message3 = SDL_CreateTextureFromSurface(renderer, text2); 
+    SDL_RenderCopy(renderer, Message3, NULL, &Message_rect); 
+
+text3=TTF_RenderText_Blended(police, "Appuyer sur S pour sauvegarder et quitter ou Q pour quitter sans sauvegarder", c);    Message_rect.y = 250;
+    Message_rect.w = text3->w; 
+    Message_rect.h = text3->h; 
+    SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text3); 
     SDL_RenderCopy(renderer, Message, NULL, &Message_rect); 
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
 
+    SDL_RenderPresent(renderer);
     SDL_Event event;
 
-    while(event.key.keysym.sym != SDLK_RETURN)
+    while(event.key.keysym.sym != SDLK_RETURN )
     {
-        cout<< "OKK";
      SDL_WaitEvent(&event);
     }
 
@@ -269,16 +280,23 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
 
 bool forestEditor::add_Rock(Forest* f, Point center)
 {
+    center.setX(center.getX()-f->getField().getWidth());
+    center.setY(center.getY()-f->getField().getHeight());
     return this->add_Element(f,new Rock(center),center);
 }
 
 bool forestEditor::add_Tree(Forest* f, Point center)
 {
+
+    center.setX(center.getX()-f->getField().getWidth());
+    center.setY(center.getY()-f->getField().getHeight());
     return this->add_Element(f,new Tree(center),center);
 }
 
 bool forestEditor::add_Player(Forest* f, Point center, int i)
 {
+      center.setX(center.getX()-f->getField().getWidth());
+    center.setY(center.getY()-f->getField().getHeight());
     Character *c=new Character(center);
     cout<< "Perso x" << c->getForme()->getCenter().getX() << " Y " << c->getForme()->getCenter().getY() << endl;
     Objects* obj;
@@ -362,11 +380,7 @@ void forestEditor::write_Tree(Tree* t, ofstream &file)
 
 void forestEditor::write_Character(Character* c, ofstream &file, int i)
 {
-   if(c!=NULL) cout<<"PAS NULL";
-   if(c==NULL) cout<<"NULL";
-
-
-   // file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
+  file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
 }
 
 Forest* forestEditor::read_File(Forest* f, string s)

@@ -56,7 +56,7 @@ void Forest::init_forest()
     {
         std::cout << List_Obj[i]->getType() << std::endl;
         if(dynamic_cast<Rock*> (List_Obj[i]))
-            dynamic_cast <Rock*> (this->List_Obj[i])->print();
+            dynamic_cast <Rock*> (this->List_Obj[i])->print(this->f);
         if(dynamic_cast<Tree*> (List_Obj[i]))
             dynamic_cast <Tree*> (this->List_Obj[i])->print(this->f);    
     }
@@ -68,11 +68,11 @@ void Forest::print(SDL_Renderer *renderer)
   for(int unsigned i=0; i < this->List_Obj.size() ;i++)
   {
     if (dynamic_cast<Tree*>(this->List_Obj[i]))dynamic_cast<Tree*>(this->List_Obj[i])->print(f);
-    if (dynamic_cast<Rock*>(this->List_Obj[i]))dynamic_cast<Rock*>(this->List_Obj[i])->print();
+    if (dynamic_cast<Rock*>(this->List_Obj[i]))dynamic_cast<Rock*>(this->List_Obj[i])->print(f);
   }
 
-  if (p1 != NULL) p1->print();
-  if (p2 != NULL) p2->print();
+  if (p1 != NULL) p1->print(f);
+  if (p2 != NULL) p2->print(f);
 
    SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
     

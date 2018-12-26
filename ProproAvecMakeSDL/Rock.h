@@ -13,7 +13,7 @@ class Rock :  public Objects
 		Rock(Field* field, int height, int diameter, int altitude, int FromCenterX, int FromCenterY);
 		Rock(Point center);
 		Rock(char t, Point center, int height, int diameter, int altitude, int life);
-		void print();
+		void print(Field f);
         void print_Rock();
 		~Rock();
 

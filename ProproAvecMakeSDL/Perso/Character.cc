@@ -34,11 +34,11 @@ Character::Character(Point p)
 	this->cerc = new Cercle(this->p,20);
 }
 
-void Character::print()
+void Character::print(Field f)
 {
 	cout << "Character" << endl;
-    GLfloat x =cerc->getCenter().getX() ;
-    GLfloat y =cerc->getCenter().getY();
+    GLfloat x =cerc->getCenter().getX()+f.getWidth() ;
+    GLfloat y =cerc->getCenter().getY()+f.getHeight();
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;
