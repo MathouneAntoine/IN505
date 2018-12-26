@@ -87,11 +87,11 @@ bool Player::movePlayer(SDL_Event event , int x, int y,vector<Objects*> obj)
         }
 }
 
-void Player::print()
+void Player::print(Field f)
 {
     cout << "Player" << endl;
-    GLfloat x =cerc->getCenter().getX() ;
-    GLfloat y =cerc->getCenter().getY();
+    GLfloat x =cerc->getCenter().getX()+f.getWidth();
+    GLfloat y =cerc->getCenter().getY()+f.getHeight();
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;

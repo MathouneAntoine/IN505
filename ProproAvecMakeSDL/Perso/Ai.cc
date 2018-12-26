@@ -38,11 +38,12 @@ void Ai::live_Ai(vector<Objects*> obj)
 			Translate(270,obj);
 		}
 }
-void Ai::print()
+void Ai::print(Field f)
 {
+ 
     cout << "Ai" << endl;
-    GLfloat x =cerc->getCenter().getX() ;
-    GLfloat y =cerc->getCenter().getY();
+    GLfloat x =cerc->getCenter().getX()+f.getWidth() ;
+    GLfloat y =cerc->getCenter().getY()+f.getHeight();
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;

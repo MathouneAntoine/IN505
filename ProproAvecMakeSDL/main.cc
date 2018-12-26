@@ -39,18 +39,21 @@ int main(int argc, char **argv)
         std::cout << "SDL Error : " << SDL_GetError() << std::endl;
         return -1;
     }
-  /*  Point p(150,150);
+    Point p(150-800,150-600);
 
     Point p2(444,444);
+
     Forest *forest  = new Forest();
+
+
     Rock * r=new Rock(p);
     //r->printInfo();
     //r->print();
-    forest->List_Obj.push_back(r);
-    Player *c = new Player();
-    Ai *ai = new Ai();
+    forest->getList().push_back(r);
+    Player *c = new Player(p);
+   // Ai *ai = new Ai();
     Tree *t = new Tree(p2);
-    forest->List_Obj.push_back(t);*/
+    forest->getList().push_back(t);
 
     SDL_Event event;
 
@@ -71,16 +74,15 @@ int main(int argc, char **argv)
             end = true;
         }
         SDL_RenderClear(renderer);
-    /*forest->List_Obj[1]->print();
-    forest->List_Obj[0]->print();
-    //t->print(f);
-        ai->print();
-        ai->live_Ai(forest->List_Obj);
+        //forest->getObj(1)->print();
+        //forest->getObj(0)->printInfo();
+       // t->print(f);
+       // ai->print();
+       // ai->live_Ai(forest->getList());
         //ai->PrintInfo();
-       c->print();
-       //c->PrintInfo();
-       //c->getForme()->afficher();
-        tour = c->movePlayer(event, x, y, forest->List_Obj);*/
+        c->print(f);
+       c->PrintInfo();
+        tour = c->movePlayer(event, x, y, forest->getList());
 
         SDL_RenderPresent(renderer);
 

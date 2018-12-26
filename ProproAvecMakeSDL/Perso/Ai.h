@@ -15,7 +15,7 @@ class Ai : public  Character
 	public:
 		Ai();
 		void live_Ai(vector<Objects*> obj);
-		void print();
+		void print(Field f);
 
 		void Translate(int direction, vector<Objects*> obj);
 
