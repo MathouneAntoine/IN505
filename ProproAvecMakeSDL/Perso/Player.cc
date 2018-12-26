@@ -18,18 +18,15 @@ Player::Player()
 }
 Player::Player(Point p)
 {
-    int o = rand()%4;
-    if(o == 0) {this->orientation = 0;}
-    if(o == 1) {this->orientation = 90;}
-    if(o == 2) {this->orientation = 180;}
-    if(o == 3) {this->orientation = 270;}
-
+    this->p.setX(p.getX());
+    this->p.setY(p.getY());
+    this->orientation = 0;
     this->pv = 100;
     this->weaponDamage = 50;
     this->weaponRange= 5;
-    this->cerc = new Cercle();
+    this->cerc = new Cercle(this->p,20);
 }
-bool Player::movePlayer(SDL_Event event , int x, int y,vector<Objects*> obj)
+bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
 {
  switch(event.type)
                 {
@@ -38,8 +35,6 @@ bool Player::movePlayer(SDL_Event event , int x, int y,vector<Objects*> obj)
                     case SDL_KEYDOWN:
                     switch(event.key.keysym.sym)
                     {
-
-
                         case SDLK_UP:
                         cout <<"Up"<<endl;
                         if(this->orientation!=0)
@@ -124,12 +119,13 @@ void Player::print(Field f)
 
 void Player::Translate(int direction, vector<Objects*> obj)
 {
-
+    cout<< "COUCOU 0"<<endl;
     switch(direction)
     {
         case 0:
         if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj ))
         {
+            cout<< "CASE 0"<<endl;
         	cerc->deplacer( 0,  -3);
         }
         break;
@@ -137,6 +133,7 @@ void Player::Translate(int direction, vector<Objects*> obj)
         case 90:
         if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj))
         {
+            cout<< "CASE 1"<<endl;
         	cerc->deplacer( 3,  0);
         }
         break;
@@ -144,6 +141,7 @@ void Player::Translate(int direction, vector<Objects*> obj)
         case 180:
         if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj))
         {
+            cout<< "CASE 2"<<endl;
         	cerc->deplacer( 0,  3);
         }
         break;
@@ -151,6 +149,7 @@ void Player::Translate(int direction, vector<Objects*> obj)
         case 270:
         if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj))
 		{
+            cout<< "CASE 3"<<endl;
     	    cerc->deplacer( -3,  0);
     	}
         break;

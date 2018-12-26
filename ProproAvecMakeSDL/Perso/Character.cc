@@ -24,8 +24,8 @@ Character::Character()
 }
 Character::Character(Point p)
 {
- 	this->p.setX(p.getX() );
- 	this->p.setY(p.getY() );
+ 	this->p.setX(p.getX());
+ 	this->p.setY(p.getY());
 	this->orientation = 0;
 	this->pv = 100;
 	this->weaponDamage = 50;
@@ -37,7 +37,7 @@ Character::Character(Point p)
 void Character::print(Field f)
 {
 	cout << "Character" << endl;
-    GLfloat x =cerc->getCenter().getX()+f.getWidth() ;
+    GLfloat x =cerc->getCenter().getX()+f.getWidth();
     GLfloat y =cerc->getCenter().getY()+f.getHeight();
     GLfloat radius = cerc->getDiametre()/2;
     int i;
@@ -92,17 +92,16 @@ bool inTriangle (Point pt, Point P1, Point P2, Point P3)
 }	
 bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> objet ) {     
     
+
+      cout << "HELLLLLLLLLLOOOOOOO "<<endl;
     for(int unsigned i=0; i < objet.size();i++)
         {
             Objects* obj;
             obj=objet[i];
-            //objet[0]->printInfo();
+            obj->printInfo();
             if(Rectangle *rect= dynamic_cast <Rectangle*> (obj->getForme()))
             {
-            	 cout <<"COLISION = " << endl;
-            	 obj->printInfo();
-
-                 if (curseur_x >= rect->getP1().getX() 
+                 if (curseur_x >= rect->getP1().getX()
                 && curseur_x <  rect->getP4().getX()
                 && curseur_y >= rect->getP2().getY()  
                 && curseur_y < rect->getP1().getY())
@@ -131,12 +130,13 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj
             }
     }
     cout << "True" <<  endl;
-    return true;
+    return false;
 }
 
 bool Character::collision(int x, int y, vector<Objects*> obj)
 {
-    if(x < 800 && x > 0 && y < 600 && y > 0 && !collisionObjet( x,y,obj) )
+    cout << "XXXX " << x << "YYYY " << y << endl;
+    if(x < 800 && x > -800 && y < 600 && y > -600 && !collisionObjet( x,y,obj) )
         return true;
     else
         return false;
