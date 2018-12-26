@@ -11,7 +11,7 @@ using namespace std;
 class Player: public Character
 {
 	public:
-		Player();
+		Player(Point p ,Field f);
         bool movePlayer(SDL_Event event , int x, int y, vector<Objects*> obj);
         void print(Field f);
         void Translate(int direction,  vector<Objects*> obj);

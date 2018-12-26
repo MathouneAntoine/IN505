@@ -12,7 +12,7 @@
 #include "Character.h"
 
 using namespace std;
-Player::Player()
+Player::Player(Point p,Field f)
 {
 
 }

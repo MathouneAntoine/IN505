@@ -11,7 +11,9 @@ class Character
 
 	public:
 		Character();
-		Character(const Point p);
+		Character(Point p);
+
+		Character(const Point p, Field f);
 		Character(const Point p, int orientation, int pv, int weaponDamage, int weaponRange);
         Cercle*  getForme();
         virtual void print(Field f);
