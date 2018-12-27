@@ -295,12 +295,17 @@ bool forestEditor::add_Tree(Forest* f, Point center)
 
 bool forestEditor::add_Player(Forest* f, Point center, int i)
 {
-      center.setX(center.getX()-f->getField().getWidth());
+    center.setX(center.getX()-f->getField().getWidth());
     center.setY(center.getY()-f->getField().getHeight());
     Character *c=new Character(center);
     cout<< "Perso x" << c->getForme()->getCenter().getX() << " Y " << c->getForme()->getCenter().getY() << endl;
     Objects* obj;
     bool ok=0;
+
+    int cx_pr = c->getForme()->getCenter().getX()+(c->getForme()->getDiametre()/2);
+    int cy_pr = c->getForme()->getCenter().getY()+(c->getForme()->getDiametre()/2);
+    int cx_mr = c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2);
+    int cy_mr = c->getForme()->getCenter().getY()-(c->getForme()->getDiametre()/2);
 
     for(int unsigned i=0; i < f->getList().size()&& ok !=1 ;i++)
         {
@@ -310,17 +315,18 @@ bool forestEditor::add_Player(Forest* f, Point center, int i)
             int rd=obj->getDiameter()/2;
             int obj_h=obj->getHeight()/2;
 
-            if (((c->getForme()->getCenter().getX()+(c->getForme()->getDiametre()/2) > (rx-(rd)) && c->getForme()->getCenter().getX()+(c->getForme()->getDiametre()/2) < (rx+(rd)) 
-                        && (c->getForme()->getCenter().getY())+(c->getForme()->getDiametre()/2) < (ry+(obj_h)) && (c->getForme()->getCenter().getY()+(c->getForme()->getDiametre()/2)) > (ry-(obj_h)))
+
+            if (((cx_pr  > (rx-rd) && cx_pr< (rx+rd) 
+                        && cy_pr < (ry+(obj_h)) && cy_pr > (ry-(obj_h)))
                 )||(                
-                    (c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) < (rx+(rd)) && c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) > (rx-(rd))
-                        && (c->getForme()->getCenter().getY()-(c->getForme()->getDiametre()/2)) < (ry+(obj_h)) && c->getForme()->getCenter().getX()+(c->getForme()->getDiametre()/2)) > (ry-(obj_h))
+                    cx_mr < (rx+rd) && cx_mr > (rx-rd)
+                        && cy_mr < (ry+(obj_h)) && cx_pr > (ry-(obj_h))
                 )||(
-                    (c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) > (rx-(rd)) && c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) < (rx+(rd))
-                        && (c->getForme()->getCenter().getY()-(c->getForme()->getDiametre()/2)) > (ry-(obj_h))) && (c->getForme()->getCenter().getY()+(c->getForme()->getDiametre()/2) < (ry+(obj_h))
+                    cx_mr > (rx-rd) && cx_mr < (rx+rd)
+                        && cy_mr > (ry-(obj_h)) && cy_pr < (ry+(obj_h))
                 )||(
-                    (c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2)< (rx+(rd)) && c->getForme()->getCenter().getX()-(c->getForme()->getDiametre()/2) > (rx-(rd)) 
-                        && (c->getForme()->getCenter().getY()+(c->getForme()->getDiametre()/2)) > (ry-(obj_h)) && (c->getForme()->getCenter().getY()-(c->getForme()->getDiametre()/2)) < (ry+(obj_h))))))
+                    cx_mr < (rx+rd) && cx_mr > (rx-rd) 
+                        && cy_pr> (ry-(obj_h)) && cy_mr < (ry+(obj_h))))
                 ok=1;
         }
 
@@ -336,9 +342,7 @@ bool forestEditor::add_Player(Forest* f, Point center, int i)
             if (i==2) { cout << "ADD 2" <<endl; f->setP2(c);}
             return true;
         }
-    return false;  
-
-   
+    return false;    
 }
 
 void forestEditor::write_Forest(Forest* f)
@@ -383,9 +387,10 @@ void forestEditor::write_Character(Character* c, ofstream &file, int i)
   file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
 }
 
-Forest* forestEditor::read_File(Forest* f, string s)
+Forest* forestEditor::read_File(string s, int type) //type : 0 joueur/ia ; 1- ia/ia ; 2- joueur/joueur
 {
-    ifstream file(s, ios::in);  
+    ifstream file("Saves/personalisee.txt", ios::in); 
+    Forest* f;
     char c,t;
     Point center;
     int height, diameter, altitude, life, x, y;
@@ -403,34 +408,50 @@ Forest* forestEditor::read_File(Forest* f, string s)
                     case 'R':
                     {
                         file >> x >> y >> height >> diameter >> altitude >> life >> t;
-                        cout << x <<y << height << diameter<< altitude << life<< t << endl;
+                        cout<< "ROCHER --" << x <<" " <<y <<" "<< height<<" " << diameter<<" "<< altitude<<" " << life<<" "<< t << "--ROCHER " << endl;
                         center.setX(x);
                         center.setY(y);
-                        Rock* r= new Rock(t, center, height, diameter, altitude, life);
-                        f->getList().push_back(r);
+                        Objects* r= new Rock(t, center, height, diameter, altitude, life);
+                        f->addList(r);
                     }
                     break;
 
                     case 'T':
                     {
                         file >> x >> y >> height >> diameter >> altitude >> life >> t;
-                        cout << x <<y << height << diameter<< altitude << life<< t << endl;
+                        cout << "TREE --" <<x<<" " <<y<<" " << height<<" " << diameter<<" "<< altitude<<" " << life<<" "<< t << "--TREE" << endl;
                         center.setX(x);
                         center.setY(y);
-                        Tree* r= new Tree(t, center, height, diameter, altitude, life);
-                        f->getList().push_back(r);
+                        Objects* r= new Tree(t, center, height, diameter, altitude, life);
+                        f->addList(r);
                     }
                     break;
 
                     case 'C':
                     {
                         file >> i >> x >> y;
-                        cout << x <<y <<endl;
+                        cout <<"PERSO --"<< i << " " << x << " " << y<<"-- PERSO" <<endl;
                         center.setX(x);
                         center.setY(y);
-                        Character* perso=new Character(center);
-                        if (i==1) f->setP1(perso);
-                        if (i==2) f->setP2(perso);
+                        
+                        if (i==1 && (type==0 || type==2 )) 
+                            {
+                             f->setP1(new Player(center));
+                            }
+                        if (i==1 && type==1)
+                            {
+                             f->setP1(new Ai(center));
+                            }
+
+                        if (i==2 && (type==0 || type==1)) 
+                            {                         
+                             f->setP2(new Ai(center));
+                            }
+                        if (i==2 && type==2)
+                            {
+                             f->setP2(new Player(center));
+                            }
+
                         if (i!=1 && i!=2) cout<<"ERREUR LECTURE FICHIER PERSO";
                     }
 

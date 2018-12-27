@@ -124,7 +124,6 @@ void Tree::print(Field f)
 	
     if(Triangle *tria= dynamic_cast <Triangle*> (this->getForme()))
     {
-    	cout << "Triangle" << endl;
     glBegin(GL_TRIANGLES);
         glColor3f(0, 1, 0);
         glVertex2i(tria->getP1().getX()+f.getWidth(),tria->getP1().getY()+f.getHeight());
@@ -135,7 +134,6 @@ void Tree::print(Field f)
     }
     else if(Cercle *cerc= dynamic_cast <Cercle*> (this->getForme()))
     {
-    	cout << "Rond" << endl;
   	GLfloat x =cerc->getCenter().getX()+f.getWidth();
     GLfloat y =cerc->getCenter().getY()+f.getHeight();
     GLfloat radius = this->diameter/2;

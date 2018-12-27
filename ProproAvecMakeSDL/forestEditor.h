@@ -26,7 +26,7 @@ class forestEditor
 		void write_Tree(Tree* t, std::ofstream &file);
 		void write_Character(Character* c, std::ofstream &file,int i);
 
-		Forest* read_File(Forest *f, std::string s);
+		Forest* read_File(std::string s, int type);
 
 		~forestEditor();
 

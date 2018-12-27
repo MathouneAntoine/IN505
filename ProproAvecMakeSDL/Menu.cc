@@ -141,6 +141,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
             break;
             case(2):
               map=1;
+               end_menu=1;
             break;
             default:
             exit(0);
@@ -167,6 +168,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
             break;
             case(2):
               map=2;
+               end_menu=1;
             break;
             default:
             exit(0);
@@ -189,6 +191,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
             break;
             case(2):
             map=3;
+            end_menu=1;
             break;
             default:
             exit(0);
@@ -239,8 +242,7 @@ int Menu::Boucle_Menu(SDL_Window* screen)
     TTF_Init();
 
     init_principal();
-    print( screen);
-    
+    print( screen);    
 
     while (!end_menu)
     {
@@ -249,6 +251,26 @@ int Menu::Boucle_Menu(SDL_Window* screen)
      clic(event, pSurf, screen);
     } 
 
+    string s;
+
+   if (map==1) string s="./Saves/difficile.txt";
+   if (map==2) string s="./Saves/normal.txt";
+   if (map==3) string s="Saves/personalisee.txt";
+
+   SDL_Renderer *renderer;
+    renderer = SDL_CreateRenderer(screen, -1, 0);
+    if(!renderer)
+    {
+        std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+    }
+
+    SDL_RenderPresent(renderer);
+    SDL_RenderClear(renderer);
+
+    forestEditor fe;
+    fe.read_File(s, game_type);
+    //f.print(renderer);
+    SDL_DestroyRenderer(renderer);
 }
 
 Menu::~Menu()
