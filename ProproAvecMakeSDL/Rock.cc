@@ -112,20 +112,20 @@ void Rock::print(Field f)
     {
     glBegin(GL_QUADS);
         glColor3f(0.5, 0.5, 0.5);
-        glVertex2i(rect->getP1().getX()+f.getWidth(),rect->getP1().getY()+f.getHeight());
-        glVertex2i(rect->getP2().getX()+f.getWidth(),rect->getP2().getY()+f.getHeight());
-        glVertex2i(rect->getP3().getX()+f.getWidth(),rect->getP3().getY()+f.getHeight());
-        glVertex2i(rect->getP4().getX()+f.getWidth(),rect->getP4().getY()+f.getHeight());
+        glVertex2i(rect->getP1().getX()+(f.getWidth()/2),rect->getP1().getY()+(f.getHeight()/2));
+        glVertex2i(rect->getP2().getX()+(f.getWidth()/2),rect->getP2().getY()+(f.getHeight()/2));
+        glVertex2i(rect->getP3().getX()+(f.getWidth()/2),rect->getP3().getY()+(f.getHeight()/2));
+        glVertex2i(rect->getP4().getX()+(f.getWidth()/2),rect->getP4().getY()+(f.getHeight()/2));
     glEnd();
     }
     else if(Losange *losa= dynamic_cast <Losange*> (this->getForme()))
     {
     glBegin(GL_QUADS);
         glColor3f(0.5, 0.5, 0.5);
-        glVertex2i(losa->getP1().getX()+f.getWidth(),losa->getP1().getY()+f.getHeight());
-        glVertex2i(losa->getP2().getX()+f.getWidth(),losa->getP2().getY()+f.getHeight());
-        glVertex2i(losa->getP3().getX()+f.getWidth(),losa->getP3().getY()+f.getHeight());
-        glVertex2i(losa->getP4().getX()+f.getWidth(),losa->getP4().getY()+f.getHeight());
+        glVertex2i(losa->getP1().getX()+(f.getWidth()/2),losa->getP1().getY()+(f.getHeight()/2));
+        glVertex2i(losa->getP2().getX()+(f.getWidth()/2),losa->getP2().getY()+(f.getHeight()/2));
+        glVertex2i(losa->getP3().getX()+(f.getWidth()/2),losa->getP3().getY()+(f.getHeight()/2));
+        glVertex2i(losa->getP4().getX()+(f.getWidth()/2),losa->getP4().getY()+(f.getHeight()/2));
     glEnd();
 
     }

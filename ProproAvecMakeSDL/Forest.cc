@@ -46,10 +46,10 @@ void Forest::addList(Objects* o)
 {
    List_Obj.push_back(o);
 }
-void Forest::setList(vector<Objects*> v)
-{
-    this->List_Obj = v;
 
+void Forest::eraseList(int i)
+{
+   List_Obj.erase(List_Obj.begin()+i);
 }
 
 void Forest::init_forest()

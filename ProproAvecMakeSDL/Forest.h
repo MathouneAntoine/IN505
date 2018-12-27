@@ -19,6 +19,7 @@ class Forest
 		Character* getP2();
 		Objects* getObj(int i);
 		void addList(Objects* o);
+		void eraseList(int i);
 		void setP1(Character* c);
 		void setP2(Character* c);
 		 friend void setList(vector<Objects*> v);

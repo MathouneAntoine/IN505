@@ -280,23 +280,23 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
 
 bool forestEditor::add_Rock(Forest* f, Point center)
 {
-    center.setX(center.getX()-f->getField().getWidth());
-    center.setY(center.getY()-f->getField().getHeight());
+    center.setX(center.getX()-(f->getField().getWidth()/2));
+    center.setY(center.getY()-(f->getField().getHeight()/2));
     return this->add_Element(f,new Rock(center),center);
 }
 
 bool forestEditor::add_Tree(Forest* f, Point center)
 {
 
-    center.setX(center.getX()-f->getField().getWidth());
-    center.setY(center.getY()-f->getField().getHeight());
+    center.setX(center.getX()-(f->getField().getWidth()/2));
+    center.setY(center.getY()-(f->getField().getHeight()/2));
     return this->add_Element(f,new Tree(center),center);
 }
 
 bool forestEditor::add_Player(Forest* f, Point center, int i)
 {
-    center.setX(center.getX()-f->getField().getWidth());
-    center.setY(center.getY()-f->getField().getHeight());
+    center.setX(center.getX()-(f->getField().getWidth()/2));
+    center.setY(center.getY()-(f->getField().getHeight()/2));
     Character *c=new Character(center);
     cout<< "Perso x" << c->getForme()->getCenter().getX() << " Y " << c->getForme()->getCenter().getY() << endl;
     Objects* obj;
@@ -387,10 +387,16 @@ void forestEditor::write_Character(Character* c, ofstream &file, int i)
   file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
 }
 
-Forest* forestEditor::read_File(string s, int type) //type : 0 joueur/ia ; 1- ia/ia ; 2- joueur/joueur
+Forest* forestEditor::read_File( Forest* f, int type, int map) //type : 0 joueur/ia ; 1- ia/ia ; 2- joueur/joueur
 {
-    ifstream file("Saves/personalisee.txt", ios::in); 
-    Forest* f;
+
+    ifstream file;
+
+    if (map==1) file.open("./Saves/difficile.txt", ios::in); 
+    if (map==2) file.open("./Saves/normal.txt", ios::in); 
+    if (map==3) file.open("./Saves/personalisee.txt", ios::in); 
+    file.seekg(0,ios::beg);
+
     char c,t;
     Point center;
     int height, diameter, altitude, life, x, y;
@@ -433,21 +439,22 @@ Forest* forestEditor::read_File(string s, int type) //type : 0 joueur/ia ; 1- ia
                         cout <<"PERSO --"<< i << " " << x << " " << y<<"-- PERSO" <<endl;
                         center.setX(x);
                         center.setY(y);
-                        
-                        if (i==1 && (type==0 || type==2 )) 
+                        cout << "TYPE  : " <<type << endl;
+
+                        if (i==1 && (type==1 || type==3 )) 
                             {
                              f->setP1(new Player(center));
                             }
-                        if (i==1 && type==1)
+                        if (i==1 && type==2)
                             {
                              f->setP1(new Ai(center));
                             }
 
-                        if (i==2 && (type==0 || type==1)) 
+                        if (i==2 && (type==1 || type==2)) 
                             {                         
                              f->setP2(new Ai(center));
                             }
-                        if (i==2 && type==2)
+                        if (i==2 && type==3)
                             {
                              f->setP2(new Player(center));
                             }

@@ -38,10 +38,11 @@ main.o: Field.h Rock.h Forest.h forestEditor.h
 .PHONY: clean mrproper $(EXEC) game
 
 clean:
+	rm -rf *.o
 	@(cd $(MESFORMES_DIR) && $(MAKE) $@)
 	@(cd $(PERSO_DIR) && $(MAKE) $@)
 	rm -rf *.o
-
+	
 mrproper: clean
 	@(cd $(MESFORMES_DIR) && $(MAKE) $@)
 	@(cd $(PERSO_DIR) && $(MAKE) $@)

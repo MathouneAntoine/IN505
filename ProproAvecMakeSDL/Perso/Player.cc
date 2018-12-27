@@ -102,9 +102,8 @@ bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
 
 void Player::print(Field f)
 {
-    cout << "Player" << endl;
-    GLfloat x =cerc->getCenter().getX()+f.getWidth();
-    GLfloat y =cerc->getCenter().getY()+f.getHeight();
+    GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
+    GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;
@@ -125,13 +124,11 @@ void Player::print(Field f)
 
 void Player::Translate(int direction, vector<Objects*> obj)
 {
-    cout<< "COUCOU 0"<<endl;
     switch(direction)
     {
         case 0:
         if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0 ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0 ))
         {
-            cout<< "CASE 0"<<endl;
         	cerc->deplacer( 0,  -3);
         }
         break;
@@ -139,7 +136,6 @@ void Player::Translate(int direction, vector<Objects*> obj)
         case 90:
         if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj,0) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj,0))
         {
-            cout<< "CASE 1"<<endl;
         	cerc->deplacer( 3,  0);
         }
         break;
@@ -147,7 +143,6 @@ void Player::Translate(int direction, vector<Objects*> obj)
         case 180:
         if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0))
         {
-            cout<< "CASE 2"<<endl;
         	cerc->deplacer( 0,  3);
         }
         break;
@@ -155,7 +150,6 @@ void Player::Translate(int direction, vector<Objects*> obj)
         case 270:
         if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj,0) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj,0))
 		{
-            cout<< "CASE 3"<<endl;
     	    cerc->deplacer( -3,  0);
     	}
         break;

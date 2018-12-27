@@ -26,11 +26,11 @@ int main(int argc, char **argv)
     SDL_Window* fenetre = Screen_Init(argc, argv, f);
     SDL_GLContext contexteOpenGL(0);
 
-
+    Forest *forest=new Forest(f);
 
     Menu m;
     int joue=0;
-    joue=m.Boucle_Menu(fenetre);
+    joue=m.Boucle_Menu(fenetre,forest);
 
      SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(fenetre, -1, 0);
@@ -39,21 +39,6 @@ int main(int argc, char **argv)
         std::cout << "SDL Error : " << SDL_GetError() << std::endl;
         return -1;
     }
-    Point p(100-800,100-600);
-
-    Point p2(400-800,400-600);
-
-    Forest *forest  = new Forest();
-
-
-   
-    forest->setP1(new Player(p));
-   // Ai *ai = new Ai();
-    Player *player= dynamic_cast <Player*> (forest->getP1());
-         Rock * r=new Rock(p2);
-    //r->printInfo();
-    //r->print();
-    forest->addList(r);
 
     SDL_Event event;
 
@@ -62,11 +47,11 @@ int main(int argc, char **argv)
     bool tour;
     forest->print(renderer);
 
+   Player* p= dynamic_cast<Player*> (forest->getP1());
+
     while(!end)
     {
-        //SDL_RenderClear(renderer);
         SDL_WaitEvent(&event);
-        //SDL_GetMouseState(&x, &y);
 
         if(event.window.event == SDL_WINDOWEVENT_CLOSE)
         {
@@ -75,62 +60,17 @@ int main(int argc, char **argv)
         forest->print(renderer);
 
         forest->getP1()->print(f);
-       //c->PrintInfo();
-        tour = player->movePlayer(event, forest->getList());
-
-        //SDL_RenderPresent(renderer);
-
+        tour = p->movePlayer(event, forest->getList());
 
     }
-        //you
 
-
-
-
-
-
-
-
-    /*
-    SDL_Event evenements;
-    bool terminer(false);
-
-    Menu m;
-    int joue=0;
-    joue=m.Boucle_Menu(fenetre);
-
-
-    SDL_Event event;
-    int x,y;
-
-    bool end;
-    end = false;
-
-   /* if (!joue)
-    {
-        Forest forest;
-        if (m.getGame_Type()==1){f= read_File(forest, "./Saves/hard.txt");}
-        if (m.getGame_Type()==2){f= read_File(forest, "./Saves/normal.txt");}
-        if (m.getGame_Type()==3){f= read_File(forest, "./Saves/perso.txt");}
-    }*/
-     /*   while(!end)
-        {
-            SDL_WaitEvent(&event);
-            SDL_GetMouseState(&x, &y);
-
-            if(event.window.event == SDL_WINDOWEVENT_CLOSE)
-            {
-                end = true;
-            }
-        }*/
-    SDL_DestroyWindow(fenetre);
+      SDL_DestroyWindow(fenetre);
     
     TTF_Quit();
     SDL_Quit();
 
     return 0;
 }
-
 
 /*
 #include <vector>

@@ -39,8 +39,8 @@ Character::Character(Point p)
 void Character::print(Field f)
 {
 	cout << "Character" << endl;
-    GLfloat x =cerc->getCenter().getX()+f.getWidth();
-    GLfloat y =cerc->getCenter().getY()+f.getHeight();
+    GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
+    GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;
@@ -149,7 +149,7 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj
 
 bool Character::collision(int x, int y, vector<Objects*> obj,int power)
 {
-    if(x < 800 && x > -800 && y < 600 && y > -600 && !collisionObjet( x,y,obj,power) )
+    if(x < 400 && x > -400 && y < 300 && y > -300 && !collisionObjet( x,y,obj,power) )
         return true;
     else
         return false;

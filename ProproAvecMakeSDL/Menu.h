@@ -1,9 +1,9 @@
 #ifndef MENU_H
 #define MENU_H
-#include "./mesformes/Rectangle.h"
 #include <string>
 #include "Objects.h"
 #include "mes_formes.h"
+#include "Forest.h"
 #include <GL/glu.h>
 #include <SDL2/SDL.h>
 
@@ -19,7 +19,7 @@ class Menu
     bool init_choix_map();
     void print(SDL_Window* screen);
     int clic(SDL_Event &event, SDL_Surface* pSurf,  SDL_Window* screen);
-    int Boucle_Menu(SDL_Window* screen);
+    int Boucle_Menu(SDL_Window* screen,Forest *f);
 
     ~Menu();
 

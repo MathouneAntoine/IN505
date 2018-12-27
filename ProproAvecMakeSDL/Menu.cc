@@ -135,7 +135,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
               print(screen);
             break;
             case(1):
-              game_type=1;
+              game_type=1; // joueur vs Ia
               init_choix_map(); 
               print(screen);
             break;
@@ -162,7 +162,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
             }
             break;
             case(1):
-            game_type=2;
+            game_type=2; //ia vs ia
             init_choix_map(); 
             print(screen);
             break;
@@ -185,7 +185,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
                 end_menu= -1;
             break;
             case(1):
-              game_type=3;
+              game_type=3; // joueur vs joueur
               init_choix_map(); 
              print(screen);
             break;
@@ -233,7 +233,7 @@ void Menu::print(SDL_Window* screen)
     }
 }
 
-int Menu::Boucle_Menu(SDL_Window* screen)
+int Menu::Boucle_Menu(SDL_Window* screen, Forest *f)
 {
 
     SDL_Event event;
@@ -251,12 +251,6 @@ int Menu::Boucle_Menu(SDL_Window* screen)
      clic(event, pSurf, screen);
     } 
 
-    string s;
-
-   if (map==1) string s="./Saves/difficile.txt";
-   if (map==2) string s="./Saves/normal.txt";
-   if (map==3) string s="Saves/personalisee.txt";
-
    SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(screen, -1, 0);
     if(!renderer)
@@ -268,8 +262,7 @@ int Menu::Boucle_Menu(SDL_Window* screen)
     SDL_RenderClear(renderer);
 
     forestEditor fe;
-    fe.read_File(s, game_type);
-    //f.print(renderer);
+    fe.read_File(f, game_type, map);
     SDL_DestroyRenderer(renderer);
 }
 

@@ -50,10 +50,8 @@ void Ai::live_Ai(vector<Objects*> obj)
 }
 void Ai::print(Field f)
 {
- 
-    cout << "Ai" << endl;
-    GLfloat x =cerc->getCenter().getX()+f.getWidth() ;
-    GLfloat y =cerc->getCenter().getY()+f.getHeight();
+    GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
+    GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;

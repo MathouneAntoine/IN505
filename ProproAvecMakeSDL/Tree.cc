@@ -119,23 +119,20 @@ void Tree::print_Tree()
 
 void Tree::print(Field f)
 {
-	int x = f.getCenter().getX();
-	int y = f.getCenter().getY();
-	
     if(Triangle *tria= dynamic_cast <Triangle*> (this->getForme()))
     {
     glBegin(GL_TRIANGLES);
         glColor3f(0, 1, 0);
-        glVertex2i(tria->getP1().getX()+f.getWidth(),tria->getP1().getY()+f.getHeight());
-        glVertex2i(tria->getP2().getX()+f.getWidth(),tria->getP2().getY()+f.getHeight());
-        glVertex2i(tria->getP3().getX()+f.getWidth(),tria->getP3().getY()+f.getHeight());
+        glVertex2i(tria->getP1().getX()+(f.getWidth()/2),tria->getP1().getY()+(f.getHeight()/2));
+        glVertex2i(tria->getP2().getX()+(f.getWidth()/2),tria->getP2().getY()+(f.getHeight()/2));
+        glVertex2i(tria->getP3().getX()+(f.getWidth()/2),tria->getP3().getY()+(f.getHeight()/2));
     glEnd();
 
     }
     else if(Cercle *cerc= dynamic_cast <Cercle*> (this->getForme()))
     {
-  	GLfloat x =cerc->getCenter().getX()+f.getWidth();
-    GLfloat y =cerc->getCenter().getY()+f.getHeight();
+  	GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2);
+    GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
     GLfloat radius = this->diameter/2;
     int i;
     int triangleAmount = 1000;
