@@ -175,29 +175,61 @@ bool Character::collision(int x, int y, vector<Objects*> &obj,int power,Characte
         return false;
 }
 
+void Character::Attack(int direction, int range,  vector<Objects*> &obj, int power,Character &p)
+{
+    for(int r = 0; r < range; range--)
+    {
+        for(int po = 0; po < power; power--)
+        switch(direction)
+        {
+            case 0:
+            collision( (cerc->getCenter().getX()+power), (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power,p );
+            break;
+
+            case 90:
+            collision( (cerc->getCenter().getX()+cerc->getDiametre()/2 +range) , (cerc->getCenter().getY()+power) ,obj,power,p);
+            break;
+
+            case 180:
+            collision( (cerc->getCenter().getX()+power), (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power,p);
+            break;
+
+            case 270:
+            collision( (cerc->getCenter().getX()-cerc->getDiametre()/2 -range) , (cerc->getCenter().getY()+power),obj,power,p);
+            break;
+        }
+    }
+}
 void Character::takeDamage(vector<Objects*> &v ,Objects *o,int i, int power,Character &p)
 {
-    if ((o->getLife() - power) <= 0) 
-    {
-    	cout << "dead" << v.size()<<  endl;
-        v.erase(v.begin()+i);
-       	cout << "dead after " << v.size()<<  endl;
-    }
-    else o->setLife(o->getLife() - power);
+	if(this->pv-power/2 > 0)
+	{
+		this->pv = this->pv-power/10;
+		if ((o->getLife() - power) <= 0) 
+    	{
+	    	cout << "dead" << v.size()<<  endl;
+	        v.erase(v.begin()+i);
+	       	cout << "dead after " << v.size()<<  endl;
+    	}
+    	else o->setLife(o->getLife() - power);
+	}
+    
 }
 void Character::takeDamageCharacter(Character &p, int power)
 {
-    if ((p.getLife() - power) <= 0) 
-    {
-    	cout << "dead" <<  endl;
-    	delete &p;
-       	cout << "dead after "<<  endl;
-    }
-    else p.setLife(p.getLife() - power);
+	if(this->pv-power/2 > 0)
+	{
+	    if ((p.getLife() - power) <= 0) 
+	    {
+	    	cout << "dead" <<  endl;
+	    	delete &p;
+	       	cout << "dead after "<<  endl;
+	    }
+	    else p.setLife(p.getLife() - power);
+	}
 }
 
 Character::~Character()
 {
-
-
+	
 }

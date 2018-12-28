@@ -58,12 +58,45 @@ bool Ai::live_Ai(vector<Objects*> &obj,Character &p)
 }
 void Ai::print(Field f)
 {
+    if(this->orientation == 0)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2-this->weaponRange);
+        glEnd();
+    }
+    if(this->orientation == 90)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2+this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
+        glEnd();
+    }
+    if(this->orientation == 180)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2+this->weaponRange);
+        glEnd();
+    }
+    if(this->orientation == 270)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2-this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
+        glEnd();
+    }
+
     GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
     GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
     GLfloat radius = cerc->getDiametre()/2;
     int i;
     int triangleAmount = 1000;
-    float PI =2.14;
+    float PI =3.14;
     GLfloat twicePi = 2.0f * PI;
     glEnable(GL_LINE_SMOOTH);
     glLineWidth(5.0);
@@ -87,6 +120,8 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( 0,  -2);
         }
+        else Attack(this->orientation, 1,  obj, 50,p);
+
         break;
 
         case 90:
@@ -94,6 +129,8 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( 2,  0);
         }
+        else Attack(this->orientation, 1,  obj, 50,p);
+
         break;
 
         case 180:
@@ -101,6 +138,8 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( 0,  2);
         }
+        else Attack(this->orientation, 1,  obj, 50,p);
+
         break;
 
         case 270:
@@ -108,6 +147,8 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( -2,  0);
         }
+        else Attack(this->orientation, 1,  obj, 50,p);
+
         break;
     }
 

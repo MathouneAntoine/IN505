@@ -41,8 +41,8 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    SDL_Event event;
-    SDL_Event event2;
+         SDL_Event event;
+
 
     bool end;
     end = false;
@@ -77,21 +77,19 @@ int main(int argc, char **argv)
     }                  
     while(!end)
     {
-                SDL_WaitEvent( &event);
-                SDL_WaitEvent( &event2);
+        
 
         if(event.window.event == SDL_WINDOWEVENT_CLOSE)
         {
             end = true;
         }
-        //SDL_Delay(1000);
+       
         if(tour==false && tour2==false)
         {
             cout << "tour1" << endl;
             if(typepartie  == 1)
             {
-                        //SDL_Delay(100);
-
+                SDL_WaitEvent( &event);
                 tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
 
 
@@ -104,12 +102,15 @@ int main(int argc, char **argv)
             }
             if(typepartie  == 3)
             {
-
+                SDL_WaitEvent( &event);
                 tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
 
             }
         }
-        if(tour2==false && tour == true)
+        forest->print(renderer);
+
+ 
+        while(tour2==false && tour == true)
         {
             cout << "tour2" << endl;
 
@@ -127,13 +128,15 @@ int main(int argc, char **argv)
             }
             if(typepartie  == 3)
             {
-                tour2 = p2->movePlayer(event2, forest->getListPtr(),forest->getP1Ref());
+                SDL_WaitEvent( &event);
+                tour2 = p2->movePlayer(event, forest->getListPtr(),forest->getP1Ref());
 
             }
+
         }
-        
-        
         forest->print(renderer);
+ 
+        
         tour = false;
         tour2 = false;
     }

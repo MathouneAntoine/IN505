@@ -21,7 +21,7 @@ class Ai : public  Character
 
 		void Translate(int direction, vector<Objects*> &obj,Character &p);
 
-		~Ai();
+		virtual~Ai();
 	private:
 
 };

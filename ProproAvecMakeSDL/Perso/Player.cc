@@ -23,7 +23,7 @@ Player::Player(Point p)
     this->orientation = 0;
     this->pv = 100;
     this->weaponDamage = 50;
-    this->weaponRange= 5;
+    this->weaponRange= 6;
     this->cerc = new Cercle(this->p,20);
 }
 bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
@@ -36,9 +36,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                     break;  
 
                     case SDL_KEYDOWN: //KEYDOWN ??
-
                     tour= true;
-
                     switch(event.key.keysym.sym)
                     {
                         case 't':
@@ -58,6 +56,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                         }
                         break;
 
+                        
                         case SDLK_DOWN:
                         cout <<"Down"<<endl;
                         if(this->orientation != 180)
@@ -94,17 +93,49 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                         }
                         break;
                     }
-
-
+                 break;
         }
-                                                    cout <<"RETURNNNNN"<<tour <<endl;
-
     return tour;
 
 }
 
 void Player::print(Field f)
-{
+{   
+    if(this->orientation == 0)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2-this->weaponRange);
+        glEnd();
+    }
+    if(this->orientation == 90)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2+this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
+        glEnd();
+    }
+    if(this->orientation == 180)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2+this->weaponRange);
+        glEnd();
+    }
+    if(this->orientation == 270)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0.88, 0.41 ,0);
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
+        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2-this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
+        glEnd();
+    }
+
+  
+
     GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
     GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
     GLfloat radius = cerc->getDiametre()/2;

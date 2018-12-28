@@ -23,11 +23,13 @@ class Character
 		void PrintInfo();
 		bool collision(int x, int y,  vector<Objects*> &obj,int power,Character &p);
 		bool collisionObjet(int curseur_x,int curseur_y,  vector<Objects*> &obj ,int power,Character &p);  
+		void Attack(int direction, int range,  vector<Objects*> &obj, int power, Character &p);
+
 		void takeDamage(vector<Objects*> &v ,Objects *o,int i, int power,Character &p);
 		void takeDamageCharacter(Character &p, int power);
 
 
-		~Character();
+		virtual ~Character();
 	protected:
 		Point p;
 	    Cercle * cerc;
