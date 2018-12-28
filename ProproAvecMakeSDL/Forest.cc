@@ -30,6 +30,9 @@ Forest::Forest(Field field)
 
 Character* Forest::getP1(){return this->p1;}
 Character* Forest::getP2(){return this->p2;}
+Character& Forest::getP1Ref(){return *p1;}
+Character& Forest::getP2Ref(){return *p2;}
+
 Field Forest::getField(){return this->f;}
 
 Objects* Forest::getObj(int i){

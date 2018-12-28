@@ -17,6 +17,8 @@ class Forest
 		Forest(Field f);
 		Character* getP1();
 		Character* getP2();
+		Character& getP1Ref();
+		Character& getP2Ref();
 		Objects* getObj(int i);
 		void addList(Objects* o);
 		void eraseList(int i);

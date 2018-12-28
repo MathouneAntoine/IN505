@@ -13,10 +13,10 @@ class Player: public Character
 	public:
 		Player();
 		Player(Point p);
-        bool movePlayer(SDL_Event event,  vector<Objects*> &obj,Character* p1, Character* p2);
+        bool movePlayer(SDL_Event event,  vector<Objects*> &obj,Character &p);
         void print(Field f);
-        void Translate(int direction,  vector<Objects*> &obj,Character* p1, Character* p2);
-        void Attack(int direction, int range,  vector<Objects*> &obj, int power, Character* p1, Character* p2);
+		void Translate(int direction, vector<Objects*> &obj,Character &p);
+        void Attack(int direction, int range,  vector<Objects*> &obj, int power, Character &p);
 
 		~Player();
 	private:

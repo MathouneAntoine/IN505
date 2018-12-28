@@ -92,20 +92,20 @@ int main(int argc, char **argv)
             {
                         //SDL_Delay(100);
 
-                tour = p->movePlayer(event, forest->getListPtr(),forest->getP1(),forest->getP2());
+                tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
 
 
             }
             if(typepartie  == 2)
             {
 
-                tour = a->live_Ai(forest->getListPtr(),forest->getP1(),forest->getP2());
+                tour = a->live_Ai(forest->getListPtr(),forest->getP2Ref());
 
             }
             if(typepartie  == 3)
             {
 
-                tour = p->movePlayer(event, forest->getListPtr(),forest->getP1(),forest->getP2());
+                tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
 
             }
         }
@@ -116,18 +116,18 @@ int main(int argc, char **argv)
             if(typepartie  == 1)
             {
 
-                tour2 = a->live_Ai(forest->getListPtr(),forest->getP1(),forest->getP2());
+                tour2 = a->live_Ai(forest->getListPtr(),forest->getP1Ref());
 
             }
             if(typepartie  == 2)
             {
 
-                tour2 = a2->live_Ai(forest->getListPtr(),forest->getP1(),forest->getP2());
+                tour2 = a2->live_Ai(forest->getListPtr(),forest->getP1Ref());
 
             }
             if(typepartie  == 3)
             {
-                tour2 = p2->movePlayer(event2, forest->getListPtr(),forest->getP1(),forest->getP2());
+                tour2 = p2->movePlayer(event2, forest->getListPtr(),forest->getP1Ref());
 
             }
         }
