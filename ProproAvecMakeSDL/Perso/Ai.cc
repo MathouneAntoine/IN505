@@ -21,7 +21,7 @@ Ai::Ai(Point p)
     this->cerc = new Cercle(this->p,20);
 }
 
-void Ai::live_Ai(vector<Objects*> obj)
+bool Ai::live_Ai(vector<Objects*> &obj)
 {
 
 		int i= rand()%4;
@@ -29,24 +29,32 @@ void Ai::live_Ai(vector<Objects*> obj)
 		{
 			this->orientation = 0;
 			Translate(0,obj);
+            return true;
 		}
 		if(i==1)
 		{
 			this->orientation = 90;
 			Translate(90,obj);
+            return true;
+
 		} 
 
 		if(i==2) 
 		{
 			this->orientation = 180;
 			Translate(180,obj);
+            return true;
+
 		}
 
 		if(i==2) 
 		{
 			this->orientation = 270;
 			Translate(270,obj);
+            return true;
+
 		}
+    return false;
 }
 void Ai::print(Field f)
 {
@@ -70,7 +78,7 @@ void Ai::print(Field f)
     glEnd();
 }
 
-void Ai::Translate(int direction, vector<Objects*> obj)
+void Ai::Translate(int direction, vector<Objects*>& obj)
 {
     switch(direction)
     {

@@ -40,7 +40,14 @@ Objects* Forest::getObj(int i){
 void Forest::setP1(Character* c){ this->p1=c;}
 void Forest::setP2(Character* c){ this->p2=c;}
 
-vector<Objects*> Forest::getList(){return this->List_Obj;}
+vector<Objects*> Forest::getList()
+{
+    return this->List_Obj;
+}
+vector<Objects*>& Forest::getListPtr()
+{
+    return List_Obj;
+}
 
 void Forest::addList(Objects* o)
 {

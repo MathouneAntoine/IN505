@@ -23,6 +23,7 @@ class Forest
 		void setP1(Character* c);
 		void setP2(Character* c);
 		 friend void setList(vector<Objects*> v);
+		 vector<Objects*>& getListPtr();
 
 		Field getField();
 

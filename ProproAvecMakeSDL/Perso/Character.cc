@@ -92,7 +92,8 @@ bool inTriangle (Point pt, Point P1, Point P2, Point P3)
 
     return !(negative && positive);
 }	
-bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> objet,int power ) {     
+bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &objet,int power ) {     
+    
     
     for(int unsigned i=0; i < objet.size();i++)
         {
@@ -143,11 +144,12 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> obj
             }
 
 
+
     }
     return false;
 }
 
-bool Character::collision(int x, int y, vector<Objects*> obj,int power)
+bool Character::collision(int x, int y, vector<Objects*> &obj,int power)
 {
     if(x < 400 && x > -400 && y < 300 && y > -300 && !collisionObjet( x,y,obj,power) )
         return true;
@@ -155,7 +157,7 @@ bool Character::collision(int x, int y, vector<Objects*> obj,int power)
         return false;
 }
 
-void Character::takeDamage(vector<Objects*> v ,Objects *o,int i, int power)
+void Character::takeDamage(vector<Objects*> &v ,Objects *o,int i, int power)
 {
     if ((o->getLife() - power) <= 0) 
     {

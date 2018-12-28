@@ -16,10 +16,10 @@ class Ai : public  Character
 		Ai();
 		Ai(Point p);
 
-		void live_Ai(vector<Objects*> obj);
+		bool live_Ai(vector<Objects*> &obj);
 		void print(Field f);
 
-		void Translate(int direction, vector<Objects*> obj);
+		void Translate(int direction, vector<Objects*> &obj);
 
 		~Ai();
 	private:

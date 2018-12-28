@@ -26,19 +26,24 @@ Player::Player(Point p)
     this->weaponRange= 5;
     this->cerc = new Cercle(this->p,20);
 }
-bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
+bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj)
 {
- switch(event.type)
+
+    bool tour = false;
+    switch(event.type)
                 {
                     case SDL_QUIT:
                     break;  
-                    case SDL_KEYDOWN:
+
+                    case SDL_KEYDOWN: //KEYDOWN ??
+
+                    tour= true;
+
                     switch(event.key.keysym.sym)
                     {
                         case 't':
                         cout <<"Tirer!"<<endl;
                         Attack(this->orientation, 10,  obj, 50);
-
                         break;
 
                         case SDLK_UP:
@@ -51,7 +56,6 @@ bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
                         {
                             Translate(0,obj);
                         }
-                        return true;
                         break;
 
                         case SDLK_DOWN:
@@ -64,7 +68,6 @@ bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
                         {
                             Translate(180,obj);
                         }
-                        return true;
                         break;
 
                         case SDLK_RIGHT:
@@ -77,7 +80,6 @@ bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
                         {
                             Translate(90,obj);
                         }
-                        return true;
                         break;
 
                         case SDLK_LEFT:
@@ -90,14 +92,15 @@ bool Player::movePlayer(SDL_Event event,vector<Objects*> obj)
                         {
                             Translate(270,obj);
                         }
-                        return true;
-                        break;
-
-                        default:
-                        return false;
                         break;
                     }
+
+
         }
+                                                    cout <<"RETURNNNNN"<<tour <<endl;
+
+    return tour;
+
 }
 
 void Player::print(Field f)
@@ -122,7 +125,7 @@ void Player::print(Field f)
     glEnd();
 }
 
-void Player::Translate(int direction, vector<Objects*> obj)
+void Player::Translate(int direction, vector<Objects*> &obj)
 {
     switch(direction)
     {
@@ -157,27 +160,30 @@ void Player::Translate(int direction, vector<Objects*> obj)
 
 }
 
-void Player::Attack(int direction, int range,  vector<Objects*> obj, int power)
+void Player::Attack(int direction, int range,  vector<Objects*> &obj, int power)
 {
-    switch(direction)
+    for(int r = 0; r < range; range--)
     {
-        case 0:
-        collision( cerc->getCenter().getX(), (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power );
-        break;
+        for(int p = 0; p < power; power--)
+        switch(direction)
+        {
+            case 0:
+            collision( cerc->getCenter().getX()+power, (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power );
+            break;
 
-        case 90:
-        collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +range , (cerc->getCenter().getY()) ,obj,power);
-        break;
+            case 90:
+            collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +range , (cerc->getCenter().getY())+power ,obj,power);
+            break;
 
-        case 180:
-        collision( cerc->getCenter().getX(), (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power);
-        break;
+            case 180:
+            collision( cerc->getCenter().getX()+power, (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power);
+            break;
 
-        case 270:
-        collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -range , (cerc->getCenter().getY()),obj,power);
-        break;
+            case 270:
+            collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -range , (cerc->getCenter().getY()+power),obj,power);
+            break;
+        }
     }
-
 }
 
 Player::~Player()
