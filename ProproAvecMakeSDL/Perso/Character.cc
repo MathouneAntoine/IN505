@@ -73,6 +73,14 @@ Cercle* Character::getForme()
 {
     return this->cerc;
 }
+int Character::getLife()
+{
+	return this->pv;
+}
+void Character::setLife(int pv)
+{
+	 this->pv=pv;
+}
 float sign (Point P1, Point P2, Point P3)
 {
     return (P1.getX() - P3.getX()) * (P2.getY() - P3.getY()) - (P2.getX() - P3.getX()) * (P1.getY() - P3.getY());
@@ -92,9 +100,28 @@ bool inTriangle (Point pt, Point P1, Point P2, Point P3)
 
     return !(negative && positive);
 }	
-bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &objet,int power ) {     
+bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &objet,int power,Character* p1, Character* p2) {     
     
-    
+    if(Cercle *cerc= p1->cerc)
+    {
+    	int dist = sqrt( pow((cerc->getCenter().getX() - curseur_x),2) + (pow((cerc->getCenter().getY() - curseur_y),2)));
+
+   				 if(dist <= cerc->getDiametre()/2)
+   				 {
+					takeDamageCharacter(p1,power);
+   				 	return true;
+   				 }
+    }
+    if(Cercle *cerc= p2->cerc)
+    {
+    	int dist = sqrt( pow((cerc->getCenter().getX() - curseur_x),2) + (pow((cerc->getCenter().getY() - curseur_y),2)));
+
+   				 if(dist <= cerc->getDiametre()/2)
+   				 {
+					takeDamageCharacter(p1,power);
+   				 	return true;
+   				 }
+    }
     for(int unsigned i=0; i < objet.size();i++)
         {
             Objects* obj;
@@ -107,7 +134,7 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &ob
                 && curseur_y >= rect->getP2().getY()  
                 && curseur_y < rect->getP1().getY())
                  {
-					takeDamage(objet,obj,i,power);
+					takeDamage(objet,obj,i,power,p1,p2);
                    return true;
                  }
             }	
@@ -119,7 +146,7 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &ob
 
    				 if(dist <= cerc->getDiametre()/2)
    				 {
-					takeDamage(objet,obj,i,power);
+					takeDamage(objet,obj,i,power,p1,p2);
    				 	return true;
    				 }
             }
@@ -129,7 +156,7 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &ob
                 Point pt ( curseur_x, curseur_y);
                 if(inTriangle (pt, losa->getP1(),losa->getP2(),losa->getP3()) ||  inTriangle (pt,losa->getP3(),losa->getP4(),losa->getP1()))
                 {
-					takeDamage(objet,obj,i,power);
+					takeDamage(objet,obj,i,power,p1,p2);
                 	return true;
                 }
             }
@@ -138,7 +165,7 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &ob
             	Point pt ( curseur_x, curseur_y);
             	if(inTriangle(pt, tria->getP1(),tria->getP2(),tria->getP3()))
             	{
-					takeDamage(objet,obj,i,power);
+					takeDamage(objet,obj,i,power,p1,p2);
             		return true;
             	}
             }
@@ -149,15 +176,15 @@ bool Character::collisionObjet(int curseur_x,int curseur_y, vector<Objects*> &ob
     return false;
 }
 
-bool Character::collision(int x, int y, vector<Objects*> &obj,int power)
+bool Character::collision(int x, int y, vector<Objects*> &obj,int power,Character* p1, Character* p2)
 {
-    if(x < 400 && x > -400 && y < 300 && y > -300 && !collisionObjet( x,y,obj,power) )
+    if(x < 400 && x > -400 && y < 300 && y > -300 && !collisionObjet( x,y,obj,power,p1,p2) )
         return true;
     else
         return false;
 }
 
-void Character::takeDamage(vector<Objects*> &v ,Objects *o,int i, int power)
+void Character::takeDamage(vector<Objects*> &v ,Objects *o,int i, int power,Character* p1, Character* p2)
 {
     if ((o->getLife() - power) <= 0) 
     {
@@ -166,6 +193,16 @@ void Character::takeDamage(vector<Objects*> &v ,Objects *o,int i, int power)
        	cout << "dead after " << v.size()<<  endl;
     }
     else o->setLife(o->getLife() - power);
+}
+void Character::takeDamageCharacter(Character *p, int power)
+{
+    if ((p->getLife() - power) <= 0) 
+    {
+    	cout << "dead" <<  endl;
+    	p =NULL;
+       	cout << "dead after "<<  endl;
+    }
+    else p->setLife(p->getLife() - power);
 }
 
 Character::~Character()

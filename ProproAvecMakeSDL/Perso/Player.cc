@@ -26,7 +26,7 @@ Player::Player(Point p)
     this->weaponRange= 5;
     this->cerc = new Cercle(this->p,20);
 }
-bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj)
+bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character* p1, Character* p2)
 {
 
     bool tour = false;
@@ -43,7 +43,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj)
                     {
                         case 't':
                         cout <<"Tirer!"<<endl;
-                        Attack(this->orientation, 10,  obj, 50);
+                        Attack(this->orientation, 10,  obj, 50,p1,p2);
                         break;
 
                         case SDLK_UP:
@@ -54,7 +54,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj)
                         }
                         else
                         {
-                            Translate(0,obj);
+                            Translate(0,obj,p1,p2);
                         }
                         break;
 
@@ -66,7 +66,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj)
                         }
                         else
                         {
-                            Translate(180,obj);
+                            Translate(180,obj,p1,p2);
                         }
                         break;
 
@@ -78,7 +78,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj)
                         }
                         else
                         {
-                            Translate(90,obj);
+                            Translate(90,obj,p1,p2);
                         }
                         break;
 
@@ -90,7 +90,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj)
                         }
                         else
                         {
-                            Translate(270,obj);
+                            Translate(270,obj,p1,p2);
                         }
                         break;
                     }
@@ -125,33 +125,33 @@ void Player::print(Field f)
     glEnd();
 }
 
-void Player::Translate(int direction, vector<Objects*> &obj)
+void Player::Translate(int direction, vector<Objects*> &obj,Character* p1, Character* p2)
 {
     switch(direction)
     {
         case 0:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0 ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0 ))
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p1,p2 ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p1,p2 ))
         {
         	cerc->deplacer( 0,  -3);
         }
         break;
 
         case 90:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj,0) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj,0))
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj,0,p1,p2) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj,0,p1,p2))
         {
         	cerc->deplacer( 3,  0);
         }
         break;
 
         case 180:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0))
+        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p1,p2) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p1,p2))
         {
         	cerc->deplacer( 0,  3);
         }
         break;
 
         case 270:
-        if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj,0) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj,0))
+        if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj,0,p1,p2) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj,0,p1,p2))
 		{
     	    cerc->deplacer( -3,  0);
     	}
@@ -160,7 +160,7 @@ void Player::Translate(int direction, vector<Objects*> &obj)
 
 }
 
-void Player::Attack(int direction, int range,  vector<Objects*> &obj, int power)
+void Player::Attack(int direction, int range,  vector<Objects*> &obj, int power,Character* p1, Character* p2)
 {
     for(int r = 0; r < range; range--)
     {
@@ -168,19 +168,19 @@ void Player::Attack(int direction, int range,  vector<Objects*> &obj, int power)
         switch(direction)
         {
             case 0:
-            collision( cerc->getCenter().getX()+power, (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power );
+            collision( cerc->getCenter().getX()+power, (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power,p1,p2 );
             break;
 
             case 90:
-            collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +range , (cerc->getCenter().getY())+power ,obj,power);
+            collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +range , (cerc->getCenter().getY())+power ,obj,power,p1,p2);
             break;
 
             case 180:
-            collision( cerc->getCenter().getX()+power, (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power);
+            collision( cerc->getCenter().getX()+power, (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power,p1,p2);
             break;
 
             case 270:
-            collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -range , (cerc->getCenter().getY()+power),obj,power);
+            collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -range , (cerc->getCenter().getY()+power),obj,power,p1,p2);
             break;
         }
     }
