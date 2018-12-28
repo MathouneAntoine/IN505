@@ -91,25 +91,26 @@ int main(int argc, char **argv)
             {
                 SDL_WaitEvent( &event);
                 tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
-
+                if(p->getLife()<0){ end = true;}
 
             }
             if(typepartie  == 2)
             {
-
                 tour = a->live_Ai(forest->getListPtr(),forest->getP2Ref());
+                if(a->getLife()<0){ end = true;}
 
             }
             if(typepartie  == 3)
             {
                 SDL_WaitEvent( &event);
                 tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
+                                p->PrintInfo();
+                if(p->getLife()<0){ end = true;}
 
             }
         }
         forest->print(renderer);
 
- 
         while(tour2==false && tour == true)
         {
             cout << "tour2" << endl;
@@ -118,18 +119,26 @@ int main(int argc, char **argv)
             {
 
                 tour2 = a->live_Ai(forest->getListPtr(),forest->getP1Ref());
+                if(a->getLife()<0){ end = true;}
+
 
             }
             if(typepartie  == 2)
             {
 
                 tour2 = a2->live_Ai(forest->getListPtr(),forest->getP1Ref());
+                if(a2->getLife()<0){ end = true;}
+
+
 
             }
             if(typepartie  == 3)
             {
                 SDL_WaitEvent( &event);
                 tour2 = p2->movePlayer(event, forest->getListPtr(),forest->getP1Ref());
+                p2->PrintInfo();
+                if(p2->getLife()<0){ end = true;}
+
 
             }
 
@@ -140,7 +149,7 @@ int main(int argc, char **argv)
         tour = false;
         tour2 = false;
     }
-
+    delete(forest);
     SDL_DestroyWindow(fenetre);
     
     TTF_Quit();

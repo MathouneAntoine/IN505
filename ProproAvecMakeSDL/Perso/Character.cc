@@ -20,8 +20,8 @@ Character::Character()
 	if(o == 3) {this->orientation = 270;}
 
 	this->pv = 100;
-	this->weaponDamage = 50;
-	this->weaponRange= 5;
+	this->weaponDamage = 500;
+	this->weaponRange= 15;
     this->cerc = new Cercle();
 }
 Character::Character(Point p)
@@ -207,9 +207,9 @@ void Character::takeDamage(vector<Objects*> &v ,Objects *o,int i, int power,Char
 		this->pv = this->pv-power/10;
 		if ((o->getLife() - power) <= 0) 
     	{
-	    	cout << "dead" << v.size()<<  endl;
+	    	cout << "dead Object" << v.size()<<  endl;
 	        v.erase(v.begin()+i);
-	       	cout << "dead after " << v.size()<<  endl;
+	       	cout << "dead after Object" << v.size()<<  endl;
     	}
     	else o->setLife(o->getLife() - power);
 	}
@@ -221,9 +221,11 @@ void Character::takeDamageCharacter(Character &p, int power)
 	{
 	    if ((p.getLife() - power) <= 0) 
 	    {
-	    	cout << "dead" <<  endl;
-	    	delete &p;
-	       	cout << "dead after "<<  endl;
+	    	 p.setLife(p.getLife() - power);
+	    	cout << "dead" << &p<< endl;
+	    	//delete &p;
+	    	//this-> =NULL;
+	       	cout << "dead after "<< &p<< endl;
 	    }
 	    else p.setLife(p.getLife() - power);
 	}
@@ -231,5 +233,7 @@ void Character::takeDamageCharacter(Character &p, int power)
 
 Character::~Character()
 {
-	
+	delete (cerc);
+	cout << "Destructeur Character "<<  endl;
+
 }

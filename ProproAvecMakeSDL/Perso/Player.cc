@@ -191,33 +191,10 @@ void Player::Translate(int direction, vector<Objects*> &obj,Character &p)
 
 }
 
-void Player::Attack(int direction, int range,  vector<Objects*> &obj, int power,Character &p)
-{
-    for(int r = 0; r < range; range--)
-    {
-        for(int po = 0; po < power; power--)
-        switch(direction)
-        {
-            case 0:
-            collision( (cerc->getCenter().getX()+power), (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power,p );
-            break;
-
-            case 90:
-            collision( (cerc->getCenter().getX()+cerc->getDiametre()/2 +range) , (cerc->getCenter().getY()+power) ,obj,power,p);
-            break;
-
-            case 180:
-            collision( (cerc->getCenter().getX()+power), (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power,p);
-            break;
-
-            case 270:
-            collision( (cerc->getCenter().getX()-cerc->getDiametre()/2 -range) , (cerc->getCenter().getY()+power),obj,power,p);
-            break;
-        }
-    }
-}
 
 Player::~Player()
 {
+        cout << "Destructeur Player "<<  endl;
+
 
 }

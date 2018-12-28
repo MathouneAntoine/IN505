@@ -100,6 +100,9 @@ void Forest::print(SDL_Renderer *renderer)
 
 Forest::~Forest()
 {
-    delete p1;
-    delete p2;
+        cout << "Destructeur Forest "<<  endl;
+
+    if(p1!=NULL) delete p1;
+    if(p2!=NULL)delete p2;
+  
 }

@@ -16,8 +16,8 @@ Ai::Ai(Point p)
     this->p.setY(p.getY() );
     this->orientation = 0;
     this->pv = 100;
-    this->weaponDamage = 50;
-    this->weaponRange= 5;
+    this->weaponDamage = 400;
+    this->weaponRange= 30;
     this->cerc = new Cercle(this->p,20);
 }
 
@@ -47,7 +47,7 @@ bool Ai::live_Ai(vector<Objects*> &obj,Character &p)
 
 		}
 
-		if(i==2) 
+		if(i==3) 
 		{
 			this->orientation = 270;
 			Translate(270,obj,p);
@@ -153,9 +153,9 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
     }
 
 }
-
 Ai::~Ai()
 {
 
+        cout << "Destructeur Ai "<<  endl;
 
 }

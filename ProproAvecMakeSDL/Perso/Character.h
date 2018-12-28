@@ -28,11 +28,11 @@ class Character
 		void takeDamage(vector<Objects*> &v ,Objects *o,int i, int power,Character &p);
 		void takeDamageCharacter(Character &p, int power);
 
-
-		virtual ~Character();
+		
+		~Character();
 	protected:
 		Point p;
-	    Cercle * cerc;
+	    Cercle *cerc;
 	    int orientation;
 		int pv;
 		int weaponRange;

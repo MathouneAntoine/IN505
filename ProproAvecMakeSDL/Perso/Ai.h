@@ -20,8 +20,7 @@ class Ai : public  Character
 		void print(Field f);
 
 		void Translate(int direction, vector<Objects*> &obj,Character &p);
-
-		virtual~Ai();
+		~Ai();
 	private:
 
 };
