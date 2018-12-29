@@ -24,14 +24,16 @@ class Forest
 		void eraseList(int i);
 		void setP1(Character* c);
 		void setP2(Character* c);
-		 friend void setList(vector<Objects*> v);
-		 vector<Objects*>& getListPtr();
+		friend void setList(vector<Objects*> v);
+		vector<Objects*>& getListPtr();
 
 		Field getField();
 
 		void print(SDL_Renderer *renderer);
 		std::vector<Objects*> getList();
 		void init_forest();
+
+		bool visible();
 	
 
 		~Forest();

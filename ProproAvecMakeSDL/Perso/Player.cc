@@ -31,9 +31,9 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
 
     bool tour = false;
     switch(event.type)
-                {
-                    case SDL_QUIT:
-                    break;  
+    {
+        case SDL_QUIT:
+        break;  
 
                     case SDL_KEYDOWN: //KEYDOWN ??
                     tour= true;
@@ -73,128 +73,128 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                         cout <<"Right"<<endl;
                         if(this->orientation != 90)
                         {
-                             this->orientation = 90;
-                        }
-                        else
-                        {
-                            Translate(90,obj,p);
-                        }
-                        break;
-
-                        case SDLK_LEFT:
-                        cout <<"Left"<<endl;
-                        if(this->orientation !=270)
-                        {
-                            this->orientation = 270;
-                        }
-                        else
-                        {
-                            Translate(270,obj,p);
-                        }
-                        break;
+                           this->orientation = 90;
+                       }
+                       else
+                       {
+                        Translate(90,obj,p);
                     }
-                 break;
+                    break;
+
+                    case SDLK_LEFT:
+                    cout <<"Left"<<endl;
+                    if(this->orientation !=270)
+                    {
+                        this->orientation = 270;
+                    }
+                    else
+                    {
+                        Translate(270,obj,p);
+                    }
+                    break;
+                }
+                break;
+            }
+            return tour;
+
         }
-    return tour;
 
-}
+        void Player::print(Field f)
+        {   
+            if(this->orientation == 0)
+            {
+                glBegin(GL_LINES);
+                glColor3f(0.88, 0.41 ,0);
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2);
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2-this->weaponRange);
+                glEnd();
+            }
+            if(this->orientation == 90)
+            {
+                glBegin(GL_LINES);
+                glColor3f(0.88, 0.41 ,0);
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2+this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
+                glEnd();
+            }
+            if(this->orientation == 180)
+            {
+                glBegin(GL_LINES);
+                glColor3f(0.88, 0.41 ,0);
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2);
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2+this->weaponRange);
+                glEnd();
+            }
+            if(this->orientation == 270)
+            {
+                glBegin(GL_LINES);
+                glColor3f(0.88, 0.41 ,0);
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
+                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2-this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
+                glEnd();
+            }
 
-void Player::print(Field f)
-{   
-    if(this->orientation == 0)
-    {
-        glBegin(GL_LINES);
-        glColor3f(0.88, 0.41 ,0);
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2);
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2-this->weaponRange);
-        glEnd();
-    }
-    if(this->orientation == 90)
-    {
-        glBegin(GL_LINES);
-        glColor3f(0.88, 0.41 ,0);
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2+this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
-        glEnd();
-    }
-    if(this->orientation == 180)
-    {
-        glBegin(GL_LINES);
-        glColor3f(0.88, 0.41 ,0);
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2);
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2+this->weaponRange);
-        glEnd();
-    }
-    if(this->orientation == 270)
-    {
-        glBegin(GL_LINES);
-        glColor3f(0.88, 0.41 ,0);
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
-        glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2-this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
-        glEnd();
-    }
+            
 
-  
+            GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
+            GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
+            GLfloat radius = cerc->getDiametre()/2;
+            int i;
+            int triangleAmount = 1000;
+            float PI =3.14;
+            GLfloat twicePi = 2.0f * PI;
+            glEnable(GL_LINE_SMOOTH);
+            glLineWidth(5.0);
 
-    GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
-    GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
-    GLfloat radius = cerc->getDiametre()/2;
-    int i;
-    int triangleAmount = 1000;
-    float PI =3.14;
-    GLfloat twicePi = 2.0f * PI;
-    glEnable(GL_LINE_SMOOTH);
-    glLineWidth(5.0);
+            glBegin(GL_LINES);
+            glColor3f(0, 1, 0);
+            for(i = 0; i <= triangleAmount; i++)
+            {
+                glVertex2f( x, y);
+                glVertex2f(x + (radius * cos(i * twicePi / triangleAmount)), y + (radius * sin(i * twicePi / triangleAmount)));
+            }
+            glEnd();
+        }
 
-    glBegin(GL_LINES);
-        glColor3f(0, 1, 0);
-    for(i = 0; i <= triangleAmount; i++)
-    {
-        glVertex2f( x, y);
-        glVertex2f(x + (radius * cos(i * twicePi / triangleAmount)), y + (radius * sin(i * twicePi / triangleAmount)));
-    }
-    glEnd();
-}
-
-void Player::Translate(int direction, vector<Objects*> &obj,Character &p)
-{
-    switch(direction)
-    {
-        case 0:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p))
+        void Player::Translate(int direction, vector<Objects*> &obj,Character &p)
         {
-        	cerc->deplacer( 0,  -3);
-        }
-        break;
+            switch(direction)
+            {
+                case 0:
+                if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p))
+                {
+                   cerc->deplacer( 0,  -3);
+               }
+               break;
 
-        case 90:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj,0,p) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj,0,p))
-        {
-        	cerc->deplacer( 3,  0);
-        }
-        break;
+               case 90:
+               if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj,0,p) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj,0,p))
+               {
+                   cerc->deplacer( 3,  0);
+               }
+               break;
 
-        case 180:
-        if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p))
-        {
-        	cerc->deplacer( 0,  3);
-        }
-        break;
+               case 180:
+               if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p))
+               {
+                   cerc->deplacer( 0,  3);
+               }
+               break;
 
-        case 270:
-        if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj,0,p) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj,0,p))
-		{
-    	    cerc->deplacer( -3,  0);
-    	}
-        break;
-    }
+               case 270:
+               if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj,0,p) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj,0,p))
+               {
+                   cerc->deplacer( -3,  0);
+               }
+               break;
+           }
 
-}
+       }
 
 
-Player::~Player()
-{
+       Player::~Player()
+       {
         cout << "Destructeur Player "<<  endl;
 
 
-}
+    }

@@ -20,142 +20,143 @@
 
 int main(int argc, char **argv)
 {
-    srand(time(NULL));
+	srand(time(NULL));
 
      // Notre fenêtre
-    Field f(800,600);
-    SDL_Window* fenetre = Screen_Init(argc, argv, f);
-    SDL_GLContext contexteOpenGL(0);
+	Field f(800,600);
+	SDL_Window* fenetre = Screen_Init(argc, argv, f);
+	SDL_GLContext contexteOpenGL(0);
 
-    Forest *forest=new Forest(f);
+	Forest *forest=new Forest(f);
 
-    Menu m;
-    int joue=0;
-    joue=m.Boucle_Menu(fenetre,forest);
-    int typepartie =  m.getGame_Type();
-     SDL_Renderer *renderer;
-    renderer = SDL_CreateRenderer(fenetre, -1, 0);
-    if(!renderer)
-    {
-        std::cout << "SDL Error : " << SDL_GetError() << std::endl;
-        return -1;
-    }
+	Menu m;
+	int joue=0;
+	joue=m.Boucle_Menu(fenetre,forest);
+	int typepartie =  m.getGame_Type();
+	SDL_Renderer *renderer;
+	renderer = SDL_CreateRenderer(fenetre, -1, 0);
+	if(!renderer)
+	{
+		std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+		return -1;
+	}
 
-         SDL_Event event;
-
-
-    bool end;
-    end = false;
-    bool tour = false;
-    bool tour2 = false;
-
-    forest->print(renderer);
-    Player* p;
-    Ai* a;
-    Player* p2;
-    Ai* a2;
-    if(typepartie  == 1 )
-    {
-        p= dynamic_cast<Player*> (forest->getP1());
-        a= dynamic_cast<Ai*> (forest->getP2());
-    } 
-
-    
-    if(typepartie  == 2)                    
-    {
-        a= dynamic_cast<Ai*> (forest->getP1());
-        a2= dynamic_cast<Ai*> (forest->getP2());
-
-    }
+	SDL_Event event;
 
 
-    if(typepartie  == 3) 
-    {
-        p= dynamic_cast<Player*> (forest->getP1());
-        p2= dynamic_cast<Player*> (forest->getP2());
+	bool end;
+	end = false;
+	bool tour = false;
+	bool tour2 = false;
 
-    }                  
-    while(!end)
-    {
-        
+	if (m.getGame_Type()!=-1)   
+	{
 
-        if(event.window.event == SDL_WINDOWEVENT_CLOSE)
-        {
-            end = true;
-        }
-       
-        if(tour==false && tour2==false)
-        {
-            cout << "tour1" << endl;
-            if(typepartie  == 1)
-            {
-                SDL_WaitEvent( &event);
-                tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
-                if(p->getLife()<0){ end = true;}
-
-            }
-            if(typepartie  == 2)
-            {
-                tour = a->live_Ai(forest->getListPtr(),forest->getP2Ref());
-                if(a->getLife()<0){ end = true;}
-
-            }
-            if(typepartie  == 3)
-            {
-                SDL_WaitEvent( &event);
-                tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
-                                p->PrintInfo();
-                if(p->getLife()<0){ end = true;}
-
-            }
-        }
-        forest->print(renderer);
-
-        while(tour2==false && tour == true)
-        {
-            cout << "tour2" << endl;
-
-            if(typepartie  == 1)
-            {
-
-                tour2 = a->live_Ai(forest->getListPtr(),forest->getP1Ref());
-                if(a->getLife()<0){ end = true;}
+	forest->print(renderer);
+	Player* p;
+	Ai* a;
+	Player* p2;
+	Ai* a2;
+	if(typepartie  == 1 )
+	{
+		p= dynamic_cast<Player*> (forest->getP1());
+		a= dynamic_cast<Ai*> (forest->getP2());
+	} 
 
 
-            }
-            if(typepartie  == 2)
-            {
+	if(typepartie  == 2)                    
+	{
+		a= dynamic_cast<Ai*> (forest->getP1());
+		a2= dynamic_cast<Ai*> (forest->getP2());
 
-                tour2 = a2->live_Ai(forest->getListPtr(),forest->getP1Ref());
-                if(a2->getLife()<0){ end = true;}
-
-
-
-            }
-            if(typepartie  == 3)
-            {
-                SDL_WaitEvent( &event);
-                tour2 = p2->movePlayer(event, forest->getListPtr(),forest->getP1Ref());
-                p2->PrintInfo();
-                if(p2->getLife()<0){ end = true;}
+	}
 
 
-            }
+	if(typepartie  == 3) 
+	{
+		p= dynamic_cast<Player*> (forest->getP1());
+		p2= dynamic_cast<Player*> (forest->getP2());
 
-        }
-        forest->print(renderer);
- 
-        
-        tour = false;
-        tour2 = false;
-    }
-    delete(forest);
-    SDL_DestroyWindow(fenetre);
-    
-    TTF_Quit();
-    SDL_Quit();
+	}          
 
-    return 0;
+	while(!end)
+	{
+
+
+		if(event.window.event == SDL_WINDOWEVENT_CLOSE)
+		{
+			end = true;
+		}
+
+		if(tour==false && tour2==false)
+		{
+			//cout << "tour1" << endl;
+			if(typepartie  == 1)
+			{
+				SDL_WaitEvent( &event);
+				tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
+				if(p->getLife()<0){ end = true;}
+
+			}
+			if(typepartie  == 2)
+			{
+				tour = a->live_Ai(forest->getListPtr(),forest->getP2Ref());
+				if(a->getLife()<0){ end = true;}
+
+			}
+			if(typepartie  == 3)
+			{
+				SDL_WaitEvent( &event);
+				tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
+				p->PrintInfo();
+				if(p->getLife()<0){ end = true;}
+
+			}
+		}
+		forest->print(renderer);
+
+		while(tour2==false && tour == true)
+		{
+			//cout << "tour2" << endl;
+
+			if(typepartie  == 1)
+			{
+
+				tour2 = a->live_Ai(forest->getListPtr(),forest->getP1Ref());
+				if(a->getLife()<0){ end = true;}
+
+			}
+			if(typepartie  == 2)
+			{
+
+				tour2 = a2->live_Ai(forest->getListPtr(),forest->getP1Ref());
+				if(a2->getLife()<0){ end = true;}
+			}
+			if(typepartie  == 3)
+			{
+				SDL_WaitEvent( &event);
+				tour2 = p2->movePlayer(event, forest->getListPtr(),forest->getP1Ref());
+				p2->PrintInfo();
+				if(p2->getLife()<0){ end = true;}
+
+			}
+
+		}
+		forest->print(renderer);
+
+
+		tour = false;
+		tour2 = false;
+	}
+}
+	delete(forest);
+
+	SDL_DestroyWindow(fenetre);
+
+	TTF_Quit();
+	SDL_Quit();
+
+	return 0;
 }
 
 /*

@@ -161,6 +161,7 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
 
     for(int unsigned i=0; i < f->getList().size() && ok !=1 ;i++)
         {
+            cout<< "HELLO" <<endl;
             obj=f->getObj(i);
             int obj_x=obj->getCenter().getX();
             int obj_y=obj->getCenter().getY();
@@ -188,8 +189,9 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
                     (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
                         && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
                 ))
-                {  cout << "DANS LE IF " << endl;
-                    ok=1;}
+                { 
+                    ok=1;
+                }
         }      
 
     if (ok==1)
@@ -229,7 +231,8 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
                     (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
                         && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
                 ))
-                {ok=1;}
+                {
+                    ok=1;}
             }
 
             if (f->getP2() != NULL)
@@ -320,7 +323,7 @@ bool forestEditor::add_Player(Forest* f, Point center, int i)
                         && cy_pr < (ry+(obj_h)) && cy_pr > (ry-(obj_h)))
                 )||(                
                     cx_mr < (rx+rd) && cx_mr > (rx-rd)
-                        && cy_mr < (ry+(obj_h)) && cx_pr > (ry-(obj_h))
+                        && cy_mr < (ry+(obj_h)) && cy_pr > (ry-(obj_h))
                 )||(
                     cx_mr > (rx-rd) && cx_mr < (rx+rd)
                         && cy_mr > (ry-(obj_h)) && cy_pr < (ry+(obj_h))

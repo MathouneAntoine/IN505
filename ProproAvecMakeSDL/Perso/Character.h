@@ -17,6 +17,7 @@ class Character
 		Character(const Point p, int orientation, int pv, int weaponDamage, int weaponRange);
         Cercle*  getForme();
         int getLife();
+        int getOrientation();
         void setLife(int pv);
 
         virtual void print(Field f);

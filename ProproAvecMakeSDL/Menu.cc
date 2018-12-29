@@ -194,7 +194,8 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
             end_menu=1;
             break;
             default:
-            exit(0);
+            end_menu=1;
+            game_type=-1;
 
         }
     }
@@ -261,8 +262,11 @@ int Menu::Boucle_Menu(SDL_Window* screen, Forest *f)
     SDL_RenderPresent(renderer);
     SDL_RenderClear(renderer);
 
+    if(game_type !=-1)
+    {
     forestEditor fe;
     fe.read_File(f, game_type, map);
+    }
     SDL_DestroyRenderer(renderer);
 }
 
