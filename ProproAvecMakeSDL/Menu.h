@@ -18,7 +18,7 @@ class Menu
     bool init_choix_joueur();
     bool init_choix_map();
     void print(SDL_Window* screen);
-    int clic(SDL_Event &event, SDL_Surface* pSurf,  SDL_Window* screen);
+    int clic(SDL_Event &event,SDL_Window* screen);
     int Boucle_Menu(SDL_Window* screen,Forest *f);
 
     ~Menu();

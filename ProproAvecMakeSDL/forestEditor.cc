@@ -14,10 +14,7 @@
 
 using namespace std;
 
-forestEditor::forestEditor()
-{}
-
-void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSurf  )
+void create_forest(Forest *f, SDL_Window* screen )
 {
      message(screen);
 
@@ -95,7 +92,7 @@ void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSur
      cout<< "FIN EDITION";
 }
 
-void forestEditor::message(SDL_Window* screen)
+void message(SDL_Window* screen)
 {
     SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(screen, -1, 0);
@@ -149,7 +146,7 @@ text3=TTF_RenderText_Blended(police, "Appuyer sur S pour sauvegarder et quitter 
 
 }
 
-bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
+bool add_Element(Forest* f, Objects* r, Point center)
 {
     Objects* obj;
     bool ok=0;
@@ -225,7 +222,7 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
     return false;       
 }
 
-bool forestEditor::collision_perso(Forest* f, Objects* r, Point center, int p)
+bool collision_perso(Forest* f, Objects* r, Point center, int p)
 {
     int obj_x=0;
     int obj_y=0;
@@ -275,22 +272,22 @@ bool forestEditor::collision_perso(Forest* f, Objects* r, Point center, int p)
                 else return 0;
 }
 
-bool forestEditor::add_Rock(Forest* f, Point center)
+bool add_Rock(Forest* f, Point center)
 {
     center.setX(center.getX()-(f->getField().getWidth()/2));
     center.setY(center.getY()-(f->getField().getHeight()/2));
-    return this->add_Element(f,new Rock(center),center);
+    return add_Element(f,new Rock(center),center);
 }
 
-bool forestEditor::add_Tree(Forest* f, Point center)
+bool add_Tree(Forest* f, Point center)
 {
 
     center.setX(center.getX()-(f->getField().getWidth()/2));
     center.setY(center.getY()-(f->getField().getHeight()/2));
-    return this->add_Element(f,new Tree(center),center);
+    return add_Element(f,new Tree(center),center);
 }
 
-bool forestEditor::add_Player(Forest* f, Point center, int i)
+bool add_Player(Forest* f, Point center, int i)
 {
     center.setX(center.getX()-(f->getField().getWidth()/2));
     center.setY(center.getY()-(f->getField().getHeight()/2));
@@ -342,7 +339,7 @@ bool forestEditor::add_Player(Forest* f, Point center, int i)
     return false;    
 }
 
-void forestEditor::write_Forest(Forest* f)
+void write_Forest(Forest* f)
 {
     ofstream file("Saves/personalisee.txt",  ios::out | ios::trunc);
  
@@ -350,8 +347,8 @@ void forestEditor::write_Forest(Forest* f)
     {       
        for(int unsigned i=0;i<f->getList().size();i++)
         {
-            if (dynamic_cast<Rock*>(f->getList()[i])) this->write_Rock(dynamic_cast<Rock*>(f->getList()[i]), file );
-            if (dynamic_cast<Tree*>(f->getList()[i])) this->write_Tree(dynamic_cast<Tree*>(f->getList()[i]), file);
+            if (dynamic_cast<Rock*>(f->getList()[i])) write_Rock(dynamic_cast<Rock*>(f->getList()[i]), file );
+            if (dynamic_cast<Tree*>(f->getList()[i])) write_Tree(dynamic_cast<Tree*>(f->getList()[i]), file);
         }
 
         cout<< "P1== " << endl; 
@@ -365,26 +362,26 @@ void forestEditor::write_Forest(Forest* f)
         std::cerr << "Impossible d'ouvrir le fichier !" << std::endl;
 }
 
-void forestEditor::write_Rock(Rock* r, ofstream &file)
+void write_Rock(Rock* r, ofstream &file)
 {
     file << "R" << " " << r->getCenter().getX() << " " <<  r->getCenter().getY() ;
     file << " " << r->getHeight() << " " <<r->getDiameter() << " " << r->getAltitude();
     file << " " << r->getLife()<< " " << r->getType() <<endl;
 } 
 
-void forestEditor::write_Tree(Tree* t, ofstream &file)
+void write_Tree(Tree* t, ofstream &file)
 {
     file << "T"  << " " << t->getCenter().getX() << " " << t->getCenter().getY();
     file << " " << t->getHeight() << " " <<t->getDiameter() << " " << t->getAltitude();
     file << " " << t->getLife() << " " << t->getType() <<endl;
 }
 
-void forestEditor::write_Character(Character* c, ofstream &file, int i)
+void write_Character(Character* c, ofstream &file, int i)
 {
   file << "C" << i << " " << c->getForme()->getCenter().getX() << " " << c->getForme()->getCenter().getY() << endl;
 }
 
-Forest* forestEditor::read_File( Forest* f, int type, int map) //type : 0 joueur/ia ; 1- ia/ia ; 2- joueur/joueur
+Forest* read_File( Forest* f, int type, int map) //type : 0 joueur/ia ; 1- ia/ia ; 2- joueur/joueur
 {
 
     ifstream file;
@@ -473,4 +470,3 @@ Forest* forestEditor::read_File( Forest* f, int type, int map) //type : 0 joueur
 
     return f;
 }
-forestEditor::~forestEditor(){}

@@ -41,7 +41,7 @@ Rock::Rock()
 	this->height=50;
 	this->diameter=40;
 	this->altitude=30;
-	this->life=(altitude/2)+diameter+height;
+	this->life=(altitude/4)+(diameter/4)+(height/4);
 }
 
 Rock::Rock(Point center)
@@ -55,7 +55,7 @@ Rock::Rock(Point center)
 	if (this->height%2!=0) this->height++;
 	this->altitude=rand()%150+80;
 	if (this->altitude%2!=0) this->altitude++;
-	this->life=(altitude/2)+diameter+height;
+	this->life=(altitude/4)+(diameter/4)+(height/4);
 
 	int i= rand()%2;
 	if(i==0)
@@ -80,8 +80,7 @@ Rock::Rock(Field* field, int height, int diameter, int altitude, int FromCenterX
 
 	this->height=height;
 	this->diameter=diameter;
-	this->life=(altitude/2)+diameter+height;
-
+	this->life=(altitude/4)+(diameter/4)+(height/4);
 }
 
 Rock::Rock(char t, Point center, int height, int diameter, int altitude, int life)

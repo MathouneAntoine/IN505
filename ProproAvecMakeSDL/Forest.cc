@@ -64,9 +64,6 @@ void Forest::eraseList(int i)
 
 void Forest::init_forest()
 {
-  std::cout << "YO" << List_Obj.size() << std::endl;
-
-
   for (int i=0; i< List_Obj.size(); i++)
   {
     std::cout << List_Obj[i]->getType() << std::endl;
@@ -89,8 +86,6 @@ void Forest::print(SDL_Renderer *renderer, int i)
     if (dynamic_cast<Tree*>(this->List_Obj[j]))dynamic_cast<Tree*>(this->List_Obj[j])->print(f);
     if (dynamic_cast<Rock*>(this->List_Obj[j]))dynamic_cast<Rock*>(this->List_Obj[j])->print(f);
   }
-
-  cout << "I = " << i << endl;
 
   if (i==0)
   {

@@ -32,11 +32,12 @@ int main(int argc, char **argv)
 	int joue=0;
 	joue=m.Boucle_Menu(fenetre,forest);
 	int typepartie =  m.getGame_Type();
+
 	SDL_Renderer *renderer;
 	renderer = SDL_CreateRenderer(fenetre, -1, 0);
 	if(!renderer)
 	{
-		std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+		std::cout << "SDL Error @main : " << SDL_GetError() << std::endl;
 		return -1;
 	}
 
@@ -147,7 +148,7 @@ int main(int argc, char **argv)
 }
 	delete(forest);
 
-	SDL_DestroyWindow(fenetre);
+	//SDL_DestroyWindow(fenetre);
 
 	TTF_Quit();
 	SDL_Quit();

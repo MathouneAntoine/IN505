@@ -28,7 +28,7 @@ Tree::Tree()
 	this->height=50;
 	this->diameter=30;
 	this->altitude=50;
-	this->life=(altitude/4)+(height+diameter);
+	this->life=(altitude/4)+((height+diameter)/4);
 }
 
 Tree::Tree(Tree& t)
@@ -63,7 +63,7 @@ Tree::Tree(Field* field, int height, int diameter, int altitude, int FromCenterX
 	this->height=height;
 	this->diameter=diameter;
 	this->altitude=altitude;
-	this->life=(altitude/4)+(height+diameter);
+	this->life=(altitude/4)+((height+diameter)/4);
 }
 
 Tree::Tree(char t, Point center, int height, int diameter, int altitude, int life)
@@ -95,7 +95,7 @@ Tree::Tree(Point center)
 	if (this->height%2!=0) this->height++;
 	this->altitude=rand()%150+80;
 	if (this->altitude%2!=0) this->altitude++;
-	this->life=(altitude/2)+diameter+height;
+	this->life=(altitude/4)+((height+diameter)/4);
 
 	int i= rand()%2;
 	if(i==0)

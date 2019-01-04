@@ -179,26 +179,26 @@ bool Character::collision(int x, int y, vector<Objects*> &obj,int power,Characte
 
 void Character::Attack(int direction, int range,  vector<Objects*> &obj, int power,Character &p)
 {
+	int j=power;
     for(int r = 0; r < range; range--)
     {
-        for(int po = 0; po < power; power--)
+        for(int po = 0; po < j; j--)
             switch(direction)
         {
-
             case 0:
-            collision( (cerc->getCenter().getX()+power), (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power,p);
+            collision( (cerc->getCenter().getX()+j), (cerc->getCenter().getY()-cerc->getDiametre()/2 -range) ,obj,power,p);
             break;
 
             case 90:
-            collision( (cerc->getCenter().getX()+cerc->getDiametre()/2 +range) , (cerc->getCenter().getY()+power) ,obj,power,p);
+            collision( (cerc->getCenter().getX()+cerc->getDiametre()/2 +range) , (cerc->getCenter().getY()+j) ,obj,power,p);
             break;
             
             case 180:
-            collision( (cerc->getCenter().getX()+power), (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power,p );
+            collision( (cerc->getCenter().getX()+j), (cerc->getCenter().getY()+cerc->getDiametre()/2 +range) ,obj,power,p );
             break;            
 
             case 270:
-            collision( (cerc->getCenter().getX()-cerc->getDiametre()/2 -range) , (cerc->getCenter().getY()+power),obj,power,p);
+            collision( (cerc->getCenter().getX()-cerc->getDiametre()/2 -range) , (cerc->getCenter().getY()+j),obj,power,p);
             break;
         }
     }
@@ -211,6 +211,7 @@ void Character::takeDamage(vector<Objects*> &v ,Objects *o,int i, int power,Char
 		if ((o->getLife() - power) <= 0) 
        {
           cout << "dead Object" << v.size()<<  endl;
+
           v.erase(v.begin()+i);
           cout << "dead after Object" << v.size()<<  endl;
       }
@@ -225,10 +226,8 @@ void Character::takeDamageCharacter(Character &p, int power)
        if ((p.getLife() - power) <= 0) 
        {
          p.setLife(p.getLife() - power);
-         cout << "dead" << &p<< endl;
-	    	//delete &p;
-	    	//this-> =NULL;
-         cout << "dead after "<< &p<< endl;
+         cout << "dead" << endl;
+         cout << "dead after "<< endl;
      }
      else p.setLife(p.getLife() - power);
  }

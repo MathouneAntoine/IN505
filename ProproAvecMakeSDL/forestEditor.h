@@ -8,12 +8,7 @@
 #include "mes_perso.h"
 #include "Objects.h"
 
-class forestEditor
-{
-	public:
-		forestEditor();
-
-		void create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSurf);
+		void create_forest(Forest *f, SDL_Window* screen);
 		void message(SDL_Window* screen);
 
 		bool add_Element(Forest *f, Objects* r, Point center);
@@ -29,9 +24,4 @@ class forestEditor
 
 		Forest* read_File(Forest *f, int type, int map);
 
-		~forestEditor();
-
-	private:
-
-};
 #endif

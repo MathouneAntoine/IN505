@@ -27,8 +27,12 @@ Player::Player(Point p)
 }
 bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
 {
-
+	SDL_Event  e1;
+	SDL_Event  e2;
     bool tour = false;
+	bool r = false;
+	bool po = false;
+
     int range = 0;
     int power = 0;
     switch(event.type)
@@ -42,53 +46,79 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                     {
                     	
                         case 't':
-                        
-                        switch(event.key.keysym.sym)
-                    	{
-                    		
-                    		case SDLK_1:
-                          	 range = 1;
-                    		break;
 
-                    		case SDLK_2:
-                    		 range = 2;
-                    		break;
+                        while(r==false)
+                        {
+							SDL_WaitEvent( &e1);
+							if(e1.type==SDL_KEYDOWN)
+	                        switch(e1.key.keysym.sym)
+	                    	{
+	                    		
+	                    		case SDLK_1:
+	                          	 range = 3;
+	                          	 r = true;
+	                    		break;
 
-                    		case SDLK_3:
-                    		 range = 3;
-                    		break;
+	                    		case SDLK_2:
+	                    		 range = 4;
+	                    		  r = true;
+	                    		break;
 
-                    		case SDLK_4:
-                    		 range = 4;
-                    		break;
+	                    		case SDLK_3:
+	                    		 range = 5;
+	                    		  r = true;
+	                    		break;
 
-                      		case SDLK_5:
-                      		 range = 5;
-							break;
-						}
-						switch(event.key.keysym.sym)
-							{
-                    		case SDLK_1:
-                          	power = 1;
-                    		break;
+	                    		case SDLK_4:
+	                    		 range = 6;
+	                    		  r = true;
+	                    		break;
 
-                    		case SDLK_2:
-                    		power = 2;
-                    		break;
+	                      		case SDLK_5:
+	                      		                        cout <<"Tirer51!"<<endl;
 
-                    		case SDLK_3:
-                    		power = 3;
-                    		break;
-
-                    		case SDLK_4:
-                    		power = 4;
-                    		break;
-
-                      		case SDLK_5:
-                      	    power = 5;
-							break;
-
+	                      		 range = 7;
+	                      		  r = true;
+								break;
 							}
+						}
+							while(po==false)
+                        	{
+								SDL_WaitEvent( &e1);
+								if(e1.type==SDL_KEYDOWN)
+								switch(e1.key.keysym.sym)
+									{
+		                    		case SDLK_1:
+		                          	power = 1;
+		                          	po=true;
+
+		                    		break;
+
+		                    		case SDLK_2:
+		                    		power = 2;
+		                    		po=true;
+		                    		break;
+
+		                    		case SDLK_3:
+		                    		power = 3;
+		                    		po=true;
+		                    		break;
+
+		                    		case SDLK_4:
+		                    		power = 4;
+		                    		po=true;
+		                    		break;
+
+		                      		case SDLK_5:
+		                      		                        cout <<"Tirer52!"<<endl;
+
+		                      	    power = 5;
+		                      	    po=true;
+									break;
+
+									}
+								}
+							
                         cout <<"Tirer!"<<endl;
                         Attack(this->orientation, range,  obj, power,p);
                         tour= true;

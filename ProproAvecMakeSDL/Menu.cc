@@ -114,7 +114,7 @@ bool Menu::init_choix_map()
    return true;
 }
         
-int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
+int Menu::clic(SDL_Event &event, SDL_Window* screen )
 {
 
    if (event.type==SDL_MOUSEBUTTONDOWN && event.button.button==SDL_BUTTON_LEFT)
@@ -122,7 +122,6 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
      int x= event.motion.x;
      int y= event.motion.y;
      Forest *f=new Forest();
-     forestEditor edit;
 
     if((rect[0].x<x)&&(rect[0].x+rect[0].w>x)&&(rect[0].y<y)&&(rect[0].y+rect[0].h>y))
     {
@@ -155,7 +154,7 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
             case(0):
             {
               cout<<"edit"<<endl;//edition
-              edit.create_forest(f, screen, pSurf);
+              create_forest(f, screen);
               init_principal();
               print(screen);
             }
@@ -204,11 +203,11 @@ int Menu::clic(SDL_Event &event,SDL_Surface* pSurf, SDL_Window* screen)
 void Menu::print(SDL_Window* screen)
 
 {
-  SDL_Renderer *renderer;
+	SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(screen, -1, 0);
     if(!renderer)
     {
-        std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+        std::cout << "SDL Error @boucle_menu: " << SDL_GetError() << std::endl;
     }
     SDL_RenderPresent(renderer);
 
@@ -228,8 +227,8 @@ void Menu::print(SDL_Window* screen)
         SDL_RenderCopy(renderer, b1, NULL, &rect[1]);
         SDL_RenderCopy(renderer, b2, NULL, &rect[2]);
 
-         SDL_RenderPresent(renderer);
-         SDL_DestroyRenderer(renderer);
+        SDL_RenderPresent(renderer);
+        SDL_DestroyRenderer(renderer);
     }
 }
 
@@ -237,25 +236,25 @@ int Menu::Boucle_Menu(SDL_Window* screen, Forest *f)
 {
 
     SDL_Event event;
-    SDL_Surface* pSurf = SDL_GetWindowSurface(screen);
 
     TTF_Init();
 
     init_principal();
-    print( screen);    
+
+    print(screen);    
 
     while (!end_menu)
     {
      SDL_WaitEvent(&event);  
      MouseKeyboard(event);
-     clic(event, pSurf, screen);
+     clic(event, screen);
     } 
 
-   SDL_Renderer *renderer;
+    SDL_Renderer *renderer;
     renderer = SDL_CreateRenderer(screen, -1, 0);
     if(!renderer)
     {
-        std::cout << "SDL Error : " << SDL_GetError() << std::endl;
+        std::cout << "SDL Error @boucle_menu: " << SDL_GetError() << std::endl;
     }
 
     SDL_RenderPresent(renderer);
@@ -263,8 +262,7 @@ int Menu::Boucle_Menu(SDL_Window* screen, Forest *f)
 
     if(game_type !=-1)
     {
-    forestEditor fe;
-    fe.read_File(f, game_type, map);
+    	read_File(f, game_type, map);
     }
     SDL_DestroyRenderer(renderer);
 }
