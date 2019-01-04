@@ -5,7 +5,6 @@
 #include "mes_formes.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <GL/glut.h>
 #include <SDL2/SDL.h>
 
 using namespace std;

@@ -9,7 +9,6 @@
 #include "MouseKeyboard.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <GL/glut.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 

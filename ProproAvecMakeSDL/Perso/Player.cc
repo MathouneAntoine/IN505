@@ -3,7 +3,6 @@
 #include <iostream>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <GL/glut.h>
 #include <vector>
 
 #include "Player.h"
@@ -30,18 +29,69 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
 {
 
     bool tour = false;
+    int range = 0;
+    int power = 0;
     switch(event.type)
     {
         case SDL_QUIT:
         break;  
 
-                    case SDL_KEYDOWN: //KEYDOWN ??
-                    tour= true;
+                    case SDL_KEYDOWN: 
+ 
                     switch(event.key.keysym.sym)
                     {
+                    	
                         case 't':
+                        
+                        switch(event.key.keysym.sym)
+                    	{
+                    		
+                    		case SDLK_1:
+                          	 range = 1;
+                    		break;
+
+                    		case SDLK_2:
+                    		 range = 2;
+                    		break;
+
+                    		case SDLK_3:
+                    		 range = 3;
+                    		break;
+
+                    		case SDLK_4:
+                    		 range = 4;
+                    		break;
+
+                      		case SDLK_5:
+                      		 range = 5;
+							break;
+						}
+						switch(event.key.keysym.sym)
+							{
+                    		case SDLK_1:
+                          	power = 1;
+                    		break;
+
+                    		case SDLK_2:
+                    		power = 2;
+                    		break;
+
+                    		case SDLK_3:
+                    		power = 3;
+                    		break;
+
+                    		case SDLK_4:
+                    		power = 4;
+                    		break;
+
+                      		case SDLK_5:
+                      	    power = 5;
+							break;
+
+							}
                         cout <<"Tirer!"<<endl;
-                        Attack(this->orientation, 10,  obj, 50,p);
+                        Attack(this->orientation, range,  obj, power,p);
+                        tour= true;
                         break;
 
                         case SDLK_UP:
@@ -54,6 +104,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                         {
                             Translate(0,obj,p);
                         }
+                        tour= true;
                         break;
 
                         
@@ -67,6 +118,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                         {
                             Translate(180,obj,p);
                         }
+                        tour= true;
                         break;
 
                         case SDLK_RIGHT:
@@ -78,8 +130,9 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                        else
                        {
                         Translate(90,obj,p);
-                    }
-                    break;
+                   	   }
+                   	   tour= true;
+                    	break;
 
                     case SDLK_LEFT:
                     cout <<"Left"<<endl;
@@ -91,6 +144,7 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
                     {
                         Translate(270,obj,p);
                     }
+                    tour= true;
                     break;
                 }
                 break;

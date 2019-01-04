@@ -1,6 +1,6 @@
 export CXX=g++
 export CXXFLAGS=`sdl2-config --cflags`  
-export LDFLAGS=`sdl2-config --libs` -lGL -lGLU -lglut -lSDL2_ttf 
+export LDFLAGS=`sdl2-config --libs` -lGL -lGLU -lSDL2_ttf 
 SRC= $(wildcard *.cc)
 OBJ= $(SRC:.cc=.o)
 
@@ -12,11 +12,6 @@ PERSO_DIR=./Perso/
 SRC_Perso= $(wildcard $(PERSO_DIR)*.cc)
 OBJ_Perso= $(SRC_Perso:.cc=.o)
 
-install:
-	sudo apt-get install make
-	sudo apt-get install g++
-	sudo apt-get install libsdl2-dev 
-	sudo apt-get install libsdl2-ttf-dev
 
 all: $(EXEC) game
 
@@ -52,3 +47,15 @@ mrproper: clean
 	@(cd $(MESFORMES_DIR) && $(MAKE) $@)
 	@(cd $(PERSO_DIR) && $(MAKE) $@)
 	rm -rf $(EXEC)
+
+install:
+	sudo apt-get install make
+	sudo apt-get install g++
+	sudo apt-get install libsdl2-dev 
+	sudo apt-get install libsdl2-ttf-dev
+	sudo apt-get install freeglut3-dev
+	sudo apt-get install libglu1-mesa-dev
+	sudo apt-get install mesa-common-dev
+	sudo apt-get install libsdl2-2.0-0
+
+
