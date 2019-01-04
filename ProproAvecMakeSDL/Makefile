@@ -12,6 +12,11 @@ PERSO_DIR=./Perso/
 SRC_Perso= $(wildcard $(PERSO_DIR)*.cc)
 OBJ_Perso= $(SRC_Perso:.cc=.o)
 
+install:
+	sudo apt-get install make
+	sudo apt-get install g++
+	sudo apt-get install libsdl2-dev 
+	sudo apt-get install libsdl2-ttf-dev
 
 all: $(EXEC) game
 

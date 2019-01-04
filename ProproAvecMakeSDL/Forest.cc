@@ -77,21 +77,38 @@ void Forest::init_forest()
   }
 }
 
-void Forest::print(SDL_Renderer *renderer)
+void Forest::print(SDL_Renderer *renderer, int i)
 {
   SDL_RenderClear(renderer);
 
   SDL_SetRenderDrawColor(renderer, 0, 100, 0, 255);
 
 
-  for(int unsigned i=0; i < this->List_Obj.size() ;i++)
+  for(int unsigned j=0; j < this->List_Obj.size() ;j++)
   {
-    if (dynamic_cast<Tree*>(this->List_Obj[i]))dynamic_cast<Tree*>(this->List_Obj[i])->print(f);
-    if (dynamic_cast<Rock*>(this->List_Obj[i]))dynamic_cast<Rock*>(this->List_Obj[i])->print(f);
+    if (dynamic_cast<Tree*>(this->List_Obj[j]))dynamic_cast<Tree*>(this->List_Obj[j])->print(f);
+    if (dynamic_cast<Rock*>(this->List_Obj[j]))dynamic_cast<Rock*>(this->List_Obj[j])->print(f);
   }
 
-  if (p1 != NULL) p1->print(f);
-  if (p2 != NULL) if(visible()==true) p2->print(f);
+  cout << "I = " << i << endl;
+
+  if (i==0)
+  {
+    if (p1 != NULL) p1->print(f);
+    if (p2 != NULL) if(visible()==true)  p2->print(f);
+  }
+
+  if (i==1)
+  {
+    if (p1 != NULL) if(visible()==true)  p1->print(f);
+    if (p2 != NULL)  p2->print(f);
+  }
+  
+  if (i==2)
+  {
+    if (p1!=NULL)p1->print(f);
+    if (p2!=NULL)p2->print(f);
+  }
 
 
   SDL_RenderPresent(renderer);

@@ -33,10 +33,10 @@ void forestEditor::create_forest(Forest *f, SDL_Window* screen,SDL_Surface* pSur
     char res='b';
     Point center;
     int count =1;
-    f->print(renderer);
+    f->print(renderer,2);
      while (res !='s' && res!='q' )
      {
-         f->print(renderer);
+         f->print(renderer,2);
         while(res=='b')
         {
             SDL_WaitEvent(&event);  

@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 	if (m.getGame_Type()!=-1)   
 	{
 
-	forest->print(renderer);
+	forest->print(renderer,0);
 	Player* p;
 	Ai* a;
 	Player* p2;
@@ -81,7 +81,6 @@ int main(int argc, char **argv)
 
 	while(!end)
 	{
-
 
 		if(event.window.event == SDL_WINDOWEVENT_CLOSE)
 		{
@@ -112,8 +111,10 @@ int main(int argc, char **argv)
 				if(p->getLife()<0){ end = true;}
 
 			}
+			if(typepartie  != 1)forest->print(renderer,1);
+			else forest->print(renderer,0);
 		}
-		forest->print(renderer);
+		
 
 		while(tour2==false && tour == true)
 		{
@@ -121,14 +122,11 @@ int main(int argc, char **argv)
 
 			if(typepartie  == 1)
 			{
-
 				tour2 = a->live_Ai(forest->getListPtr(),forest->getP1Ref());
 				if(a->getLife()<0){ end = true;}
-
 			}
 			if(typepartie  == 2)
 			{
-
 				tour2 = a2->live_Ai(forest->getListPtr(),forest->getP1Ref());
 				if(a2->getLife()<0){ end = true;}
 			}
@@ -140,10 +138,9 @@ int main(int argc, char **argv)
 				if(p2->getLife()<0){ end = true;}
 
 			}
-
+			
+			forest->print(renderer,0);
 		}
-		forest->print(renderer);
-
 
 		tour = false;
 		tour2 = false;

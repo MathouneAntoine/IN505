@@ -29,7 +29,7 @@ class Forest
 
 		Field getField();
 
-		void print(SDL_Renderer *renderer);
+		void print(SDL_Renderer *renderer, int i);
 		std::vector<Objects*> getList();
 		void init_forest();
 
