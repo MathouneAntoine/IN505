@@ -17,6 +17,7 @@ class forestEditor
 		void message(SDL_Window* screen);
 
 		bool add_Element(Forest *f, Objects* r, Point center);
+		bool collision_perso(Forest* f, Objects* r, Point center, int p);
 		bool add_Rock(Forest *f, Point center);
 		bool add_Tree(Forest *f, Point center);
 		bool add_Player(Forest *f, Point center, int i);

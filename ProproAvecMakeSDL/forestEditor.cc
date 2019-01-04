@@ -204,45 +204,51 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
         {
             if (f->getP1() != NULL)
             {
-                 cout << "P1 existe" <<endl;
-                int obj_x=f->getP1()->getForme()->getCenter().getX();
-                int obj_y=f->getP1()->getForme()->getCenter().getY();
-                int obj_d=f->getP1()->getForme()->getDiametre()/2;
-                int obj_h=obj_d;
-
-               if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
-                        && (r_y-r_h) <= (obj_y+(obj_h)) && (r_y-r_h) >= (obj_y-(obj_h)))
-                )||(                
-                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d))
-                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y-r_h) >= (obj_y-(obj_h))
-                )||(
-                    (r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d))
-                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
-                )||(
-                    (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d)) 
-                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
-                )||(
-                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
-                        && (r_y-r_h) <= (obj_y+(obj_h))) && (r_y+r_h) >= (obj_y+(obj_h))
-                )||(
-                    (r_x-r_d <= (obj_x-(obj_d)) && r_x+r_d >= (obj_x+(obj_d)) 
-                        && (r_y+r_h) >= (obj_y-(obj_h))) && (r_y+r_h) <= (obj_y+(obj_h))
-                )||(
-                    (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
-                        && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
-                ))
-                {
-                    ok=1;}
+                ok=collision_perso(f,r,center,1);
             }
 
             if (f->getP2() != NULL)
             {
-                cout << "P2 existe" <<endl;
+                ok=collision_perso(f,r,center,2);
+            }
+        }
 
-                int obj_x=f->getP2()->getForme()->getCenter().getX();
-                int obj_y=f->getP2()->getForme()->getCenter().getY();
-                int obj_d=f->getP2()->getForme()->getDiametre()/2;
-                int obj_h=obj_d;
+  
+    if (ok ==0)
+    {
+        f->addList(r);
+        
+        return true;
+    }
+
+
+    return false;       
+}
+
+bool forestEditor::collision_perso(Forest* f, Objects* r, Point center, int p)
+{
+    int obj_x=0;
+    int obj_y=0;
+    int obj_d=0;
+    int obj_h=0;
+              if(p==1) 
+            {
+                 obj_x=f->getP1()->getForme()->getCenter().getX();
+                 obj_y=f->getP1()->getForme()->getCenter().getY();
+                 obj_d=f->getP1()->getForme()->getDiametre()/2;
+                 obj_h=obj_d;
+            }
+             if(p==2) 
+            {
+                 obj_x=f->getP2()->getForme()->getCenter().getX();
+                 obj_y=f->getP2()->getForme()->getCenter().getY();
+                 obj_d=f->getP2()->getForme()->getDiametre()/2;
+                 obj_h=obj_d;
+            }
+            int r_x=r->getCenter().getX();
+            int r_y=r->getCenter().getY();
+            int r_d=r->getDiameter()/2;
+            int r_h=r->getHeight()/2;
 
               if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
                         && (r_y-r_h) <= (obj_y+(obj_h)) && (r_y-r_h) >= (obj_y-(obj_h)))
@@ -265,20 +271,8 @@ bool forestEditor::add_Element(Forest* f, Objects* r, Point center)
                     (r_y+r_h >= (obj_y+(obj_h)) && r_y-r_h <= (obj_y-(obj_h)) 
                         && (r_x+r_d) >= (obj_x-(obj_x))) && (r_x+r_d) <= (obj_x+(obj_x))
                 ))
-                {ok=1;}
-            }
-        }
-
-  
-    if (ok ==0)
-    {
-        f->addList(r);
-        
-        return true;
-    }
-
-
-    return false;       
+                return 1;
+                else return 0;
 }
 
 bool forestEditor::add_Rock(Forest* f, Point center)
