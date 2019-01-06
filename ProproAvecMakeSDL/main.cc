@@ -17,6 +17,45 @@
 
 #include "forestEditor.h"
 
+SDL_Renderer * printEnd(Forest *forest, SDL_Window* screen)
+{
+ SDL_Surface * text;
+  SDL_Rect rect;
+  TTF_Font * police = NULL;
+  SDL_Color c = {38, 26, 13};
+
+  police = TTF_OpenFont("./font.ttf", 50);
+    if(!police) printf("TTF_OpenFont: %s\n", TTF_GetError());
+
+  if (forest->getP1()->getLife()>0)text=TTF_RenderText_Blended(police, "* Joueur 1 Gagne *", c); 
+  else if(forest->getP2()->getLife()>0) text=TTF_RenderText_Blended(police, "* Joueur 2 Gagne *", c); 
+
+  rect.w = text->w;
+  rect.h = text->h;
+
+  	SDL_Renderer *renderer;
+    renderer = SDL_CreateRenderer(screen, -1, 0);
+    if(!renderer)
+    {
+        std::cout << "SDL Error @boucle_menu: " << SDL_GetError() << std::endl;
+    }
+    SDL_RenderPresent(renderer);
+
+    if(text)
+    {
+      rect.x=400- rect.w/2 ; rect.y=150;
+
+        SDL_Texture* b0 = SDL_CreateTextureFromSurface(renderer, text); 
+        SDL_RenderCopy(renderer, b0, NULL, &rect);
+        SDL_RenderPresent(renderer);
+        
+    }
+
+TTF_CloseFont(police);
+return renderer;
+}
+
+
 int main(int argc, char **argv)
 {
 	srand(time(NULL));
@@ -45,6 +84,7 @@ int main(int argc, char **argv)
 
 
 	bool end;
+	bool message=true;
 	end = false;
 	bool tour = false;
 	bool tour2 = false;
@@ -85,6 +125,7 @@ int main(int argc, char **argv)
 		if(event.window.event == SDL_WINDOWEVENT_CLOSE)
 		{
 			end = true;
+			message=false;
 		}
 
 		if(tour==false && tour2==false)
@@ -94,13 +135,13 @@ int main(int argc, char **argv)
 			{
 				SDL_WaitEvent( &event);
 				tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
-				if(p->getLife()<0){ end = true;}
+				if(p->getLife()<=0){ end = true;}
 
 			}
 			if(typepartie  == 2)
 			{
 				tour = a->live_Ai(forest->getListPtr(),forest->getP2Ref());
-				if(a->getLife()<0){ end = true;}
+				if(a->getLife()<=0){ end = true;}
 
 			}
 			if(typepartie  == 3)
@@ -108,7 +149,7 @@ int main(int argc, char **argv)
 				SDL_WaitEvent( &event);
 				tour = p->movePlayer(event, forest->getListPtr(),forest->getP2Ref());
 				p->PrintInfo();
-				if(p->getLife()<0){ end = true;}
+				if(p->getLife()<=0){ end = true;}
 
 			}
 			if(typepartie  != 1)forest->print(renderer,1);
@@ -123,19 +164,19 @@ int main(int argc, char **argv)
 			if(typepartie  == 1)
 			{
 				tour2 = a->live_Ai(forest->getListPtr(),forest->getP1Ref());
-				if(a->getLife()<0){ end = true;}
+				if(a->getLife()<=0){ end = true;}
 			}
 			if(typepartie  == 2)
 			{
 				tour2 = a2->live_Ai(forest->getListPtr(),forest->getP1Ref());
-				if(a2->getLife()<0){ end = true;}
+				if(a2->getLife()<=0){ end = true;}
 			}
 			if(typepartie  == 3)
 			{
 				SDL_WaitEvent( &event);
 				tour2 = p2->movePlayer(event, forest->getListPtr(),forest->getP1Ref());
 				p2->PrintInfo();
-				if(p2->getLife()<0){ end = true;}
+				if(p2->getLife()<=0){ end = true;}
 
 			}
 			
@@ -146,6 +187,27 @@ int main(int argc, char **argv)
 		tour2 = false;
 	}
 }
+  SDL_DestroyRenderer(renderer);
+
+  end=false;
+
+  SDL_Renderer *rende;
+
+if (message==true && m.getGame_Type()!=-1) 
+{
+	rende=printEnd(forest, fenetre);
+	while(!end)
+	{
+		if(event.window.event == SDL_WINDOWEVENT_CLOSE)
+		{
+			end = true;
+		}
+		SDL_WaitEvent( &event);
+	}
+}
+
+SDL_DestroyRenderer(rende);
+
 	delete(forest);
 
 	//SDL_DestroyWindow(fenetre);

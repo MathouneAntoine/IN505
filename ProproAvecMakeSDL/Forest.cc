@@ -129,25 +129,24 @@ bool Forest::visible()
     int obj_d=obj->getDiameter()/2;
     int obj_h=obj->getHeight()/2;
 
-    if(p1_x<p2_x && ((obj_x-obj_d<p2_x && obj_x-obj_d>p1_x)||(obj_x+obj_d<p2_x && obj_x+obj_d>p1_x)) &&
-          ((obj_y-obj_h<p2_y && obj_y-obj_h>p1_y) ||  (obj_y+obj_h<p2_y && obj_y+obj_h>p1_y) ||
-           (obj_y-obj_h>p2_y && obj_y-obj_h<p1_y) ||  (obj_y+obj_h>p2_y && obj_y+obj_h<p1_y) || 
-           (obj_y+obj_h>p1_y && obj_y+obj_h>p2_y && obj_y-obj_h<p1_y && obj_y-obj_h<p2_y)))
+    if(p1_x<=p2_x && ((obj_x-obj_d<=p2_x && obj_x-obj_d>=p1_x)||(obj_x+obj_d<=p2_x && obj_x+obj_d>=p1_x)) &&
+          ((obj_y-obj_h<=p2_y && obj_y-obj_h>=p1_y) ||  (obj_y+obj_h<=p2_y && obj_y+obj_h>=p1_y) ||
+           (obj_y-obj_h>=p2_y && obj_y-obj_h<=p1_y) ||  (obj_y+obj_h>=p2_y && obj_y+obj_h<=p1_y) || 
+           (obj_y+obj_h>=p1_y && obj_y+obj_h>=p2_y && obj_y-obj_h<=p1_y && obj_y-obj_h<=p2_y)))
     {
-      cout<< "ici"<<endl;
         int dhd=((p2_x-p1_x)*((obj_y-obj_h)-p1_y))-((p2_y-p1_y)*((obj_x+obj_d)-p1_x));
         int dbd=((p2_x-p1_x)*((obj_y+obj_h)-p1_y))-((p2_y-p1_y)*((obj_x+obj_d)-p1_x));
 
         int dhg=((p2_x-p1_x)*((obj_y-obj_h)-p1_y))-((p2_y-p1_y)*((obj_x-obj_d)-p1_x));
         int dbg=((p2_x-p1_x)*((obj_y+obj_h)-p1_y))-((p2_y-p1_y)*((obj_x-obj_d)-p1_x));
 
-        if((dhd<0 && dbd>0) || (dhg<0 && dbg>0) || (dhd<0 && dbg>0) || (dhg<0 && dbd>0))visible=false; 
+        if((dhd<=0 && dbd>=0) || (dhg<=0 && dbg>=0) || (dhd<=0 && dbg>=0) || (dhg<=0 && dbd>=0) )visible=false; 
     }
 
-    if(p1_x>=p2_x && ((obj_x-obj_d>p2_x && obj_x-obj_d<p1_x) ||  (obj_x+obj_d>p2_x && obj_x+obj_d<p1_x)) &&
-          ((obj_y-obj_h<p2_y && obj_y-obj_h>p1_y) ||  (obj_y+obj_h<p2_y && obj_y+obj_h>p1_y) ||
-           (obj_y-obj_h>p2_y && obj_y-obj_h<p1_y) ||  (obj_y+obj_h>p2_y && obj_y+obj_h<p1_y) || 
-           (obj_y+obj_h>p1_y && obj_y+obj_h>p2_y && obj_y-obj_h<p1_y && obj_y-obj_h<p2_y)))   
+    if(p1_x>=p2_x && ((obj_x-obj_d>=p2_x && obj_x-obj_d<=p1_x) ||  (obj_x+obj_d>=p2_x && obj_x+obj_d<=p1_x)) &&
+          ((obj_y-obj_h<=p2_y && obj_y-obj_h>=p1_y) ||  (obj_y+obj_h<=p2_y && obj_y+obj_h>=p1_y) ||
+           (obj_y-obj_h>=p2_y && obj_y-obj_h<=p1_y) ||  (obj_y+obj_h>=p2_y && obj_y+obj_h<=p1_y) || 
+           (obj_y+obj_h>=p1_y && obj_y+obj_h>=p2_y && obj_y-obj_h<=p1_y && obj_y-obj_h<=p2_y)))   
     {
         int dhd=((p1_x-p2_x)*((obj_y-obj_h)-p2_y))-((p1_y-p2_y)*((obj_x+obj_d)-p2_x));
         int dbd=((p1_x-p2_x)*((obj_y+obj_h)-p2_y))-((p1_y-p2_y)*((obj_x+obj_d)-p2_x));
@@ -155,7 +154,7 @@ bool Forest::visible()
         int dhg=((p1_x-p2_x)*((obj_y-obj_h)-p2_y))-((p1_y-p2_y)*((obj_x-obj_d)-p2_x));
         int dbg=((p1_x-p2_x)*((obj_y+obj_h)-p2_y))-((p1_y-p2_y)*((obj_x-obj_d)-p2_x));
 
-        if((dhd<0 && dbd>0) || (dhg<0 && dbg>0) || (dhd<0 && dbg>0) || (dhg<0 && dbd>0))visible=false; 
+        if((dhd<=0 && dbd>=0) || (dhg<=0 && dbg>=0) || (dhd<=0 && dbg>=0) || (dhg<=0 && dbd>=0))visible=false; 
     }
  }
 return visible;
