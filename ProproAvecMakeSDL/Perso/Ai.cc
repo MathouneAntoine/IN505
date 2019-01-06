@@ -16,8 +16,8 @@ Ai::Ai(Point p)
     this->p.setY(p.getY() );
     this->orientation = 0;
     this->pv = 100;
-    this->weaponDamage = 400;
-    this->weaponRange= 30;
+    this->weaponDamage = 5;
+    this->weaponRange= 6;
     this->cerc = new Cercle(this->p,20);
 }
 
@@ -120,7 +120,7 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( 0,  -2);
         }
-        else Attack(this->orientation, 1,  obj, 50,p);
+        else Attack(this->orientation, weaponRange,  obj, weaponDamage,p);
 
         break;
 
@@ -129,7 +129,7 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( 2,  0);
         }
-        else Attack(this->orientation, 1,  obj, 50,p);
+        else Attack(this->orientation, weaponRange,  obj, weaponDamage,p);
 
         break;
 
@@ -138,7 +138,7 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( 0,  2);
         }
-        else Attack(this->orientation, 1,  obj, 50,p);
+        else Attack(this->orientation, weaponRange,  obj, weaponDamage,p);
 
         break;
 
@@ -147,7 +147,7 @@ void Ai::Translate(int direction, vector<Objects*>& obj,Character &p)
         {
             cerc->deplacer( -2,  0);
         }
-        else Attack(this->orientation, 1,  obj, 50,p);
+        else Attack(this->orientation, weaponRange,  obj, weaponDamage,p);
 
         break;
     }

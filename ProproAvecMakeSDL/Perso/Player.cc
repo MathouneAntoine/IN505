@@ -21,8 +21,8 @@ Player::Player(Point p)
     this->p.setY(p.getY());
     this->orientation = 0;
     this->pv = 100;
-    this->weaponDamage = 50;
-    this->weaponRange= 6;
+    this->weaponDamage = 5;
+    this->weaponRange= 4;
     this->cerc = new Cercle(this->p,20);
 }
 bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
@@ -33,8 +33,6 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
 	bool r = false;
 	bool po = false;
 
-    int range = 0;
-    int power = 0;
     switch(event.type)
     {
         case SDL_QUIT:
@@ -55,29 +53,29 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
 	                    	{
 	                    		
 	                    		case SDLK_1:
-	                          	 range = 3;
+	                          	 weaponRange = 2;
 	                          	 r = true;
 	                    		break;
 
 	                    		case SDLK_2:
-	                    		 range = 4;
+	                    		 weaponRange = 4;
 	                    		  r = true;
 	                    		break;
 
 	                    		case SDLK_3:
-	                    		 range = 5;
+	                    		 weaponRange = 6;
 	                    		  r = true;
 	                    		break;
 
 	                    		case SDLK_4:
-	                    		 range = 6;
+	                    		 weaponRange = 8;
 	                    		  r = true;
 	                    		break;
 
 	                      		case SDLK_5:
-	                      		                        cout <<"Tirer51!"<<endl;
+	                      		              cout <<"Tirer51!"<<endl;
 
-	                      		 range = 7;
+	                      		 weaponRange = 10;
 	                      		  r = true;
 								break;
 							}
@@ -89,30 +87,30 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
 								switch(e1.key.keysym.sym)
 									{
 		                    		case SDLK_1:
-		                          	power = 1;
+		                          	weaponDamage = 1;
 		                          	po=true;
 
 		                    		break;
 
 		                    		case SDLK_2:
-		                    		power = 2;
+		                    		weaponDamage = 2;
 		                    		po=true;
 		                    		break;
 
 		                    		case SDLK_3:
-		                    		power = 3;
+		                    		weaponDamage = 3;
 		                    		po=true;
 		                    		break;
 
 		                    		case SDLK_4:
-		                    		power = 4;
+		                    		weaponDamage = 4;
 		                    		po=true;
 		                    		break;
 
 		                      		case SDLK_5:
 		                      		                        cout <<"Tirer52!"<<endl;
 
-		                      	    power = 5;
+		                      	    weaponDamage = 5;
 		                      	    po=true;
 									break;
 
@@ -120,8 +118,9 @@ bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
 								}
 							
                         cout <<"Tirer!"<<endl;
-                        Attack(this->orientation, range,  obj, power,p);
+                        Attack(this->orientation, weaponRange,  obj, weaponDamage,p);
                         tour= true;
+                        weaponRange=4;
                         break;
 
                         case SDLK_UP:

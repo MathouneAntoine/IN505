@@ -20,8 +20,8 @@ Character::Character()
     if(o == 3) {this->orientation = 270;}
 
     this->pv = 100;
-    this->weaponDamage = 500;
-    this->weaponRange= 15;
+    this->weaponDamage = 5;
+    this->weaponRange= 6;
     this->cerc = new Cercle();
 }
 Character::Character(Point p)
@@ -30,8 +30,8 @@ Character::Character(Point p)
   this->p.setY(p.getY());
   this->orientation = 0;
   this->pv = 100;
-  this->weaponDamage = 50;
-  this->weaponRange= 5;
+  this->weaponDamage = 5;
+  this->weaponRange= 6;
   this->cerc = new Cercle(this->p,20);
 }
 

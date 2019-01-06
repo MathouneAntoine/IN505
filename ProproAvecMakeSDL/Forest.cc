@@ -167,5 +167,4 @@ Forest::~Forest()
 
   if(p1!=NULL) delete p1;
   if(p2!=NULL)delete p2;
-  
 }

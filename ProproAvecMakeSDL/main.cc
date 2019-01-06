@@ -93,10 +93,10 @@ int main(int argc, char **argv)
 	{
 
 	forest->print(renderer,0);
-	Player* p;
-	Ai* a;
-	Player* p2;
-	Ai* a2;
+	Player* p=NULL;
+	Ai* a=NULL;
+	Player* p2=NULL;
+	Ai* a2=NULL;
 	if(typepartie  == 1 )
 	{
 		p= dynamic_cast<Player*> (forest->getP1());
@@ -187,6 +187,7 @@ int main(int argc, char **argv)
 		tour2 = false;
 	}
 }
+
   SDL_DestroyRenderer(renderer);
 
   end=false;
@@ -210,7 +211,7 @@ SDL_DestroyRenderer(rende);
 
 	delete(forest);
 
-	//SDL_DestroyWindow(fenetre);
+	SDL_DestroyWindow(fenetre);
 
 	TTF_Quit();
 	SDL_Quit();

@@ -350,9 +350,7 @@ void write_Forest(Forest* f)
             if (dynamic_cast<Rock*>(f->getList()[i])) write_Rock(dynamic_cast<Rock*>(f->getList()[i]), file );
             if (dynamic_cast<Tree*>(f->getList()[i])) write_Tree(dynamic_cast<Tree*>(f->getList()[i]), file);
         }
-
-        cout<< "P1== " << endl; 
-        f->getP1()->PrintInfo();
+ 
         write_Character(f->getP1(), file,1);
         write_Character(f->getP2(), file,2);
 
