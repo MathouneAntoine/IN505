@@ -15,6 +15,7 @@ Player::Player()
 {
 
 }
+
 Player::Player(Point p)
 {
     this->p.setX(p.getX());
@@ -22,262 +23,238 @@ Player::Player(Point p)
     this->orientation = 0;
     this->pv = 100;
     this->weaponDamage = 5;
-    this->weaponRange= 4;
-    this->cerc = new Cercle(this->p,20);
+    this->weaponRange = 4;
+    this->cerc = new Cercle(this->p, 20);
 }
-bool Player::movePlayer(SDL_Event event, vector<Objects*> &obj, Character &p)
+
+bool Player::movePlayer(SDL_Event event, vector < Objects * >&obj,
+			Character & p)
 {
-	SDL_Event  e1;
-	SDL_Event  e2;
+    SDL_Event e1;
+    SDL_Event e2;
     bool tour = false;
-	bool r = false;
-	bool po = false;
+    bool r = false;
+    bool po = false;
 
-    switch(event.type)
-    {
-        case SDL_QUIT:
-        break;  
+    switch (event.type) {
+    case SDL_QUIT:
+	break;
 
-                    case SDL_KEYDOWN: 
- 
-                    switch(event.key.keysym.sym)
-                    {
-                    	
-                        case 't':
+    case SDL_KEYDOWN:
 
-                        while(r==false)
-                        {
-							SDL_WaitEvent( &e1);
-							if(e1.type==SDL_KEYDOWN)
-	                        switch(e1.key.keysym.sym)
-	                    	{
-	                    		
-	                    		case SDLK_1:
-	                          	 weaponRange = 2;
-	                          	 r = true;
-	                    		break;
+	switch (event.key.keysym.sym) {
 
-	                    		case SDLK_2:
-	                    		 weaponRange = 4;
-	                    		  r = true;
-	                    		break;
+	case 't': // Si on tire
 
-	                    		case SDLK_3:
-	                    		 weaponRange = 6;
-	                    		  r = true;
-	                    		break;
+	    while (r == false) { 
+		SDL_WaitEvent(&e1);           // on choisi la porté
+		if (e1.type == SDL_KEYDOWN)
+		    switch (e1.key.keysym.sym) {
 
-	                    		case SDLK_4:
-	                    		 weaponRange = 8;
-	                    		  r = true;
-	                    		break;
+		    case SDLK_1:
+			weaponRange = 2;
+			r = true;
+			break;
 
-	                      		case SDLK_5:
-	                      		              cout <<"Tirer51!"<<endl;
+		    case SDLK_2:
+			weaponRange = 4;
+			r = true;
+			break;
 
-	                      		 weaponRange = 10;
-	                      		  r = true;
-								break;
-							}
-						}
-							while(po==false)
-                        	{
-								SDL_WaitEvent( &e1);
-								if(e1.type==SDL_KEYDOWN)
-								switch(e1.key.keysym.sym)
-									{
-		                    		case SDLK_1:
-		                          	weaponDamage = 1;
-		                          	po=true;
+		    case SDLK_3:
+			weaponRange = 6;
+			r = true;
+			break;
 
-		                    		break;
+		    case SDLK_4:
+			weaponRange = 8;
+			r = true;
+			break;
 
-		                    		case SDLK_2:
-		                    		weaponDamage = 2;
-		                    		po=true;
-		                    		break;
+		    case SDLK_5:
+			//cout << "Tirer51!" << endl;
+			weaponRange = 10;
+			r = true;
+			break;
+		    }
+	    }
+	    while (po == false) { // on choisi la puissance
+		SDL_WaitEvent(&e1);
+		if (e1.type == SDL_KEYDOWN)
+		    switch (e1.key.keysym.sym) {
+		    case SDLK_1:
+			weaponDamage = 1;
+			po = true;
+			break;
 
-		                    		case SDLK_3:
-		                    		weaponDamage = 3;
-		                    		po=true;
-		                    		break;
+		    case SDLK_2:
+			weaponDamage = 2;
+			po = true;
+			break;
 
-		                    		case SDLK_4:
-		                    		weaponDamage = 4;
-		                    		po=true;
-		                    		break;
+		    case SDLK_3:
+			weaponDamage = 3;
+			po = true;
+			break;
 
-		                      		case SDLK_5:
-		                      		                        cout <<"Tirer52!"<<endl;
+		    case SDLK_4:
+			weaponDamage = 4;
+			po = true;
+			break;
 
-		                      	    weaponDamage = 5;
-		                      	    po=true;
-									break;
+		    case SDLK_5:
+			//cout << "Tirer52!" << endl;
+			weaponDamage = 5;
+			po = true;
+			break;
 
-									}
-								}
-							
-                        cout <<"Tirer!"<<endl;
-                        Attack(this->orientation, weaponRange,  obj, weaponDamage,p);
-                        tour= true;
-                        weaponRange=4;
-                        break;
+		    }
+	    }
 
-                        case SDLK_UP:
-                        cout <<"Up"<<endl;
-                        if(this->orientation!=0)
-                        {
-                            this->orientation = 0;
-                        }
-                        else
-                        {
-                            Translate(0,obj,p);
-                        }
-                        tour= true;
-                        break;
+	    cout << "Tirer!" << endl;
+	    Attack(this->orientation, weaponRange, obj, weaponDamage, p);
+	    tour = true;
+	    weaponRange = 4;
+	    break;
 
-                        
-                        case SDLK_DOWN:
-                        cout <<"Down"<<endl;
-                        if(this->orientation != 180)
-                        {
-                            this->orientation = 180;
-                        }
-                        else
-                        {
-                            Translate(180,obj,p);
-                        }
-                        tour= true;
-                        break;
-
-                        case SDLK_RIGHT:
-                        cout <<"Right"<<endl;
-                        if(this->orientation != 90)
-                        {
-                           this->orientation = 90;
-                       }
-                       else
-                       {
-                        Translate(90,obj,p);
-                   	   }
-                   	   tour= true;
-                    	break;
-
-                    case SDLK_LEFT:
-                    cout <<"Left"<<endl;
-                    if(this->orientation !=270)
-                    {
-                        this->orientation = 270;
-                    }
-                    else
-                    {
-                        Translate(270,obj,p);
-                    }
-                    tour= true;
-                    break;
-                }
-                break;
-            }
-            return tour;
-
-        }
-
-        void Player::print(Field f)
-        {   
-            if(this->orientation == 0)
-            {
-                glBegin(GL_LINES);
-                glColor3f(0.88, 0.41 ,0);
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2);
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)-cerc->getDiametre()/2-this->weaponRange);
-                glEnd();
-            }
-            if(this->orientation == 90)
-            {
-                glBegin(GL_LINES);
-                glColor3f(0.88, 0.41 ,0);
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)+cerc->getDiametre()/2+this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
-                glEnd();
-            }
-            if(this->orientation == 180)
-            {
-                glBegin(GL_LINES);
-                glColor3f(0.88, 0.41 ,0);
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2);
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2), cerc->getCenter().getY()+(f.getHeight()/2)+cerc->getDiametre()/2+this->weaponRange);
-                glEnd();
-            }
-            if(this->orientation == 270)
-            {
-                glBegin(GL_LINES);
-                glColor3f(0.88, 0.41 ,0);
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2, cerc->getCenter().getY()+(f.getHeight()/2));
-                glVertex2f(cerc->getCenter().getX()+(f.getWidth()/2)-cerc->getDiametre()/2-this->weaponRange, cerc->getCenter().getY()+(f.getHeight()/2));
-                glEnd();
-            }
-
-            
-
-            GLfloat x =cerc->getCenter().getX()+(f.getWidth()/2) ;
-            GLfloat y =cerc->getCenter().getY()+(f.getHeight()/2);
-            GLfloat radius = cerc->getDiametre()/2;
-            int i;
-            int triangleAmount = 1000;
-            float PI =3.14;
-            GLfloat twicePi = 2.0f * PI;
-            glEnable(GL_LINE_SMOOTH);
-            glLineWidth(5.0);
-
-            glBegin(GL_LINES);
-            glColor3f(0, 1, 0);
-            for(i = 0; i <= triangleAmount; i++)
-            {
-                glVertex2f( x, y);
-                glVertex2f(x + (radius * cos(i * twicePi / triangleAmount)), y + (radius * sin(i * twicePi / triangleAmount)));
-            }
-            glEnd();
-        }
-
-        void Player::Translate(int direction, vector<Objects*> &obj,Character &p)
-        {
-            switch(direction)
-            {
-                case 0:
-                if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p ) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()-cerc->getDiametre()/2 -3) ,obj,0,p))
-                {
-                   cerc->deplacer( 0,  -3);
-               }
-               break;
-
-               case 90:
-               if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()+cerc->getDiametre()/2) ,obj,0,p) && collision( cerc->getCenter().getX()+cerc->getDiametre()/2 +3 , (cerc->getCenter().getY()-cerc->getDiametre()/2) ,obj,0,p))
-               {
-                   cerc->deplacer( 3,  0);
-               }
-               break;
-
-               case 180:
-               if(collision( cerc->getCenter().getX()+cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p) && collision(cerc->getCenter().getX()-cerc->getDiametre()/2 , (cerc->getCenter().getY()+cerc->getDiametre()/2 +3) ,obj,0,p))
-               {
-                   cerc->deplacer( 0,  3);
-               }
-               break;
-
-               case 270:
-               if(collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())+cerc->getDiametre()/2 ,obj,0,p) && collision( cerc->getCenter().getX()-cerc->getDiametre()/2 -3 , (cerc->getCenter().getY())-cerc->getDiametre()/2 ,obj,0,p))
-               {
-                   cerc->deplacer( -3,  0);
-               }
-               break;
-           }
-
-       }
+	case SDLK_UP:    // On s'oriente vers le haut ou on monte
+	    cout << "Up" << endl;
+	    if (this->orientation != 0) {
+		this->orientation = 0;
+	    } else {
+		Translate(0, obj, p);
+	    }
+	    tour = true;
+	    break;
 
 
-       Player::~Player()
-       {
-        cout << "Destructeur Player "<<  endl;
+	case SDLK_DOWN:  // On s'oriente vers le bas ou on descend
+	    cout << "Down" << endl;
+	    if (this->orientation != 180) {
+		this->orientation = 180;
+	    } else {
+		Translate(180, obj, p);
+	    }
+	    tour = true;
+	    break;
 
+	case SDLK_RIGHT: // On s'oriente vers la droite ou on va a droite
+	    cout << "Right" << endl;
+	    if (this->orientation != 90) {
+		this->orientation = 90;
+	    } else {
+		Translate(90, obj, p);
+	    }
+	    tour = true;
+	    break;
 
+	case SDLK_LEFT: // On s'oriente vers la gauche ou on va a gauche
+	    cout << "Left" << endl;
+	    if (this->orientation != 270) {
+		this->orientation = 270;
+	    } else {
+		Translate(270, obj, p);
+	    }
+	    tour = true;
+	    break;
+	}
+	break;
     }
+    return tour;
+
+}
+
+void Player::print(Field f)
+{
+    if (this->orientation == 0) {
+	glBegin(GL_LINES);
+	glColor3f(0.88, 0.41, 0);
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2),cerc->getCenter().getY() + (f.getHeight() / 2) - cerc->getDiametre() / 2);
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2),cerc->getCenter().getY() + (f.getHeight() / 2) - cerc->getDiametre() / 2 - this->weaponRange);
+	glEnd();
+    }
+    if (this->orientation == 90) {
+	glBegin(GL_LINES);
+	glColor3f(0.88, 0.41, 0);
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2) + cerc->getDiametre() / 2, cerc->getCenter().getY() + (f.getHeight() / 2));
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2) + cerc->getDiametre() / 2 + this->weaponRange, cerc->getCenter().getY() + (f.getHeight() / 2));
+	glEnd();
+    }
+    if (this->orientation == 180) {
+	glBegin(GL_LINES);
+	glColor3f(0.88, 0.41, 0);
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2), cerc->getCenter().getY() + (f.getHeight() / 2) + cerc->getDiametre() / 2);
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2), cerc->getCenter().getY() + (f.getHeight() / 2) + cerc->getDiametre() / 2 + this->weaponRange);
+	glEnd();
+    }
+    if (this->orientation == 270) {
+	glBegin(GL_LINES);
+	glColor3f(0.88, 0.41, 0);
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2) - cerc->getDiametre() / 2, cerc->getCenter().getY() + (f.getHeight() / 2));
+	glVertex2f(cerc->getCenter().getX() + (f.getWidth() / 2) - cerc->getDiametre() / 2 - this->weaponRange, cerc->getCenter().getY() + (f.getHeight() / 2));
+	glEnd();
+    }
+
+
+    GLfloat x = cerc->getCenter().getX() + (f.getWidth() / 2);
+    GLfloat y = cerc->getCenter().getY() + (f.getHeight() / 2);
+    GLfloat radius = cerc->getDiametre() / 2;
+    int i;
+    int triangleAmount = 1000;
+    float PI = 3.14;
+    GLfloat twicePi = 2.0f * PI;
+    glEnable(GL_LINE_SMOOTH);
+    glLineWidth(5.0);
+
+    glBegin(GL_LINES);
+    glColor3f(0, 1, 0);
+    for (i = 0; i <= triangleAmount; i++) {
+	glVertex2f(x, y);
+	glVertex2f(x + (radius * cos(i * twicePi / triangleAmount)),
+		   y + (radius * sin(i * twicePi / triangleAmount)));
+    }
+    glEnd();
+}
+
+void Player::Translate(int direction, vector < Objects * >&obj, Character & p)
+{
+    switch (direction) { // On regarde si là ou le joueur veut aller est valide
+    case 0:
+	if (collision (cerc->getCenter().getX() + cerc->getDiametre() / 2,(cerc->getCenter().getY() - cerc->getDiametre() / 2 - 3), obj,0, p)
+	    && collision(cerc->getCenter().getX() -cerc->getDiametre() / 2, (cerc->getCenter().getY() - cerc->getDiametre() / 2 - 3), obj, 0, p)) {
+	    cerc->deplacer(0, -3);
+	}
+	break;
+
+    case 90:
+	if (collision (cerc->getCenter().getX() + cerc->getDiametre() / 2 + 3,(cerc->getCenter().getY() + cerc->getDiametre() / 2), obj, 0, p)
+	    && collision(cerc->getCenter().getX() + cerc->getDiametre() / 2 + 3, (cerc->getCenter().getY() - cerc->getDiametre() / 2), obj, 0, p)) {
+	    cerc->deplacer(3, 0);
+	}
+	break;
+
+    case 180:
+	if (collision
+	    (cerc->getCenter().getX() + cerc->getDiametre() / 2,(cerc->getCenter().getY() + cerc->getDiametre() / 2 + 3), obj, 0, p)
+	    && collision(cerc->getCenter().getX() - cerc->getDiametre() / 2, (cerc->getCenter().getY() + cerc->getDiametre() / 2 + 3), obj, 0, p)) {
+	    cerc->deplacer(0, 3);
+	}
+	break;
+
+    case 270:
+	if (collision(cerc->getCenter().getX() - cerc->getDiametre() / 2 - 3, (cerc->getCenter().getY()) + cerc->getDiametre() / 2, obj, 0, p)
+	    && collision(cerc->getCenter().getX() - cerc->getDiametre() / 2 - 3, (cerc->getCenter().getY()) - cerc->getDiametre() / 2, obj, 0, p)) {
+	    cerc->deplacer(-3, 0);
+	}
+	break;
+    }
+
+}
+
+
+Player::~Player()
+{
+    cout << "Destructeur Player " << endl;
+
+
+}

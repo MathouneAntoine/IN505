@@ -5,60 +5,66 @@
 using namespace std;
 
 Objects::Objects()
-{}
-
-int Objects::getLife()
 {
-	return this->life;
+}
+
+int
+ Objects::getLife()
+{
+    return this->life;
 }
 
 void Objects::setLife(int life)
 {
-	this->life = life;
+    this->life = life;
 }
+
 int Objects::getHeight()
 {
-	return this->height;
+    return this->height;
 }
 
 int Objects::getDiameter()
 {
-	return this->diameter;
+    return this->diameter;
 }
 
 int Objects::getAltitude()
 {
-	return this->altitude;
+    return this->altitude;
 }
 
 Point Objects::getCenter()
 {
-	return this->center;
+    return this->center;
 }
 
 char Objects::getType()
 {
-	return this->type;
+    return this->type;
 }
 
-Forme* Objects::getForme()
+Forme *Objects::getForme()
 {
-	return this->f;
+    return this->f;
 }
 
 void Objects::printInfo()
 {
-	cout<< endl <<" Height : "<< this->height << "  Diameter : "
-		 << this->diameter << "  Altitude : " << this->altitude<< " Life : " << this->life <<endl;
-	cout << "center X : " << center.getX() << " center Y : " << center.getY() << endl;
+    cout << endl << " Height : " << this->height << "  Diameter : "
+	<< this->
+	diameter << "  Altitude : " << this->altitude << " Life : " <<
+	this->life << endl;
+    cout << "center X : " << center.
+	getX() << " center Y : " << center.getY() << endl;
 }
 
 void Objects::print()
 {
-	cout<<"undefined"<<endl;
+    cout << "undefined" << endl;
 }
 
 Objects::~Objects()
 {
-	delete this->f;
+    delete this->f;
 }
