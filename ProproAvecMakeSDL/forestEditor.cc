@@ -103,17 +103,17 @@ void message(SDL_Window* screen)
     SDL_RenderPresent(renderer);
     SDL_RenderClear(renderer);
 
-  SDL_Surface * text1=NULL;
-SDL_Surface * text2=NULL;
-      SDL_Surface * text3=NULL;
-  TTF_Font * police = NULL;
-  SDL_Color c = {255, 255, 255};
+    SDL_Surface * text1=NULL;
+    SDL_Surface * text2=NULL;
+    SDL_Surface * text3=NULL;
+    TTF_Font * police = NULL;
+    SDL_Color c = {255, 255, 255};
 
-  police = TTF_OpenFont("./edit_font.ttf", 15);
+    police = TTF_OpenFont("./edit_font.ttf", 15);
     if(!police) printf("TTF_OpenFont: %s\n", TTF_GetError());
 
-  text1=TTF_RenderText_Blended(police, "Appuyez sur A pour placer un arbre, R pour un Rocher, P un personnage", c);
-  SDL_Rect Message_rect;
+    text1=TTF_RenderText_Blended(police, "Appuyez sur A pour placer un arbre, R pour un Rocher, P un personnage", c);
+    SDL_Rect Message_rect;
     Message_rect.x = 10; 
     Message_rect.y = 50;
     Message_rect.w = text1->w; 
@@ -121,14 +121,15 @@ SDL_Surface * text2=NULL;
     SDL_Texture* Message2 = SDL_CreateTextureFromSurface(renderer, text1); 
     SDL_RenderCopy(renderer, Message2, NULL, &Message_rect); 
 
-  text2=TTF_RenderText_Blended(police, "Puis cliquez ou vous voulez placer l'objet", c);
+    text2=TTF_RenderText_Blended(police, "Puis cliquez ou vous voulez placer l'objet", c);
     Message_rect.y = 150;
     Message_rect.w = text2->w; 
     Message_rect.h = text2->h; 
     SDL_Texture* Message3 = SDL_CreateTextureFromSurface(renderer, text2); 
     SDL_RenderCopy(renderer, Message3, NULL, &Message_rect); 
 
-text3=TTF_RenderText_Blended(police, "Appuyer sur S pour sauvegarder et quitter ou Q pour quitter sans sauvegarder", c);    Message_rect.y = 250;
+    text3=TTF_RenderText_Blended(police, "Appuyer sur S pour sauvegarder et quitter ou Q pour quitter sans sauvegarder", c);   
+    Message_rect.y = 250;
     Message_rect.w = text3->w; 
     Message_rect.h = text3->h; 
     SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, text3); 
@@ -139,10 +140,10 @@ text3=TTF_RenderText_Blended(police, "Appuyer sur S pour sauvegarder et quitter 
 
     while(event.key.keysym.sym != SDLK_RETURN )
     {
-     SDL_WaitEvent(&event);
-    }
+       SDL_WaitEvent(&event);
+   }
 
-    SDL_DestroyRenderer(renderer);
+   SDL_DestroyRenderer(renderer);
 
 }
 
@@ -156,7 +157,7 @@ bool add_Element(Forest* f, Objects* r, Point center)
     int r_d=r->getDiameter()/2;
     int r_h=r->getHeight()/2;
 
-    for(int unsigned i=0; i < f->getList().size() && ok !=1 ;i++)
+    for(int unsigned i=0; i < f->getList().size() && ok !=1 ;i++) // On parcours tous les objets de la foret
         {
             cout<< "HELLO" <<endl;
             obj=f->getObj(i);
@@ -165,7 +166,7 @@ bool add_Element(Forest* f, Objects* r, Point center)
             int obj_d=obj->getDiameter()/2;
             int obj_h=obj->getHeight()/2;
 
-            if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d)) 
+            if (((r_x+r_d >= (obj_x-(obj_d)) && r_x+r_d <= (obj_x+(obj_d))              //Test de collision entre les objets
                         && (r_y-r_h) <= (obj_y+(obj_h)) && (r_y-r_h) >= (obj_y-(obj_h)))
                 )||(                
                     (r_x-r_d <= (obj_x+(obj_d)) && r_x-r_d >= (obj_x-(obj_d))
@@ -199,19 +200,19 @@ bool add_Element(Forest* f, Objects* r, Point center)
 
      if (ok==0)
         {
-            if (f->getP1() != NULL)
+            if (f->getP1() != NULL) // Test si on collisionne avec p1
             {
                 ok=collision_perso(f,r,center,1);
             }
 
-            if (f->getP2() != NULL)
+            if (f->getP2() != NULL) // Test si on collisionne avec p2
             {
                 ok=collision_perso(f,r,center,2);
             }
         }
 
   
-    if (ok ==0)
+    if (ok ==0) //Si il n'y a eu aucune collision, on ajoute l'objet à la liste de la foret et on return TRUE
     {
         f->addList(r);
         
@@ -228,6 +229,7 @@ bool collision_perso(Forest* f, Objects* r, Point center, int p)
     int obj_y=0;
     int obj_d=0;
     int obj_h=0;
+
               if(p==1) 
             {
                  obj_x=f->getP1()->getForme()->getCenter().getX();
