@@ -7,7 +7,6 @@ SDL_Window *Screen_Init(int argc, char *argv[], Field f)
 {
 
     SDL_Window *fenetre(0);
-    SDL_GLContext contexteOpenGL(0);
 
     // Initialisation de la SDL
 

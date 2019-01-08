@@ -163,7 +163,6 @@ bool add_Element(Forest * f, Objects * r, Point center)
 
     for (int unsigned i = 0; i < f->getList().size() && ok != 1; i++)	// On parcours tous les objets de la foret
     {
-	cout << "HELLO" << endl;
 	obj = f->getObj(i);
 	int obj_x = obj->getCenter().getX();
 	int obj_y = obj->getCenter().getY();
@@ -440,8 +439,7 @@ Forest *read_File(Forest * f, int type, int map)	//type : 0 joueur/ia ; 1- ia/ia
 			center.setX(x);
 			center.setY(y);
 			Objects *r =
-			    new Rock(t, center, height, diameter, altitude,
-				     life);
+			    new Rock(t, center, height, diameter, altitude, life);
 			f->addList(r);
 		    }
 		    break;
@@ -453,8 +451,7 @@ Forest *read_File(Forest * f, int type, int map)	//type : 0 joueur/ia ; 1- ia/ia
 			center.setX(x);
 			center.setY(y);
 			Objects *r =
-			    new Tree(t, center, height, diameter, altitude,
-				     life);
+			    new Tree(t, center, height, diameter, altitude, life);
 			f->addList(r);
 		    }
 		    break;
@@ -467,17 +464,17 @@ Forest *read_File(Forest * f, int type, int map)	//type : 0 joueur/ia ; 1- ia/ia
 			center.setY(y);
 			cout << "TYPE  : " << type << endl;
 
-			if (i == 1 && (type == 1 || type == 3)) {
+			if (i == 1 && (type == 1 || type == 3)) { //Si on doit creer au moins un joueur
 			    f->setP1(new Player(center));
 			}
-			if (i == 1 && type == 2) {
+			if (i == 1 && type == 2) { // Si il y a 2 ia
 			    f->setP1(new Ai(center));
 			}
 
-			if (i == 2 && (type == 1 || type == 2)) {
+			if (i == 2 && (type == 1 || type == 2)) { // Si il y a au moin une ia
 			    f->setP2(new Ai(center));
 			}
-			if (i == 2 && type == 3) {
+			if (i == 2 && type == 3) { // Si il y a 2 joueurs
 			    f->setP2(new Player(center));
 			}
 

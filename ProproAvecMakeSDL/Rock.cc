@@ -25,14 +25,10 @@ Rock::Rock()
     }
 
     if (i == 1) {
-	p1.setX(70);
-	p1.setY(75);
-	p2.setX(90);
-	p2.setY(50);
-	p3.setX(70);
-	p3.setY(25);
-	p4.setX(50);
-	p4.setY(50);
+	p1.setX(70); p1.setY(75);
+	p2.setX(90);p2.setY(50);
+	p3.setX(70);p3.setY(25);
+	p4.setX(50);p4.setY(50);
 
 	this->center.setX(p1.getX());
 	this->center.setY(p2.getY());
@@ -52,14 +48,20 @@ Rock::Rock(Point center)
     this->center.setY(center.getY());
 
     this->diameter = rand() % 100 + 60;
+    
     if (this->diameter % 2 != 0)
 	this->diameter++;
+
     this->height = rand() % 100 + 60;
+
     if (this->height % 2 != 0)
 	this->height++;
+
     this->altitude = rand() % 150 + 80;
+
     if (this->altitude % 2 != 0)
 	this->altitude++;
+
     this->life = (altitude / 4) + (diameter / 4) + (height / 4);
 
     int i = rand() % 2;
@@ -155,4 +157,5 @@ void Rock::print(Field f)
 
 Rock::~Rock()
 {
+	delete this->f;
 }

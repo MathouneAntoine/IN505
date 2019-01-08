@@ -15,8 +15,7 @@ class Tree :  public Objects
 	Tree(Point center);
 	void print(Field f);
     void print_Tree();
-
-	~Tree();
+    ~Tree();
 
 
 	private:

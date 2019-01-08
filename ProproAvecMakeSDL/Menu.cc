@@ -124,7 +124,7 @@ bool Menu::init_choix_map()
     return true;
 }
 
-int Menu::clic(SDL_Event & event, SDL_Window * screen)
+void Menu::clic(SDL_Event & event, SDL_Window * screen)
 {
 
     if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)	// Si on clic
@@ -244,7 +244,7 @@ void Menu::print(SDL_Window * screen)
     }
 }
 
-int Menu::Boucle_Menu(SDL_Window * screen, Forest * f)
+void Menu::Boucle_Menu(SDL_Window * screen, Forest * f)
 {
 
     SDL_Event event;

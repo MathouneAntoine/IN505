@@ -31,7 +31,6 @@ bool Player::movePlayer(SDL_Event event, vector < Objects * >&obj,
 			Character & p)
 {
     SDL_Event e1;
-    SDL_Event e2;
     bool tour = false;
     bool r = false;
     bool po = false;
@@ -118,7 +117,7 @@ bool Player::movePlayer(SDL_Event event, vector < Objects * >&obj,
 	    break;
 
 	case SDLK_UP:    // On s'oriente vers le haut ou on monte
-	    cout << "Up" << endl;
+	    //cout << "Up" << endl;
 	    if (this->orientation != 0) {
 		this->orientation = 0;
 	    } else {
@@ -129,7 +128,7 @@ bool Player::movePlayer(SDL_Event event, vector < Objects * >&obj,
 
 
 	case SDLK_DOWN:  // On s'oriente vers le bas ou on descend
-	    cout << "Down" << endl;
+	    //cout << "Down" << endl;
 	    if (this->orientation != 180) {
 		this->orientation = 180;
 	    } else {
@@ -139,7 +138,7 @@ bool Player::movePlayer(SDL_Event event, vector < Objects * >&obj,
 	    break;
 
 	case SDLK_RIGHT: // On s'oriente vers la droite ou on va a droite
-	    cout << "Right" << endl;
+	    //cout << "Right" << endl;
 	    if (this->orientation != 90) {
 		this->orientation = 90;
 	    } else {
@@ -149,7 +148,7 @@ bool Player::movePlayer(SDL_Event event, vector < Objects * >&obj,
 	    break;
 
 	case SDLK_LEFT: // On s'oriente vers la gauche ou on va a gauche
-	    cout << "Left" << endl;
+	    //cout << "Left" << endl;
 	    if (this->orientation != 270) {
 		this->orientation = 270;
 	    } else {
@@ -254,7 +253,6 @@ void Player::Translate(int direction, vector < Objects * >&obj, Character & p)
 
 Player::~Player()
 {
+    delete (cerc);
     cout << "Destructeur Player " << endl;
-
-
 }

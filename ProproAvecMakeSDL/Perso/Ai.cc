@@ -149,7 +149,6 @@ void Ai::Translate(int direction, vector < Objects * >&obj, Character & p) //Si 
 
 Ai::~Ai()
 {
-
+    delete (cerc);
     cout << "Destructeur Ai " << endl;
-
 }

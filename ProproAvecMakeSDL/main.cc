@@ -65,13 +65,11 @@ int main(int argc, char **argv)
     // Notre fenêtre
     Field f(800, 600);
     SDL_Window *fenetre = Screen_Init(argc, argv, f);
-    SDL_GLContext contexteOpenGL(0);
 
     Forest *forest = new Forest(f);
 
     Menu m;
-    int joue = 0;
-    joue = m.Boucle_Menu(fenetre, forest);
+    m.Boucle_Menu(fenetre, forest);
     int typepartie = m.getGame_Type();
 
     SDL_Renderer *renderer;  // Crée le rendu pour afficher la foret
@@ -154,7 +152,6 @@ int main(int argc, char **argv)
 		if (typepartie == 3) {
 		    SDL_WaitEvent(&event);
 		    tour2 = p2->movePlayer(event, forest->getListPtr(), forest->getP1Ref());
-		    p2->PrintInfo();
 		    if (p2->getLife() <= 0) end = true;
 		}
 

@@ -30,7 +30,7 @@ class Character
 		void takeDamageCharacter(Character &p, int power);
 
 		
-		~Character();
+		 ~Character();
 	protected:
 		Point p;
 	    Cercle *cerc;

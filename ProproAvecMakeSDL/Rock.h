@@ -19,7 +19,6 @@ class Rock :  public Objects
 
 
 	private:
-		int depth;
 
 };
 

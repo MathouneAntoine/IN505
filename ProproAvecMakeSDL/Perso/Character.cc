@@ -243,5 +243,4 @@ Character::~Character()
 {
 	delete (cerc);
 	cout << "Destructeur Character "<<  endl;
-
 }

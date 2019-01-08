@@ -91,7 +91,7 @@ void Forest::eraseList(int i)
 
 void Forest::init_forest()
 {
-    for (int i = 0; i < List_Obj.size(); i++) {
+    for (int unsigned i = 0; i < List_Obj.size(); i++) {
 	std::cout << List_Obj[i]->getType() << std::endl;
 	if (dynamic_cast < Rock * >(List_Obj[i]))
 	    dynamic_cast < Rock * >(this->List_Obj[i])->print(this->f);
